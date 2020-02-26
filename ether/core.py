@@ -1,14 +1,37 @@
 import logging
-from typing import List, Dict
+from typing import List, Dict, NamedTuple, Union, AnyStr
 
 import simpy
 
 logger = logging.getLogger(__name__)
 
+TransparentLink = AnyStr
+"""
+Helper nodes, such as switches or routers, that are treated transparently (ignored) in a network simulation when
+creating routes.
+"""
+
+NetworkNode = Union['Node', 'Link', TransparentLink]
+"""
+A network node is a vertex in a topology. It can either be a node (a computer), a link (a network devices), or helper
+links (like switches).
+"""
+
+
+class Connection(NamedTuple):
+    """
+    A connection is an edge in the topology. It represents physical network connections (like a cable, or wireless
+    connection of a WiFi card to an AP).
+    """
+    source: NetworkNode
+    target: NetworkNode
+    latency: float = 0
+    # TODO: better network QoS modeling
+
 
 class Capacity:
     """
-    Node capacity
+    Node capacity in terms of system capabilities (CPU, RAM, storage) ...
     """
 
     def __init__(self, cpu_millis: int = 1 * 1000, memory: int = 1024 * 1024 * 1024):
@@ -21,7 +44,7 @@ class Capacity:
 
 class Node:
     """
-    A node is a host that can run compute tasks and exchanges data with other hosts.
+    A node is a machine in the network that can run compute tasks, manage data, and exchanges data with other nodes.
     """
     name: str
     capacity: Capacity
@@ -140,7 +163,7 @@ class Flow:
             try:
                 yield env.timeout(connection_time)
                 break
-            except simpy.Interrupt as interrupt:
+            except simpy.Interrupt:
                 connection_time = connection_time - (env.now - started)
 
 

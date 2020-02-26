@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from ether.nodes import create_nuc_node, create_rpi3_node
+from ether.blocks.nodes import create_nuc_node, create_rpi3_node
 
 
 class TestNodes(TestCase):
