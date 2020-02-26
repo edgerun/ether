@@ -1,6 +1,7 @@
 import logging
 
-from ether.core import Topology, Node, Link
+from ether.core import Node, Link
+from ether.topology import Topology
 
 logger = logging.getLogger(__name__)
 
@@ -72,7 +73,8 @@ class TopologyJsonExporter:
         edges = list()
 
         for node in topology.get_all_nodes():
-            nodes.append(self.get_record(node))
+            if node:
+                nodes.append(self.get_record(node))
 
         for edge in topology.edges:
             edges.append({
