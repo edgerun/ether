@@ -1,5 +1,6 @@
+import inspect
 import itertools
-from collections import defaultdict
+from collections import defaultdict, Iterable
 from typing import Callable, List, Union
 
 from srds import RandomSampler
@@ -26,7 +27,7 @@ class UpDownLink:
 class MobileConnection(UpDownLink):
 
     def __init__(self, backhaul='internet') -> None:
-        super().__init__(125, 26, backhaul)
+        super().__init__(125, 25, backhaul)
 
 
 class BusinessIsp(UpDownLink):
@@ -55,6 +56,23 @@ class Cell:
 
     def materialize(self, topology: Topology, parent=None):
         raise NotImplementedError
+
+    def _materialize(self, topology: Topology, c: object, backhaul=None):
+        if isinstance(c, Iterable):
+            for elem in c:
+                self._materialize(topology, elem, backhaul)
+            return
+
+        if callable(c):
+            print(inspect.signature(c))
+            c = c()  # TODO: propagate parameters
+
+        if isinstance(c, Node):
+            c = NodeCell(c, backhaul=backhaul)
+        elif isinstance(c, Cell):
+            c.backhaul = backhaul
+
+        c.materialize(topology, self)
 
 
 class NodeCell(Cell):
@@ -86,15 +104,7 @@ class LANCell(Cell):
         self._create_identity()
 
         for cell in self.nodes:
-            if callable(cell):
-                cell = cell()  # TODO: propagate parameters
-
-            if isinstance(cell, Node):
-                cell = NodeCell(cell, backhaul=self.switch)
-            elif isinstance(cell, Cell):
-                cell.backhaul = self.switch
-
-            cell.materialize(topology, self)
+            self._materialize(topology, cell, self.switch)
 
         if self.backhaul:
             if isinstance(self.backhaul, UpDownLink):
@@ -109,6 +119,38 @@ class LANCell(Cell):
 
             else:
                 topology.edges.append(Edge(self.switch, self.backhaul))
+
+
+class SharedLinkCell(Cell):
+
+    def __init__(self, nodes, size=None, shared_bandwidth=300, backhaul=None) -> None:
+        super().__init__(nodes=nodes, size=size, backhaul=backhaul)
+        self.shared_bandwidth = shared_bandwidth
+
+    def _create_identity(self):
+        self.nr = next(counters['shared'])
+        self.name = 'shared_%d' % self.nr
+        self.link = Link(bandwidth=self.shared_bandwidth, tags={'name': 'link_%s', 'type': 'shared'})
+
+    def materialize(self, topology: Topology, parent=None):
+        self._create_identity()
+
+        for cell in self.nodes:
+            self._materialize(topology, cell, self.link)
+
+        if self.backhaul:
+            if isinstance(self.backhaul, UpDownLink):
+                uplink = Link(self.backhaul.bw_up, tags={'type': 'uplink', 'name': 'up_%s' % self.name})
+                downlink = Link(self.backhaul.bw_down, tags={'type': 'downlink', 'name': 'down_%s' % self.name})
+
+                topology.edges.append(Edge(self.link, uplink, directed=True))
+                topology.edges.append(Edge(downlink, self.link, directed=True))
+
+                topology.edges.append(Edge(self.backhaul.backhaul, downlink, directed=True))
+                topology.edges.append(Edge(uplink, self.backhaul.backhaul, directed=True))
+
+            else:
+                topology.edges.append(Edge(self.link, self.backhaul))
 
 
 class Cloudlet(LANCell):
