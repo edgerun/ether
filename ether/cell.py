@@ -3,7 +3,7 @@ import itertools
 from collections import defaultdict, Iterable
 from typing import Callable, List, Union
 
-from srds import RandomSampler
+from srds import RandomSampler, ConstantSampler, IntegerTruncationSampler
 
 from ether.core import Node, Link
 from ether.nodes import create_server_node
@@ -57,6 +57,11 @@ class Cell:
     def materialize(self, topology: Topology, parent=None):
         raise NotImplementedError
 
+    def generate(self) -> Topology:
+        t: Topology = Topology(list(), list())
+        self.materialize(t)
+        return t
+
     def _materialize(self, topology: Topology, c: object, backhaul=None):
         if isinstance(c, Iterable):
             for elem in c:
@@ -64,13 +69,13 @@ class Cell:
             return
 
         if callable(c):
-            print(inspect.signature(c))
             c = c()  # TODO: propagate parameters
 
         if isinstance(c, Node):
             c = NodeCell(c, backhaul=backhaul)
         elif isinstance(c, Cell):
-            c.backhaul = backhaul
+            if backhaul:
+                c.backhaul = backhaul
 
         c.materialize(topology, self)
 
@@ -92,8 +97,8 @@ class NodeCell(Cell):
 
 class LANCell(Cell):
 
-    def __init__(self, nodes, size=None, backhaul=None) -> None:
-        super().__init__(nodes=nodes, size=size, backhaul=backhaul)
+    def __init__(self, nodes, backhaul=None) -> None:
+        super().__init__(nodes=nodes, backhaul=backhaul)
 
     def _create_identity(self):
         self.nr = next(counters['lan'])
@@ -123,8 +128,8 @@ class LANCell(Cell):
 
 class SharedLinkCell(Cell):
 
-    def __init__(self, nodes, size=None, shared_bandwidth=300, backhaul=None) -> None:
-        super().__init__(nodes=nodes, size=size, backhaul=backhaul)
+    def __init__(self, nodes, shared_bandwidth=300, backhaul=None) -> None:
+        super().__init__(nodes=nodes, backhaul=backhaul)
         self.shared_bandwidth = shared_bandwidth
 
     def _create_identity(self):
@@ -151,6 +156,36 @@ class SharedLinkCell(Cell):
 
             else:
                 topology.edges.append(Edge(self.link, self.backhaul))
+
+
+class GeoCell(Cell):
+
+    def __init__(self, size, density, nodes) -> None:
+        super().__init__(nodes, size)
+        if isinstance(density, int):
+            self.density = ConstantSampler(density)
+        elif isinstance(density, RandomSampler):
+            self.density = IntegerTruncationSampler(density)
+        else:
+            raise ValueError('unknown density type %s' % type(density))
+
+    def materialize(self, topology: Topology, parent=None):
+        for i in range(self.size):
+            n = self.density.sample()
+
+            for c in self.nodes:
+                if callable(c):
+                    sig: inspect.Signature = inspect.signature(c)
+                    # TODO: correctly propagate parameters
+                    if len(sig.parameters) > 0:
+                        c = c(n)
+                    else:
+                        c = c()
+                self._materialize(topology, c)
+
+
+class IoTComputeBox(LANCell):
+    pass
 
 
 class Cloudlet(LANCell):
