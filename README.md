@@ -56,7 +56,7 @@ The visualization helps to see how much the backhaul network is relieved, and ho
 networks.  
 
 <a href="https://edgerun.io/static/ether/iiot-scenario-comparing-scheduling-strategies.jpg" target="_blank">
-  <img src="https://edgerun.io/static/ether/iiot-scenario-comparing-scheduling-strategies.jpg" alt="Comparing  a sub-community in a generated IIoT-scenario topology" width="700"/>
+  <img src="https://edgerun.io/static/ether/iiot-scenario-comparing-scheduling-strategies.jpg" alt="Comparing  a sub-community in a generated IIoT-scenario topology" width="100%"/>
 </a>
 
 Related publications
