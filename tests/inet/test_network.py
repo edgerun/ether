@@ -1,7 +1,7 @@
 import unittest
 
 from ether.inet.model.matrix import LatencyMatrix
-from ether.inet.network import create_latency_network_graph
+from ether.inet.graph import create_latency_network_graph
 
 
 class NetworkTest(unittest.TestCase):

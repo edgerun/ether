@@ -1,27 +1,21 @@
 import datetime
 
-import ether.inet.api.cloudping as cloudping
-import ether.inet.api.gcloudping as gcloudping
-import ether.inet.api.wondernetwork as wondernetwork
-import ether.inet.network as network
+import networkx as nx
+
+import ether.inet.graph as network
+from ether.inet.fetch import sources
+from ether.inet.graph import add_to_graph
 
 
 def fetch_and_save_all_graphs(folder: str = 'inet') -> None:
-    print('Fetch cloudping graph')
-    cloudping_graph = network.create_latency_network_graph(cloudping.get_average(days=7))
-
-    print('Fetch gcloudping graph')
-    gcloudping_graph = network.create_latency_network_graph(gcloudping.get_matrix())
-
-    print('Fetch wondernetwork graph')
-    wondernetwork_graph = network.create_latency_network_graph(wondernetwork.get_matrix())
-
     today = datetime.datetime.now().strftime("%Y_%m_%d")
-    for graph, name in [(cloudping_graph, 'cloudping'), (gcloudping_graph, 'gcloudping'),
-                        (wondernetwork_graph, 'wondernetwork')]:
-        print(f'Save {name} graph under: {folder}/{name}_latest.graphml')
-        network.save_network_graph(graph, f'{folder}/{name}_latest.graphml')
-        network.save_network_graph(graph, f'{folder}/{name}_{today}.graphml')
+
+    for name, source in sources.items():
+        graph = nx.DiGraph()
+        print('fetching from', name)
+        add_to_graph(graph, source.fetch())
+
+        network.save_network_graph(graph, f'{name}_{today}.graphml')
 
 
 def read_latest_graph(api: str, folder='inet'):
