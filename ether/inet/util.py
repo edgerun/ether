@@ -1,12 +1,12 @@
 import datetime
 
-import ether.graphs.api.cloudping as cloudping
-import ether.graphs.api.gcloudping as gcloudping
-import ether.graphs.api.wondernetwork as wondernetwork
-import ether.graphs.network as network
+import ether.inet.api.cloudping as cloudping
+import ether.inet.api.gcloudping as gcloudping
+import ether.inet.api.wondernetwork as wondernetwork
+import ether.inet.network as network
 
 
-def fetch_and_save_all_graphs(folder: str = 'graphs') -> None:
+def fetch_and_save_all_graphs(folder: str = 'inet') -> None:
     print('Fetch cloudping graph')
     cloudping_graph = network.create_latency_network_graph(cloudping.get_average(days=7))
 
@@ -24,7 +24,7 @@ def fetch_and_save_all_graphs(folder: str = 'graphs') -> None:
         network.save_network_graph(graph, f'{folder}/{name}_{today}.graphml')
 
 
-def read_latest_graph(api: str, folder='graphs'):
+def read_latest_graph(api: str, folder='inet'):
     """
     param api: currently supported 'cloudping', 'gcloudping', 'wondernetwork'
     raises FileNotFoundError

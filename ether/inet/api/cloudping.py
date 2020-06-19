@@ -2,7 +2,7 @@ from typing import Dict, Optional
 
 import requests
 
-from ether.graphs.model.matrix import LatencyMatrix
+from ether.inet.model.matrix import LatencyMatrix
 
 base_url = 'https://api-demo.cloudping.co'
 

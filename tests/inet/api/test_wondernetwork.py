@@ -1,6 +1,6 @@
 import unittest
 
-import ether.graphs.api.wondernetwork as wondernetwork
+import ether.inet.api.wondernetwork as wondernetwork
 
 
 class TestWonderNetwork(unittest.TestCase):

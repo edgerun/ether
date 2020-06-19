@@ -2,7 +2,7 @@ from typing import List, Optional
 
 import requests
 
-from ether.graphs.model.matrix import LatencyMatrix
+from ether.inet.model.matrix import LatencyMatrix
 
 
 def get_matrix() -> Optional[LatencyMatrix]:

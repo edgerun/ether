@@ -3,7 +3,7 @@ from typing import Optional, Dict, List
 
 import requests
 
-from ether.graphs.model.matrix import LatencyMatrix
+from ether.inet.model.matrix import LatencyMatrix
 
 
 @dataclass

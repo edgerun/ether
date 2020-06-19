@@ -1,6 +1,6 @@
 import networkx as nx
 
-from ether.graphs.model.matrix import LatencyMatrix
+from ether.inet.model.matrix import LatencyMatrix
 
 
 def create_latency_network_graph(matrix: LatencyMatrix) -> nx.Graph:
