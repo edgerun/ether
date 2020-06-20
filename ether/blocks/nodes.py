@@ -68,3 +68,9 @@ def create_tx2_node(name=None) -> Node:
 def create_node(name: str, cpus: int, mem: str, arch: str, labels=Dict[str, str]) -> Node:
     capacity = Capacity(cpu_millis=cpus * 1000, memory=parse_size_string(mem))
     return Node(name, capacity=capacity, arch=arch, labels=labels)
+
+
+rpi3 = create_rpi3_node
+nuc = create_nuc_node
+tx2 = create_tx2_node
+server = create_server_node

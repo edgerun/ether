@@ -2,18 +2,11 @@ import matplotlib.pyplot as plt
 import networkx as nx
 from srds import ParameterizedDistribution
 
+import ether.blocks.nodes as nodes
 from ether.blocks.cells import IoTComputeBox, Cloudlet, FiberToExchange, MobileConnection
-from ether.blocks.nodes import create_rpi3_node, create_nuc_node, create_tx2_node
 from ether.cell import SharedLinkCell, GeoCell
 from ether.core import Node, Link
 from ether.topology import Topology
-
-
-class nodes:
-    nuc = create_nuc_node
-    rpi3 = create_rpi3_node
-    tx2 = create_tx2_node
-
 
 lognorm = ParameterizedDistribution.lognorm
 
