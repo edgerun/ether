@@ -1,0 +1,596 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key attr.name="weight" attr.type="double" for="edge" id="d0" />
+  <graph edgedefault="undirected">
+    <node id="af-south-1" />
+    <node id="eu-north-1" />
+    <node id="ap-south-1" />
+    <node id="eu-west-3" />
+    <node id="eu-west-2" />
+    <node id="eu-south-1" />
+    <node id="eu-west-1" />
+    <node id="ap-northeast-2" />
+    <node id="me-south-1" />
+    <node id="ap-northeast-1" />
+    <node id="sa-east-1" />
+    <node id="ca-central-1" />
+    <node id="ap-east-1" />
+    <node id="ap-southeast-1" />
+    <node id="ap-southeast-2" />
+    <node id="eu-central-1" />
+    <node id="us-east-1" />
+    <node id="us-east-2" />
+    <node id="us-west-1" />
+    <node id="us-west-2" />
+    <edge source="af-south-1" target="eu-north-1">
+      <data key="d0">176.77</data>
+    </edge>
+    <edge source="af-south-1" target="ap-south-1">
+      <data key="d0">312.4</data>
+    </edge>
+    <edge source="af-south-1" target="eu-west-3">
+      <data key="d0">156.32</data>
+    </edge>
+    <edge source="af-south-1" target="eu-west-2">
+      <data key="d0">150.23</data>
+    </edge>
+    <edge source="af-south-1" target="eu-south-1">
+      <data key="d0">195.31</data>
+    </edge>
+    <edge source="af-south-1" target="eu-west-1">
+      <data key="d0">164.91</data>
+    </edge>
+    <edge source="af-south-1" target="ap-northeast-2">
+      <data key="d0">442.89</data>
+    </edge>
+    <edge source="af-south-1" target="me-south-1">
+      <data key="d0">303.82</data>
+    </edge>
+    <edge source="af-south-1" target="ap-northeast-1">
+      <data key="d0">401.33</data>
+    </edge>
+    <edge source="af-south-1" target="sa-east-1">
+      <data key="d0">354.36</data>
+    </edge>
+    <edge source="af-south-1" target="ca-central-1">
+      <data key="d0">237.53</data>
+    </edge>
+    <edge source="af-south-1" target="ap-east-1">
+      <data key="d0">388.49</data>
+    </edge>
+    <edge source="af-south-1" target="ap-southeast-1">
+      <data key="d0">378.68</data>
+    </edge>
+    <edge source="af-south-1" target="ap-southeast-2">
+      <data key="d0">446.65</data>
+    </edge>
+    <edge source="af-south-1" target="eu-central-1">
+      <data key="d0">193.49</data>
+    </edge>
+    <edge source="af-south-1" target="us-east-1">
+      <data key="d0">228.65</data>
+    </edge>
+    <edge source="af-south-1" target="us-east-2">
+      <data key="d0">239.39</data>
+    </edge>
+    <edge source="af-south-1" target="us-west-1">
+      <data key="d0">287.34</data>
+    </edge>
+    <edge source="af-south-1" target="us-west-2">
+      <data key="d0">293.36</data>
+    </edge>
+    <edge source="eu-north-1" target="ap-south-1">
+      <data key="d0">135.17</data>
+    </edge>
+    <edge source="eu-north-1" target="eu-west-3">
+      <data key="d0">30.8</data>
+    </edge>
+    <edge source="eu-north-1" target="eu-west-2">
+      <data key="d0">27.18</data>
+    </edge>
+    <edge source="eu-north-1" target="eu-south-1">
+      <data key="d0">36.95</data>
+    </edge>
+    <edge source="eu-north-1" target="eu-west-1">
+      <data key="d0">41.64</data>
+    </edge>
+    <edge source="eu-north-1" target="ap-northeast-2">
+      <data key="d0">288.84</data>
+    </edge>
+    <edge source="eu-north-1" target="me-south-1">
+      <data key="d0">156.2</data>
+    </edge>
+    <edge source="eu-north-1" target="ap-northeast-1">
+      <data key="d0">269.17</data>
+    </edge>
+    <edge source="eu-north-1" target="sa-east-1">
+      <data key="d0">223.19</data>
+    </edge>
+    <edge source="eu-north-1" target="ca-central-1">
+      <data key="d0">116.35</data>
+    </edge>
+    <edge source="eu-north-1" target="ap-east-1">
+      <data key="d0">236.44</data>
+    </edge>
+    <edge source="eu-north-1" target="ap-southeast-1">
+      <data key="d0">199.63</data>
+    </edge>
+    <edge source="eu-north-1" target="ap-southeast-2">
+      <data key="d0">299.16</data>
+    </edge>
+    <edge source="eu-north-1" target="eu-central-1">
+      <data key="d0">23.25</data>
+    </edge>
+    <edge source="eu-north-1" target="us-east-1">
+      <data key="d0">109.91</data>
+    </edge>
+    <edge source="eu-north-1" target="us-east-2">
+      <data key="d0">122.7</data>
+    </edge>
+    <edge source="eu-north-1" target="us-west-1">
+      <data key="d0">168.19</data>
+    </edge>
+    <edge source="eu-north-1" target="us-west-2">
+      <data key="d0">168.66</data>
+    </edge>
+    <edge source="ap-south-1" target="eu-west-3">
+      <data key="d0">106.62</data>
+    </edge>
+    <edge source="ap-south-1" target="eu-west-2">
+      <data key="d0">112.73</data>
+    </edge>
+    <edge source="ap-south-1" target="eu-south-1">
+      <data key="d0">110.08</data>
+    </edge>
+    <edge source="ap-south-1" target="eu-west-1">
+      <data key="d0">125.46</data>
+    </edge>
+    <edge source="ap-south-1" target="ap-northeast-2">
+      <data key="d0">158.1</data>
+    </edge>
+    <edge source="ap-south-1" target="me-south-1">
+      <data key="d0">43.71</data>
+    </edge>
+    <edge source="ap-south-1" target="ap-northeast-1">
+      <data key="d0">136.27</data>
+    </edge>
+    <edge source="ap-south-1" target="sa-east-1">
+      <data key="d0">304.62</data>
+    </edge>
+    <edge source="ap-south-1" target="ca-central-1">
+      <data key="d0">199.25</data>
+    </edge>
+    <edge source="ap-south-1" target="ap-east-1">
+      <data key="d0">99.19</data>
+    </edge>
+    <edge source="ap-south-1" target="ap-southeast-1">
+      <data key="d0">61.54</data>
+    </edge>
+    <edge source="ap-south-1" target="ap-southeast-2">
+      <data key="d0">145.37</data>
+    </edge>
+    <edge source="ap-south-1" target="eu-central-1">
+      <data key="d0">113.38</data>
+    </edge>
+    <edge source="ap-south-1" target="us-east-1">
+      <data key="d0">188.34</data>
+    </edge>
+    <edge source="ap-south-1" target="us-east-2">
+      <data key="d0">200.64</data>
+    </edge>
+    <edge source="ap-south-1" target="us-west-1">
+      <data key="d0">237.33</data>
+    </edge>
+    <edge source="ap-south-1" target="us-west-2">
+      <data key="d0">225.7</data>
+    </edge>
+    <edge source="eu-west-3" target="eu-west-2">
+      <data key="d0">9.69</data>
+    </edge>
+    <edge source="eu-west-3" target="eu-south-1">
+      <data key="d0">22.98</data>
+    </edge>
+    <edge source="eu-west-3" target="eu-west-1">
+      <data key="d0">21.42</data>
+    </edge>
+    <edge source="eu-west-3" target="ap-northeast-2">
+      <data key="d0">274.97</data>
+    </edge>
+    <edge source="eu-west-3" target="me-south-1">
+      <data key="d0">133.45</data>
+    </edge>
+    <edge source="eu-west-3" target="ap-northeast-1">
+      <data key="d0">246.38</data>
+    </edge>
+    <edge source="eu-west-3" target="sa-east-1">
+      <data key="d0">200.76</data>
+    </edge>
+    <edge source="eu-west-3" target="ca-central-1">
+      <data key="d0">96.12</data>
+    </edge>
+    <edge source="eu-west-3" target="ap-east-1">
+      <data key="d0">203.13</data>
+    </edge>
+    <edge source="eu-west-3" target="ap-southeast-1">
+      <data key="d0">162.47</data>
+    </edge>
+    <edge source="eu-west-3" target="ap-southeast-2">
+      <data key="d0">277.29</data>
+    </edge>
+    <edge source="eu-west-3" target="eu-central-1">
+      <data key="d0">12.43</data>
+    </edge>
+    <edge source="eu-west-3" target="us-east-1">
+      <data key="d0">85.24</data>
+    </edge>
+    <edge source="eu-west-3" target="us-east-2">
+      <data key="d0">95.02</data>
+    </edge>
+    <edge source="eu-west-3" target="us-west-1">
+      <data key="d0">142.93</data>
+    </edge>
+    <edge source="eu-west-3" target="us-west-2">
+      <data key="d0">157.98</data>
+    </edge>
+    <edge source="eu-west-2" target="eu-south-1">
+      <data key="d0">29.74</data>
+    </edge>
+    <edge source="eu-west-2" target="eu-west-1">
+      <data key="d0">15.84</data>
+    </edge>
+    <edge source="eu-west-2" target="ap-northeast-2">
+      <data key="d0">252.89</data>
+    </edge>
+    <edge source="eu-west-2" target="me-south-1">
+      <data key="d0">141.98</data>
+    </edge>
+    <edge source="eu-west-2" target="ap-northeast-1">
+      <data key="d0">224.5</data>
+    </edge>
+    <edge source="eu-west-2" target="sa-east-1">
+      <data key="d0">196.83</data>
+    </edge>
+    <edge source="eu-west-2" target="ca-central-1">
+      <data key="d0">89.9</data>
+    </edge>
+    <edge source="eu-west-2" target="ap-east-1">
+      <data key="d0">209.72</data>
+    </edge>
+    <edge source="eu-west-2" target="ap-southeast-1">
+      <data key="d0">168.86</data>
+    </edge>
+    <edge source="eu-west-2" target="ap-southeast-2">
+      <data key="d0">273.21</data>
+    </edge>
+    <edge source="eu-west-2" target="eu-central-1">
+      <data key="d0">15.56</data>
+    </edge>
+    <edge source="eu-west-2" target="us-east-1">
+      <data key="d0">81.61</data>
+    </edge>
+    <edge source="eu-west-2" target="us-east-2">
+      <data key="d0">90.91</data>
+    </edge>
+    <edge source="eu-west-2" target="us-west-1">
+      <data key="d0">140.01</data>
+    </edge>
+    <edge source="eu-west-2" target="us-west-2">
+      <data key="d0">143.91</data>
+    </edge>
+    <edge source="eu-south-1" target="eu-west-1">
+      <data key="d0">42.23</data>
+    </edge>
+    <edge source="eu-south-1" target="ap-northeast-2">
+      <data key="d0">285.73</data>
+    </edge>
+    <edge source="eu-south-1" target="me-south-1">
+      <data key="d0">154.69</data>
+    </edge>
+    <edge source="eu-south-1" target="ap-northeast-1">
+      <data key="d0">268.51</data>
+    </edge>
+    <edge source="eu-south-1" target="sa-east-1">
+      <data key="d0">232.23</data>
+    </edge>
+    <edge source="eu-south-1" target="ca-central-1">
+      <data key="d0">114.27</data>
+    </edge>
+    <edge source="eu-south-1" target="ap-east-1">
+      <data key="d0">203.86</data>
+    </edge>
+    <edge source="eu-south-1" target="ap-southeast-1">
+      <data key="d0">192.81</data>
+    </edge>
+    <edge source="eu-south-1" target="ap-southeast-2">
+      <data key="d0">320.68</data>
+    </edge>
+    <edge source="eu-south-1" target="eu-central-1">
+      <data key="d0">12.41</data>
+    </edge>
+    <edge source="eu-south-1" target="us-east-1">
+      <data key="d0">100.71</data>
+    </edge>
+    <edge source="eu-south-1" target="us-east-2">
+      <data key="d0">113.19</data>
+    </edge>
+    <edge source="eu-south-1" target="us-west-1">
+      <data key="d0">158.86</data>
+    </edge>
+    <edge source="eu-south-1" target="us-west-2">
+      <data key="d0">179.78</data>
+    </edge>
+    <edge source="eu-west-1" target="ap-northeast-2">
+      <data key="d0">248.23</data>
+    </edge>
+    <edge source="eu-west-1" target="me-south-1">
+      <data key="d0">145.78</data>
+    </edge>
+    <edge source="eu-west-1" target="ap-northeast-1">
+      <data key="d0">218.64</data>
+    </edge>
+    <edge source="eu-west-1" target="sa-east-1">
+      <data key="d0">184.63</data>
+    </edge>
+    <edge source="eu-west-1" target="ca-central-1">
+      <data key="d0">78.92</data>
+    </edge>
+    <edge source="eu-west-1" target="ap-east-1">
+      <data key="d0">262.57</data>
+    </edge>
+    <edge source="eu-west-1" target="ap-southeast-1">
+      <data key="d0">180.73</data>
+    </edge>
+    <edge source="eu-west-1" target="ap-southeast-2">
+      <data key="d0">259.5</data>
+    </edge>
+    <edge source="eu-west-1" target="eu-central-1">
+      <data key="d0">25.79</data>
+    </edge>
+    <edge source="eu-west-1" target="us-east-1">
+      <data key="d0">75.01</data>
+    </edge>
+    <edge source="eu-west-1" target="us-east-2">
+      <data key="d0">99.82</data>
+    </edge>
+    <edge source="eu-west-1" target="us-west-1">
+      <data key="d0">145.11</data>
+    </edge>
+    <edge source="eu-west-1" target="us-west-2">
+      <data key="d0">134.08</data>
+    </edge>
+    <edge source="ap-northeast-2" target="me-south-1">
+      <data key="d0">209.15</data>
+    </edge>
+    <edge source="ap-northeast-2" target="ap-northeast-1">
+      <data key="d0">37.51</data>
+    </edge>
+    <edge source="ap-northeast-2" target="sa-east-1">
+      <data key="d0">298.54</data>
+    </edge>
+    <edge source="ap-northeast-2" target="ca-central-1">
+      <data key="d0">187.77</data>
+    </edge>
+    <edge source="ap-northeast-2" target="ap-east-1">
+      <data key="d0">41.87</data>
+    </edge>
+    <edge source="ap-northeast-2" target="ap-southeast-1">
+      <data key="d0">105.51</data>
+    </edge>
+    <edge source="ap-northeast-2" target="ap-southeast-2">
+      <data key="d0">151.0</data>
+    </edge>
+    <edge source="ap-northeast-2" target="eu-central-1">
+      <data key="d0">267.8</data>
+    </edge>
+    <edge source="ap-northeast-2" target="us-east-1">
+      <data key="d0">192.89</data>
+    </edge>
+    <edge source="ap-northeast-2" target="us-east-2">
+      <data key="d0">192.62</data>
+    </edge>
+    <edge source="ap-northeast-2" target="us-west-1">
+      <data key="d0">140.06</data>
+    </edge>
+    <edge source="ap-northeast-2" target="us-west-2">
+      <data key="d0">129.55</data>
+    </edge>
+    <edge source="me-south-1" target="ap-northeast-1">
+      <data key="d0">186.86</data>
+    </edge>
+    <edge source="me-south-1" target="sa-east-1">
+      <data key="d0">332.84</data>
+    </edge>
+    <edge source="me-south-1" target="ca-central-1">
+      <data key="d0">213.89</data>
+    </edge>
+    <edge source="me-south-1" target="ap-east-1">
+      <data key="d0">129.28</data>
+    </edge>
+    <edge source="me-south-1" target="ap-southeast-1">
+      <data key="d0">103.22</data>
+    </edge>
+    <edge source="me-south-1" target="ap-southeast-2">
+      <data key="d0">181.95</data>
+    </edge>
+    <edge source="me-south-1" target="eu-central-1">
+      <data key="d0">124.11</data>
+    </edge>
+    <edge source="me-south-1" target="us-east-1">
+      <data key="d0">199.65</data>
+    </edge>
+    <edge source="me-south-1" target="us-east-2">
+      <data key="d0">212.8</data>
+    </edge>
+    <edge source="me-south-1" target="us-west-1">
+      <data key="d0">258.45</data>
+    </edge>
+    <edge source="me-south-1" target="us-west-2">
+      <data key="d0">258.78</data>
+    </edge>
+    <edge source="ap-northeast-1" target="sa-east-1">
+      <data key="d0">270.46</data>
+    </edge>
+    <edge source="ap-northeast-1" target="ca-central-1">
+      <data key="d0">159.68</data>
+    </edge>
+    <edge source="ap-northeast-1" target="ap-east-1">
+      <data key="d0">56.48</data>
+    </edge>
+    <edge source="ap-northeast-1" target="ap-southeast-1">
+      <data key="d0">80.05</data>
+    </edge>
+    <edge source="ap-northeast-1" target="ap-southeast-2">
+      <data key="d0">107.52</data>
+    </edge>
+    <edge source="ap-northeast-1" target="eu-central-1">
+      <data key="d0">249.05</data>
+    </edge>
+    <edge source="ap-northeast-1" target="us-east-1">
+      <data key="d0">163.02</data>
+    </edge>
+    <edge source="ap-northeast-1" target="us-east-2">
+      <data key="d0">162.21</data>
+    </edge>
+    <edge source="ap-northeast-1" target="us-west-1">
+      <data key="d0">113.96</data>
+    </edge>
+    <edge source="ap-northeast-1" target="us-west-2">
+      <data key="d0">103.37</data>
+    </edge>
+    <edge source="sa-east-1" target="ca-central-1">
+      <data key="d0">126.12</data>
+    </edge>
+    <edge source="sa-east-1" target="ap-east-1">
+      <data key="d0">323.12</data>
+    </edge>
+    <edge source="sa-east-1" target="ap-southeast-1">
+      <data key="d0">339.72</data>
+    </edge>
+    <edge source="sa-east-1" target="ap-southeast-2">
+      <data key="d0">311.6</data>
+    </edge>
+    <edge source="sa-east-1" target="eu-central-1">
+      <data key="d0">207.41</data>
+    </edge>
+    <edge source="sa-east-1" target="us-east-1">
+      <data key="d0">121.78</data>
+    </edge>
+    <edge source="sa-east-1" target="us-east-2">
+      <data key="d0">132.9</data>
+    </edge>
+    <edge source="sa-east-1" target="us-west-1">
+      <data key="d0">192.51</data>
+    </edge>
+    <edge source="sa-east-1" target="us-west-2">
+      <data key="d0">183.2</data>
+    </edge>
+    <edge source="ca-central-1" target="ap-east-1">
+      <data key="d0">213.1</data>
+    </edge>
+    <edge source="ca-central-1" target="ap-southeast-1">
+      <data key="d0">230.12</data>
+    </edge>
+    <edge source="ca-central-1" target="ap-southeast-2">
+      <data key="d0">200.24</data>
+    </edge>
+    <edge source="ca-central-1" target="eu-central-1">
+      <data key="d0">103.85</data>
+    </edge>
+    <edge source="ca-central-1" target="us-east-1">
+      <data key="d0">20.23</data>
+    </edge>
+    <edge source="ca-central-1" target="us-east-2">
+      <data key="d0">31.0</data>
+    </edge>
+    <edge source="ca-central-1" target="us-west-1">
+      <data key="d0">81.33</data>
+    </edge>
+    <edge source="ca-central-1" target="us-west-2">
+      <data key="d0">72.3</data>
+    </edge>
+    <edge source="ap-east-1" target="ap-southeast-1">
+      <data key="d0">39.1</data>
+    </edge>
+    <edge source="ap-east-1" target="ap-southeast-2">
+      <data key="d0">127.98</data>
+    </edge>
+    <edge source="ap-east-1" target="eu-central-1">
+      <data key="d0">211.95</data>
+    </edge>
+    <edge source="ap-east-1" target="us-east-1">
+      <data key="d0">213.13</data>
+    </edge>
+    <edge source="ap-east-1" target="us-east-2">
+      <data key="d0">206.44</data>
+    </edge>
+    <edge source="ap-east-1" target="us-west-1">
+      <data key="d0">154.64</data>
+    </edge>
+    <edge source="ap-east-1" target="us-west-2">
+      <data key="d0">145.31</data>
+    </edge>
+    <edge source="ap-southeast-1" target="ap-southeast-2">
+      <data key="d0">92.75</data>
+    </edge>
+    <edge source="ap-southeast-1" target="eu-central-1">
+      <data key="d0">177.0</data>
+    </edge>
+    <edge source="ap-southeast-1" target="us-east-1">
+      <data key="d0">240.2</data>
+    </edge>
+    <edge source="ap-southeast-1" target="us-east-2">
+      <data key="d0">234.24</data>
+    </edge>
+    <edge source="ap-southeast-1" target="us-west-1">
+      <data key="d0">183.49</data>
+    </edge>
+    <edge source="ap-southeast-1" target="us-west-2">
+      <data key="d0">170.53</data>
+    </edge>
+    <edge source="ap-southeast-2" target="eu-central-1">
+      <data key="d0">285.28</data>
+    </edge>
+    <edge source="ap-southeast-2" target="us-east-1">
+      <data key="d0">204.18</data>
+    </edge>
+    <edge source="ap-southeast-2" target="us-east-2">
+      <data key="d0">195.59</data>
+    </edge>
+    <edge source="ap-southeast-2" target="us-west-1">
+      <data key="d0">141.03</data>
+    </edge>
+    <edge source="ap-southeast-2" target="us-west-2">
+      <data key="d0">143.23</data>
+    </edge>
+    <edge source="eu-central-1" target="us-east-1">
+      <data key="d0">92.33</data>
+    </edge>
+    <edge source="eu-central-1" target="us-east-2">
+      <data key="d0">104.59</data>
+    </edge>
+    <edge source="eu-central-1" target="us-west-1">
+      <data key="d0">148.82</data>
+    </edge>
+    <edge source="eu-central-1" target="us-west-2">
+      <data key="d0">164.34</data>
+    </edge>
+    <edge source="us-east-1" target="us-east-2">
+      <data key="d0">18.33</data>
+    </edge>
+    <edge source="us-east-1" target="us-west-1">
+      <data key="d0">63.7</data>
+    </edge>
+    <edge source="us-east-1" target="us-west-2">
+      <data key="d0">77.26</data>
+    </edge>
+    <edge source="us-east-2" target="us-west-1">
+      <data key="d0">53.62</data>
+    </edge>
+    <edge source="us-east-2" target="us-west-2">
+      <data key="d0">55.53</data>
+    </edge>
+    <edge source="us-west-1" target="us-west-2">
+      <data key="d0">23.96</data>
+    </edge>
+  </graph>
+</graphml>

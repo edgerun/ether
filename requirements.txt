@@ -5,3 +5,4 @@ pandas==1.0.1
 scipy==1.4.1
 simpy==3.0.11
 srds==0.1.0
+requests==2.23.0

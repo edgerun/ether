@@ -1,0 +1,2302 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key attr.name="latency" attr.type="double" for="edge" id="d0" />
+  <graph edgedefault="directed">
+    <node id="Amsterdam" />
+    <node id="Auckland" />
+    <node id="Brno" />
+    <node id="Bruges" />
+    <node id="Brussels" />
+    <node id="Bucharest" />
+    <node id="Budapest" />
+    <node id="Buenos Aires" />
+    <node id="Buffalo" />
+    <node id="Chicago" />
+    <node id="Chisinau" />
+    <node id="Copenhagen" />
+    <node id="Coventry" />
+    <node id="Dallas" />
+    <node id="Dublin" />
+    <node id="Dusseldorf" />
+    <node id="Graz" />
+    <node id="Istanbul" />
+    <node id="Kiev" />
+    <node id="Koto" />
+    <node id="Lima" />
+    <node id="London" />
+    <node id="Los Angeles" />
+    <node id="Moscow" />
+    <node id="New York" />
+    <node id="Paris" />
+    <node id="Stockholm" />
+    <node id="Tokyo" />
+    <edge source="Amsterdam" target="Auckland">
+      <data key="d0">271.389</data>
+    </edge>
+    <edge source="Amsterdam" target="Brno">
+      <data key="d0">30.378</data>
+    </edge>
+    <edge source="Amsterdam" target="Bruges">
+      <data key="d0">10.409</data>
+    </edge>
+    <edge source="Amsterdam" target="Brussels">
+      <data key="d0">5.244</data>
+    </edge>
+    <edge source="Amsterdam" target="Bucharest">
+      <data key="d0">31.955</data>
+    </edge>
+    <edge source="Amsterdam" target="Budapest">
+      <data key="d0">30.048</data>
+    </edge>
+    <edge source="Amsterdam" target="Buenos Aires">
+      <data key="d0">233.419</data>
+    </edge>
+    <edge source="Amsterdam" target="Buffalo">
+      <data key="d0">92.578</data>
+    </edge>
+    <edge source="Amsterdam" target="Chicago">
+      <data key="d0">98.855</data>
+    </edge>
+    <edge source="Amsterdam" target="Chisinau">
+      <data key="d0">40.276</data>
+    </edge>
+    <edge source="Amsterdam" target="Copenhagen">
+      <data key="d0">17.551</data>
+    </edge>
+    <edge source="Amsterdam" target="Coventry">
+      <data key="d0">13.438</data>
+    </edge>
+    <edge source="Amsterdam" target="Dallas">
+      <data key="d0">117.718</data>
+    </edge>
+    <edge source="Amsterdam" target="Dublin">
+      <data key="d0">20.563</data>
+    </edge>
+    <edge source="Amsterdam" target="Dusseldorf">
+      <data key="d0">5.564</data>
+    </edge>
+    <edge source="Amsterdam" target="Graz">
+      <data key="d0">42.71</data>
+    </edge>
+    <edge source="Amsterdam" target="Istanbul">
+      <data key="d0">41.268</data>
+    </edge>
+    <edge source="Amsterdam" target="Kiev">
+      <data key="d0">41.856</data>
+    </edge>
+    <edge source="Amsterdam" target="Koto">
+      <data key="d0">237.144</data>
+    </edge>
+    <edge source="Amsterdam" target="Lima">
+      <data key="d0">172.13</data>
+    </edge>
+    <edge source="Amsterdam" target="London">
+      <data key="d0">6.98</data>
+    </edge>
+    <edge source="Amsterdam" target="Los Angeles">
+      <data key="d0">139.314</data>
+    </edge>
+    <edge source="Amsterdam" target="Moscow">
+      <data key="d0">44.442</data>
+    </edge>
+    <edge source="Amsterdam" target="New York">
+      <data key="d0">75.014</data>
+    </edge>
+    <edge source="Amsterdam" target="Paris">
+      <data key="d0">10.423</data>
+    </edge>
+    <edge source="Amsterdam" target="Stockholm">
+      <data key="d0">24.61</data>
+    </edge>
+    <edge source="Amsterdam" target="Tokyo">
+      <data key="d0">237.298</data>
+    </edge>
+    <edge source="Auckland" target="Amsterdam">
+      <data key="d0">271.047</data>
+    </edge>
+    <edge source="Auckland" target="Brno">
+      <data key="d0">301.057</data>
+    </edge>
+    <edge source="Auckland" target="Bruges">
+      <data key="d0">288.631</data>
+    </edge>
+    <edge source="Auckland" target="Brussels">
+      <data key="d0">270.395</data>
+    </edge>
+    <edge source="Auckland" target="Bucharest">
+      <data key="d0">296.129</data>
+    </edge>
+    <edge source="Auckland" target="Budapest">
+      <data key="d0">308.763</data>
+    </edge>
+    <edge source="Auckland" target="Buenos Aires">
+      <data key="d0">353.795</data>
+    </edge>
+    <edge source="Auckland" target="Buffalo">
+      <data key="d0">229.025</data>
+    </edge>
+    <edge source="Auckland" target="Chicago">
+      <data key="d0">288.493</data>
+    </edge>
+    <edge source="Auckland" target="Chisinau">
+      <data key="d0">318.65</data>
+    </edge>
+    <edge source="Auckland" target="Copenhagen">
+      <data key="d0">279.295</data>
+    </edge>
+    <edge source="Auckland" target="Coventry">
+      <data key="d0">272.453</data>
+    </edge>
+    <edge source="Auckland" target="Dallas">
+      <data key="d0">190.553</data>
+    </edge>
+    <edge source="Auckland" target="Dublin">
+      <data key="d0">373.865</data>
+    </edge>
+    <edge source="Auckland" target="Dusseldorf">
+      <data key="d0">275.042</data>
+    </edge>
+    <edge source="Auckland" target="Graz">
+      <data key="d0">299.163</data>
+    </edge>
+    <edge source="Auckland" target="Istanbul">
+      <data key="d0">323.589</data>
+    </edge>
+    <edge source="Auckland" target="Kiev">
+      <data key="d0">308.856</data>
+    </edge>
+    <edge source="Auckland" target="Koto">
+      <data key="d0">137.444</data>
+    </edge>
+    <edge source="Auckland" target="Lima">
+      <data key="d0">290.065</data>
+    </edge>
+    <edge source="Auckland" target="London">
+      <data key="d0">265.566</data>
+    </edge>
+    <edge source="Auckland" target="Los Angeles">
+      <data key="d0">158.556</data>
+    </edge>
+    <edge source="Auckland" target="Moscow">
+      <data key="d0">319.099</data>
+    </edge>
+    <edge source="Auckland" target="New York">
+      <data key="d0">217.591</data>
+    </edge>
+    <edge source="Auckland" target="Paris">
+      <data key="d0">281.062</data>
+    </edge>
+    <edge source="Auckland" target="Stockholm">
+      <data key="d0">289.93</data>
+    </edge>
+    <edge source="Auckland" target="Tokyo">
+      <data key="d0">198.212</data>
+    </edge>
+    <edge source="Brno" target="Amsterdam">
+      <data key="d0">30.212</data>
+    </edge>
+    <edge source="Brno" target="Auckland">
+      <data key="d0">301.018</data>
+    </edge>
+    <edge source="Brno" target="Bruges">
+      <data key="d0">40.24</data>
+    </edge>
+    <edge source="Brno" target="Brussels">
+      <data key="d0">29.11</data>
+    </edge>
+    <edge source="Brno" target="Bucharest">
+      <data key="d0">27.531</data>
+    </edge>
+    <edge source="Brno" target="Budapest">
+      <data key="d0">17.688</data>
+    </edge>
+    <edge source="Brno" target="Buenos Aires">
+      <data key="d0">273.763</data>
+    </edge>
+    <edge source="Brno" target="Buffalo">
+      <data key="d0">118.252</data>
+    </edge>
+    <edge source="Brno" target="Chicago">
+      <data key="d0">125.708</data>
+    </edge>
+    <edge source="Brno" target="Chisinau">
+      <data key="d0">48.971</data>
+    </edge>
+    <edge source="Brno" target="Copenhagen">
+      <data key="d0">27.746</data>
+    </edge>
+    <edge source="Brno" target="Coventry">
+      <data key="d0">37.118</data>
+    </edge>
+    <edge source="Brno" target="Dallas">
+      <data key="d0">140.434</data>
+    </edge>
+    <edge source="Brno" target="Dublin">
+      <data key="d0">42.861</data>
+    </edge>
+    <edge source="Brno" target="Dusseldorf">
+      <data key="d0">24.253</data>
+    </edge>
+    <edge source="Brno" target="Graz">
+      <data key="d0">15.811</data>
+    </edge>
+    <edge source="Brno" target="Istanbul">
+      <data key="d0">45.786</data>
+    </edge>
+    <edge source="Brno" target="Kiev">
+      <data key="d0">48.161</data>
+    </edge>
+    <edge source="Brno" target="Koto">
+      <data key="d0">195.841</data>
+    </edge>
+    <edge source="Brno" target="Lima">
+      <data key="d0">192.147</data>
+    </edge>
+    <edge source="Brno" target="London">
+      <data key="d0">35.799</data>
+    </edge>
+    <edge source="Brno" target="Los Angeles">
+      <data key="d0">168.197</data>
+    </edge>
+    <edge source="Brno" target="Moscow">
+      <data key="d0">51.834</data>
+    </edge>
+    <edge source="Brno" target="New York">
+      <data key="d0">105.888</data>
+    </edge>
+    <edge source="Brno" target="Paris">
+      <data key="d0">32.565</data>
+    </edge>
+    <edge source="Brno" target="Stockholm">
+      <data key="d0">38.397</data>
+    </edge>
+    <edge source="Brno" target="Tokyo">
+      <data key="d0">231.381</data>
+    </edge>
+    <edge source="Bruges" target="Amsterdam">
+      <data key="d0">11.613</data>
+    </edge>
+    <edge source="Bruges" target="Auckland">
+      <data key="d0">290.032</data>
+    </edge>
+    <edge source="Bruges" target="Brno">
+      <data key="d0">40.696</data>
+    </edge>
+    <edge source="Bruges" target="Brussels">
+      <data key="d0">12.584</data>
+    </edge>
+    <edge source="Bruges" target="Bucharest">
+      <data key="d0">44.191</data>
+    </edge>
+    <edge source="Bruges" target="Budapest">
+      <data key="d0">35.201</data>
+    </edge>
+    <edge source="Bruges" target="Buenos Aires">
+      <data key="d0">245.118</data>
+    </edge>
+    <edge source="Bruges" target="Buffalo">
+      <data key="d0">82.614</data>
+    </edge>
+    <edge source="Bruges" target="Chicago">
+      <data key="d0">95.784</data>
+    </edge>
+    <edge source="Bruges" target="Chisinau">
+      <data key="d0">51.408</data>
+    </edge>
+    <edge source="Bruges" target="Copenhagen">
+      <data key="d0">24.721</data>
+    </edge>
+    <edge source="Bruges" target="Coventry">
+      <data key="d0">18.341</data>
+    </edge>
+    <edge source="Bruges" target="Dallas">
+      <data key="d0">121.717</data>
+    </edge>
+    <edge source="Bruges" target="Dublin">
+      <data key="d0">21.606</data>
+    </edge>
+    <edge source="Bruges" target="Dusseldorf">
+      <data key="d0">13.565</data>
+    </edge>
+    <edge source="Bruges" target="Graz">
+      <data key="d0">41.432</data>
+    </edge>
+    <edge source="Bruges" target="Istanbul">
+      <data key="d0">56.908</data>
+    </edge>
+    <edge source="Bruges" target="Kiev">
+      <data key="d0">60.396</data>
+    </edge>
+    <edge source="Bruges" target="Koto">
+      <data key="d0">267.941</data>
+    </edge>
+    <edge source="Bruges" target="Lima">
+      <data key="d0">179.883</data>
+    </edge>
+    <edge source="Bruges" target="London">
+      <data key="d0">10.943</data>
+    </edge>
+    <edge source="Bruges" target="Los Angeles">
+      <data key="d0">151.529</data>
+    </edge>
+    <edge source="Bruges" target="Moscow">
+      <data key="d0">52.62</data>
+    </edge>
+    <edge source="Bruges" target="New York">
+      <data key="d0">78.415</data>
+    </edge>
+    <edge source="Bruges" target="Paris">
+      <data key="d0">18.257</data>
+    </edge>
+    <edge source="Bruges" target="Stockholm">
+      <data key="d0">36.855</data>
+    </edge>
+    <edge source="Bruges" target="Tokyo">
+      <data key="d0">239.83</data>
+    </edge>
+    <edge source="Brussels" target="Amsterdam">
+      <data key="d0">4.816</data>
+    </edge>
+    <edge source="Brussels" target="Auckland">
+      <data key="d0">270.627</data>
+    </edge>
+    <edge source="Brussels" target="Brno">
+      <data key="d0">31.825</data>
+    </edge>
+    <edge source="Brussels" target="Bruges">
+      <data key="d0">12.748</data>
+    </edge>
+    <edge source="Brussels" target="Bucharest">
+      <data key="d0">47.581</data>
+    </edge>
+    <edge source="Brussels" target="Budapest">
+      <data key="d0">28.524</data>
+    </edge>
+    <edge source="Brussels" target="Buenos Aires">
+      <data key="d0">216.819</data>
+    </edge>
+    <edge source="Brussels" target="Buffalo">
+      <data key="d0">88.461</data>
+    </edge>
+    <edge source="Brussels" target="Chicago">
+      <data key="d0">94.175</data>
+    </edge>
+    <edge source="Brussels" target="Chisinau">
+      <data key="d0">55.586</data>
+    </edge>
+    <edge source="Brussels" target="Copenhagen">
+      <data key="d0">17.083</data>
+    </edge>
+    <edge source="Brussels" target="Coventry">
+      <data key="d0">10.616</data>
+    </edge>
+    <edge source="Brussels" target="Dallas">
+      <data key="d0">108.583</data>
+    </edge>
+    <edge source="Brussels" target="Dublin">
+      <data key="d0">17.992</data>
+    </edge>
+    <edge source="Brussels" target="Dusseldorf">
+      <data key="d0">7.71</data>
+    </edge>
+    <edge source="Brussels" target="Graz">
+      <data key="d0">36.621</data>
+    </edge>
+    <edge source="Brussels" target="Istanbul">
+      <data key="d0">50.882</data>
+    </edge>
+    <edge source="Brussels" target="Kiev">
+      <data key="d0">44.704</data>
+    </edge>
+    <edge source="Brussels" target="Koto">
+      <data key="d0">240.2</data>
+    </edge>
+    <edge source="Brussels" target="Lima">
+      <data key="d0">169.375</data>
+    </edge>
+    <edge source="Brussels" target="London">
+      <data key="d0">7.367</data>
+    </edge>
+    <edge source="Brussels" target="Los Angeles">
+      <data key="d0">136.44</data>
+    </edge>
+    <edge source="Brussels" target="Moscow">
+      <data key="d0">46.554</data>
+    </edge>
+    <edge source="Brussels" target="New York">
+      <data key="d0">74.942</data>
+    </edge>
+    <edge source="Brussels" target="Paris">
+      <data key="d0">12.777</data>
+    </edge>
+    <edge source="Brussels" target="Stockholm">
+      <data key="d0">28.698</data>
+    </edge>
+    <edge source="Brussels" target="Tokyo">
+      <data key="d0">241.507</data>
+    </edge>
+    <edge source="Bucharest" target="Amsterdam">
+      <data key="d0">31.745</data>
+    </edge>
+    <edge source="Bucharest" target="Auckland">
+      <data key="d0">296.903</data>
+    </edge>
+    <edge source="Bucharest" target="Brno">
+      <data key="d0">27.491</data>
+    </edge>
+    <edge source="Bucharest" target="Bruges">
+      <data key="d0">43.511</data>
+    </edge>
+    <edge source="Bucharest" target="Brussels">
+      <data key="d0">47.333</data>
+    </edge>
+    <edge source="Bucharest" target="Budapest">
+      <data key="d0">33.199</data>
+    </edge>
+    <edge source="Bucharest" target="Buenos Aires">
+      <data key="d0">271.735</data>
+    </edge>
+    <edge source="Bucharest" target="Buffalo">
+      <data key="d0">129.293</data>
+    </edge>
+    <edge source="Bucharest" target="Chicago">
+      <data key="d0">136.313</data>
+    </edge>
+    <edge source="Bucharest" target="Chisinau">
+      <data key="d0">13.247</data>
+    </edge>
+    <edge source="Bucharest" target="Copenhagen">
+      <data key="d0">46.567</data>
+    </edge>
+    <edge source="Bucharest" target="Coventry">
+      <data key="d0">47.574</data>
+    </edge>
+    <edge source="Bucharest" target="Dallas">
+      <data key="d0">155.215</data>
+    </edge>
+    <edge source="Bucharest" target="Dublin">
+      <data key="d0">51.519</data>
+    </edge>
+    <edge source="Bucharest" target="Dusseldorf">
+      <data key="d0">36.979</data>
+    </edge>
+    <edge source="Bucharest" target="Graz">
+      <data key="d0">46.407</data>
+    </edge>
+    <edge source="Bucharest" target="Istanbul">
+      <data key="d0">45.373</data>
+    </edge>
+    <edge source="Bucharest" target="Kiev">
+      <data key="d0">63.89</data>
+    </edge>
+    <edge source="Bucharest" target="Koto">
+      <data key="d0">276.145</data>
+    </edge>
+    <edge source="Bucharest" target="Lima">
+      <data key="d0">225.402</data>
+    </edge>
+    <edge source="Bucharest" target="London">
+      <data key="d0">35.832</data>
+    </edge>
+    <edge source="Bucharest" target="Los Angeles">
+      <data key="d0">184.661</data>
+    </edge>
+    <edge source="Bucharest" target="Moscow">
+      <data key="d0">61.699</data>
+    </edge>
+    <edge source="Bucharest" target="New York">
+      <data key="d0">120.862</data>
+    </edge>
+    <edge source="Bucharest" target="Paris">
+      <data key="d0">36.889</data>
+    </edge>
+    <edge source="Bucharest" target="Stockholm">
+      <data key="d0">53.369</data>
+    </edge>
+    <edge source="Bucharest" target="Tokyo">
+      <data key="d0">275.987</data>
+    </edge>
+    <edge source="Budapest" target="Amsterdam">
+      <data key="d0">29.961</data>
+    </edge>
+    <edge source="Budapest" target="Auckland">
+      <data key="d0">308.685</data>
+    </edge>
+    <edge source="Budapest" target="Brno">
+      <data key="d0">17.547</data>
+    </edge>
+    <edge source="Budapest" target="Bruges">
+      <data key="d0">34.766</data>
+    </edge>
+    <edge source="Budapest" target="Brussels">
+      <data key="d0">28.237</data>
+    </edge>
+    <edge source="Budapest" target="Bucharest">
+      <data key="d0">33.355</data>
+    </edge>
+    <edge source="Budapest" target="Buenos Aires">
+      <data key="d0">251.365</data>
+    </edge>
+    <edge source="Budapest" target="Buffalo">
+      <data key="d0">109.114</data>
+    </edge>
+    <edge source="Budapest" target="Chicago">
+      <data key="d0">122.736</data>
+    </edge>
+    <edge source="Budapest" target="Chisinau">
+      <data key="d0">28.805</data>
+    </edge>
+    <edge source="Budapest" target="Copenhagen">
+      <data key="d0">33.388</data>
+    </edge>
+    <edge source="Budapest" target="Coventry">
+      <data key="d0">37.65</data>
+    </edge>
+    <edge source="Budapest" target="Dallas">
+      <data key="d0">172.004</data>
+    </edge>
+    <edge source="Budapest" target="Dublin">
+      <data key="d0">42.637</data>
+    </edge>
+    <edge source="Budapest" target="Dusseldorf">
+      <data key="d0">25.015</data>
+    </edge>
+    <edge source="Budapest" target="Graz">
+      <data key="d0">20.996</data>
+    </edge>
+    <edge source="Budapest" target="Istanbul">
+      <data key="d0">52.52</data>
+    </edge>
+    <edge source="Budapest" target="Kiev">
+      <data key="d0">41.105</data>
+    </edge>
+    <edge source="Budapest" target="Koto">
+      <data key="d0">254.765</data>
+    </edge>
+    <edge source="Budapest" target="Lima">
+      <data key="d0">235.916</data>
+    </edge>
+    <edge source="Budapest" target="London">
+      <data key="d0">28.938</data>
+    </edge>
+    <edge source="Budapest" target="Los Angeles">
+      <data key="d0">172.407</data>
+    </edge>
+    <edge source="Budapest" target="Moscow">
+      <data key="d0">57.843</data>
+    </edge>
+    <edge source="Budapest" target="New York">
+      <data key="d0">101.024</data>
+    </edge>
+    <edge source="Budapest" target="Paris">
+      <data key="d0">28.014</data>
+    </edge>
+    <edge source="Budapest" target="Stockholm">
+      <data key="d0">40.87</data>
+    </edge>
+    <edge source="Budapest" target="Tokyo">
+      <data key="d0">262.06</data>
+    </edge>
+    <edge source="Buenos Aires" target="Amsterdam">
+      <data key="d0">231.786</data>
+    </edge>
+    <edge source="Buenos Aires" target="Auckland">
+      <data key="d0">354.465</data>
+    </edge>
+    <edge source="Buenos Aires" target="Brno">
+      <data key="d0">273.646</data>
+    </edge>
+    <edge source="Buenos Aires" target="Bruges">
+      <data key="d0">245.342</data>
+    </edge>
+    <edge source="Buenos Aires" target="Brussels">
+      <data key="d0">216.867</data>
+    </edge>
+    <edge source="Buenos Aires" target="Bucharest">
+      <data key="d0">271.771</data>
+    </edge>
+    <edge source="Buenos Aires" target="Budapest">
+      <data key="d0">251.652</data>
+    </edge>
+    <edge source="Buenos Aires" target="Buffalo">
+      <data key="d0">160.625</data>
+    </edge>
+    <edge source="Buenos Aires" target="Chicago">
+      <data key="d0">173.689</data>
+    </edge>
+    <edge source="Buenos Aires" target="Chisinau">
+      <data key="d0">287.582</data>
+    </edge>
+    <edge source="Buenos Aires" target="Copenhagen">
+      <data key="d0">251.425</data>
+    </edge>
+    <edge source="Buenos Aires" target="Coventry">
+      <data key="d0">232.772</data>
+    </edge>
+    <edge source="Buenos Aires" target="Dallas">
+      <data key="d0">161.884</data>
+    </edge>
+    <edge source="Buenos Aires" target="Dublin">
+      <data key="d0">232.535</data>
+    </edge>
+    <edge source="Buenos Aires" target="Dusseldorf">
+      <data key="d0">245.44</data>
+    </edge>
+    <edge source="Buenos Aires" target="Graz">
+      <data key="d0">285.699</data>
+    </edge>
+    <edge source="Buenos Aires" target="Istanbul">
+      <data key="d0">274.551</data>
+    </edge>
+    <edge source="Buenos Aires" target="Kiev">
+      <data key="d0">272.581</data>
+    </edge>
+    <edge source="Buenos Aires" target="Koto">
+      <data key="d0">365.177</data>
+    </edge>
+    <edge source="Buenos Aires" target="Lima">
+      <data key="d0">126.943</data>
+    </edge>
+    <edge source="Buenos Aires" target="London">
+      <data key="d0">238.707</data>
+    </edge>
+    <edge source="Buenos Aires" target="Los Angeles">
+      <data key="d0">169.532</data>
+    </edge>
+    <edge source="Buenos Aires" target="Moscow">
+      <data key="d0">277.196</data>
+    </edge>
+    <edge source="Buenos Aires" target="New York">
+      <data key="d0">164.698</data>
+    </edge>
+    <edge source="Buenos Aires" target="Paris">
+      <data key="d0">238.889</data>
+    </edge>
+    <edge source="Buenos Aires" target="Stockholm">
+      <data key="d0">280.439</data>
+    </edge>
+    <edge source="Buenos Aires" target="Tokyo">
+      <data key="d0">309.266</data>
+    </edge>
+    <edge source="Buffalo" target="Amsterdam">
+      <data key="d0">92.41</data>
+    </edge>
+    <edge source="Buffalo" target="Auckland">
+      <data key="d0">229.001</data>
+    </edge>
+    <edge source="Buffalo" target="Brno">
+      <data key="d0">118.253</data>
+    </edge>
+    <edge source="Buffalo" target="Bruges">
+      <data key="d0">83.14</data>
+    </edge>
+    <edge source="Buffalo" target="Brussels">
+      <data key="d0">88.421</data>
+    </edge>
+    <edge source="Buffalo" target="Bucharest">
+      <data key="d0">129.32</data>
+    </edge>
+    <edge source="Buffalo" target="Budapest">
+      <data key="d0">109.134</data>
+    </edge>
+    <edge source="Buffalo" target="Buenos Aires">
+      <data key="d0">161.075</data>
+    </edge>
+    <edge source="Buffalo" target="Chicago">
+      <data key="d0">19.869</data>
+    </edge>
+    <edge source="Buffalo" target="Chisinau">
+      <data key="d0">142.308</data>
+    </edge>
+    <edge source="Buffalo" target="Copenhagen">
+      <data key="d0">101.832</data>
+    </edge>
+    <edge source="Buffalo" target="Coventry">
+      <data key="d0">81.499</data>
+    </edge>
+    <edge source="Buffalo" target="Dallas">
+      <data key="d0">38.203</data>
+    </edge>
+    <edge source="Buffalo" target="Dublin">
+      <data key="d0">87.037</data>
+    </edge>
+    <edge source="Buffalo" target="Dusseldorf">
+      <data key="d0">90.466</data>
+    </edge>
+    <edge source="Buffalo" target="Graz">
+      <data key="d0">124.174</data>
+    </edge>
+    <edge source="Buffalo" target="Istanbul">
+      <data key="d0">129.724</data>
+    </edge>
+    <edge source="Buffalo" target="Kiev">
+      <data key="d0">123.936</data>
+    </edge>
+    <edge source="Buffalo" target="Koto">
+      <data key="d0">153.002</data>
+    </edge>
+    <edge source="Buffalo" target="Lima">
+      <data key="d0">102.213</data>
+    </edge>
+    <edge source="Buffalo" target="London">
+      <data key="d0">93.258</data>
+    </edge>
+    <edge source="Buffalo" target="Los Angeles">
+      <data key="d0">69.1</data>
+    </edge>
+    <edge source="Buffalo" target="Moscow">
+      <data key="d0">129.623</data>
+    </edge>
+    <edge source="Buffalo" target="New York">
+      <data key="d0">10.141</data>
+    </edge>
+    <edge source="Buffalo" target="Paris">
+      <data key="d0">80.522</data>
+    </edge>
+    <edge source="Buffalo" target="Stockholm">
+      <data key="d0">101.166</data>
+    </edge>
+    <edge source="Buffalo" target="Tokyo">
+      <data key="d0">183.865</data>
+    </edge>
+    <edge source="Chicago" target="Amsterdam">
+      <data key="d0">99.538</data>
+    </edge>
+    <edge source="Chicago" target="Auckland">
+      <data key="d0">288.765</data>
+    </edge>
+    <edge source="Chicago" target="Brno">
+      <data key="d0">124.771</data>
+    </edge>
+    <edge source="Chicago" target="Bruges">
+      <data key="d0">97.276</data>
+    </edge>
+    <edge source="Chicago" target="Brussels">
+      <data key="d0">94.365</data>
+    </edge>
+    <edge source="Chicago" target="Bucharest">
+      <data key="d0">136.753</data>
+    </edge>
+    <edge source="Chicago" target="Budapest">
+      <data key="d0">124.477</data>
+    </edge>
+    <edge source="Chicago" target="Buenos Aires">
+      <data key="d0">174.131</data>
+    </edge>
+    <edge source="Chicago" target="Buffalo">
+      <data key="d0">19.763</data>
+    </edge>
+    <edge source="Chicago" target="Chisinau">
+      <data key="d0">148.137</data>
+    </edge>
+    <edge source="Chicago" target="Copenhagen">
+      <data key="d0">111.558</data>
+    </edge>
+    <edge source="Chicago" target="Coventry">
+      <data key="d0">94.846</data>
+    </edge>
+    <edge source="Chicago" target="Dallas">
+      <data key="d0">36.851</data>
+    </edge>
+    <edge source="Chicago" target="Dublin">
+      <data key="d0">100.139</data>
+    </edge>
+    <edge source="Chicago" target="Dusseldorf">
+      <data key="d0">106.538</data>
+    </edge>
+    <edge source="Chicago" target="Graz">
+      <data key="d0">119.026</data>
+    </edge>
+    <edge source="Chicago" target="Istanbul">
+      <data key="d0">139.986</data>
+    </edge>
+    <edge source="Chicago" target="Kiev">
+      <data key="d0">139.264</data>
+    </edge>
+    <edge source="Chicago" target="Koto">
+      <data key="d0">211.535</data>
+    </edge>
+    <edge source="Chicago" target="Lima">
+      <data key="d0">100.051</data>
+    </edge>
+    <edge source="Chicago" target="London">
+      <data key="d0">86.504</data>
+    </edge>
+    <edge source="Chicago" target="Los Angeles">
+      <data key="d0">58.426</data>
+    </edge>
+    <edge source="Chicago" target="Moscow">
+      <data key="d0">146.102</data>
+    </edge>
+    <edge source="Chicago" target="New York">
+      <data key="d0">23.153</data>
+    </edge>
+    <edge source="Chicago" target="Paris">
+      <data key="d0">94.258</data>
+    </edge>
+    <edge source="Chicago" target="Stockholm">
+      <data key="d0">113.414</data>
+    </edge>
+    <edge source="Chicago" target="Tokyo">
+      <data key="d0">169.32</data>
+    </edge>
+    <edge source="Chisinau" target="Amsterdam">
+      <data key="d0">40.198</data>
+    </edge>
+    <edge source="Chisinau" target="Auckland">
+      <data key="d0">319.374</data>
+    </edge>
+    <edge source="Chisinau" target="Brno">
+      <data key="d0">48.899</data>
+    </edge>
+    <edge source="Chisinau" target="Bruges">
+      <data key="d0">52.807</data>
+    </edge>
+    <edge source="Chisinau" target="Brussels">
+      <data key="d0">55.11</data>
+    </edge>
+    <edge source="Chisinau" target="Bucharest">
+      <data key="d0">13.386</data>
+    </edge>
+    <edge source="Chisinau" target="Budapest">
+      <data key="d0">28.93</data>
+    </edge>
+    <edge source="Chisinau" target="Buenos Aires">
+      <data key="d0">287.627</data>
+    </edge>
+    <edge source="Chisinau" target="Buffalo">
+      <data key="d0">142.509</data>
+    </edge>
+    <edge source="Chisinau" target="Chicago">
+      <data key="d0">147.065</data>
+    </edge>
+    <edge source="Chisinau" target="Copenhagen">
+      <data key="d0">55.108</data>
+    </edge>
+    <edge source="Chisinau" target="Coventry">
+      <data key="d0">57.725</data>
+    </edge>
+    <edge source="Chisinau" target="Dallas">
+      <data key="d0">196.009</data>
+    </edge>
+    <edge source="Chisinau" target="Dublin">
+      <data key="d0">67.5</data>
+    </edge>
+    <edge source="Chisinau" target="Dusseldorf">
+      <data key="d0">49.509</data>
+    </edge>
+    <edge source="Chisinau" target="Graz">
+      <data key="d0">46.629</data>
+    </edge>
+    <edge source="Chisinau" target="Istanbul">
+      <data key="d0">52.825</data>
+    </edge>
+    <edge source="Chisinau" target="Kiev">
+      <data key="d0">60.438</data>
+    </edge>
+    <edge source="Chisinau" target="Koto">
+      <data key="d0">290.457</data>
+    </edge>
+    <edge source="Chisinau" target="Lima">
+      <data key="d0">217.009</data>
+    </edge>
+    <edge source="Chisinau" target="London">
+      <data key="d0">46.106</data>
+    </edge>
+    <edge source="Chisinau" target="Los Angeles">
+      <data key="d0">190.63</data>
+    </edge>
+    <edge source="Chisinau" target="Moscow">
+      <data key="d0">55.473</data>
+    </edge>
+    <edge source="Chisinau" target="New York">
+      <data key="d0">127.122</data>
+    </edge>
+    <edge source="Chisinau" target="Paris">
+      <data key="d0">47.359</data>
+    </edge>
+    <edge source="Chisinau" target="Stockholm">
+      <data key="d0">71.146</data>
+    </edge>
+    <edge source="Chisinau" target="Tokyo">
+      <data key="d0">297.231</data>
+    </edge>
+    <edge source="Copenhagen" target="Amsterdam">
+      <data key="d0">17.381</data>
+    </edge>
+    <edge source="Copenhagen" target="Auckland">
+      <data key="d0">279.32</data>
+    </edge>
+    <edge source="Copenhagen" target="Brno">
+      <data key="d0">27.651</data>
+    </edge>
+    <edge source="Copenhagen" target="Bruges">
+      <data key="d0">23.601</data>
+    </edge>
+    <edge source="Copenhagen" target="Brussels">
+      <data key="d0">16.755</data>
+    </edge>
+    <edge source="Copenhagen" target="Bucharest">
+      <data key="d0">46.534</data>
+    </edge>
+    <edge source="Copenhagen" target="Budapest">
+      <data key="d0">33.505</data>
+    </edge>
+    <edge source="Copenhagen" target="Buenos Aires">
+      <data key="d0">251.341</data>
+    </edge>
+    <edge source="Copenhagen" target="Buffalo">
+      <data key="d0">101.79</data>
+    </edge>
+    <edge source="Copenhagen" target="Chicago">
+      <data key="d0">113.615</data>
+    </edge>
+    <edge source="Copenhagen" target="Chisinau">
+      <data key="d0">55.254</data>
+    </edge>
+    <edge source="Copenhagen" target="Coventry">
+      <data key="d0">27.917</data>
+    </edge>
+    <edge source="Copenhagen" target="Dallas">
+      <data key="d0">126.151</data>
+    </edge>
+    <edge source="Copenhagen" target="Dublin">
+      <data key="d0">32.38</data>
+    </edge>
+    <edge source="Copenhagen" target="Dusseldorf">
+      <data key="d0">13.088</data>
+    </edge>
+    <edge source="Copenhagen" target="Graz">
+      <data key="d0">54.2</data>
+    </edge>
+    <edge source="Copenhagen" target="Istanbul">
+      <data key="d0">61.102</data>
+    </edge>
+    <edge source="Copenhagen" target="Kiev">
+      <data key="d0">49.879</data>
+    </edge>
+    <edge source="Copenhagen" target="Koto">
+      <data key="d0">246.993</data>
+    </edge>
+    <edge source="Copenhagen" target="Lima">
+      <data key="d0">190.365</data>
+    </edge>
+    <edge source="Copenhagen" target="London">
+      <data key="d0">16.783</data>
+    </edge>
+    <edge source="Copenhagen" target="Los Angeles">
+      <data key="d0">164.902</data>
+    </edge>
+    <edge source="Copenhagen" target="Moscow">
+      <data key="d0">27.705</data>
+    </edge>
+    <edge source="Copenhagen" target="New York">
+      <data key="d0">89.67</data>
+    </edge>
+    <edge source="Copenhagen" target="Paris">
+      <data key="d0">23.789</data>
+    </edge>
+    <edge source="Copenhagen" target="Stockholm">
+      <data key="d0">10.298</data>
+    </edge>
+    <edge source="Copenhagen" target="Tokyo">
+      <data key="d0">233.854</data>
+    </edge>
+    <edge source="Coventry" target="Amsterdam">
+      <data key="d0">12.958</data>
+    </edge>
+    <edge source="Coventry" target="Auckland">
+      <data key="d0">272.749</data>
+    </edge>
+    <edge source="Coventry" target="Brno">
+      <data key="d0">37.064</data>
+    </edge>
+    <edge source="Coventry" target="Bruges">
+      <data key="d0">15.824</data>
+    </edge>
+    <edge source="Coventry" target="Brussels">
+      <data key="d0">10.875</data>
+    </edge>
+    <edge source="Coventry" target="Bucharest">
+      <data key="d0">47.282</data>
+    </edge>
+    <edge source="Coventry" target="Budapest">
+      <data key="d0">38.014</data>
+    </edge>
+    <edge source="Coventry" target="Buenos Aires">
+      <data key="d0">232.658</data>
+    </edge>
+    <edge source="Coventry" target="Buffalo">
+      <data key="d0">98.748</data>
+    </edge>
+    <edge source="Coventry" target="Chicago">
+      <data key="d0">91.256</data>
+    </edge>
+    <edge source="Coventry" target="Chisinau">
+      <data key="d0">57.368</data>
+    </edge>
+    <edge source="Coventry" target="Copenhagen">
+      <data key="d0">27.832</data>
+    </edge>
+    <edge source="Coventry" target="Dallas">
+      <data key="d0">112.911</data>
+    </edge>
+    <edge source="Coventry" target="Dublin">
+      <data key="d0">15.238</data>
+    </edge>
+    <edge source="Coventry" target="Dusseldorf">
+      <data key="d0">15.853</data>
+    </edge>
+    <edge source="Coventry" target="Graz">
+      <data key="d0">44.172</data>
+    </edge>
+    <edge source="Coventry" target="Istanbul">
+      <data key="d0">53.951</data>
+    </edge>
+    <edge source="Coventry" target="Kiev">
+      <data key="d0">51.424</data>
+    </edge>
+    <edge source="Coventry" target="Koto">
+      <data key="d0">252.464</data>
+    </edge>
+    <edge source="Coventry" target="Lima">
+      <data key="d0">178.733</data>
+    </edge>
+    <edge source="Coventry" target="London">
+      <data key="d0">6.631</data>
+    </edge>
+    <edge source="Coventry" target="Los Angeles">
+      <data key="d0">147.62</data>
+    </edge>
+    <edge source="Coventry" target="Moscow">
+      <data key="d0">50.537</data>
+    </edge>
+    <edge source="Coventry" target="New York">
+      <data key="d0">75.941</data>
+    </edge>
+    <edge source="Coventry" target="Paris">
+      <data key="d0">14.321</data>
+    </edge>
+    <edge source="Coventry" target="Stockholm">
+      <data key="d0">36.681</data>
+    </edge>
+    <edge source="Coventry" target="Tokyo">
+      <data key="d0">239.9</data>
+    </edge>
+    <edge source="Dallas" target="Amsterdam">
+      <data key="d0">121.374</data>
+    </edge>
+    <edge source="Dallas" target="Auckland">
+      <data key="d0">195.533</data>
+    </edge>
+    <edge source="Dallas" target="Brno">
+      <data key="d0">145.31</data>
+    </edge>
+    <edge source="Dallas" target="Bruges">
+      <data key="d0">121.128</data>
+    </edge>
+    <edge source="Dallas" target="Brussels">
+      <data key="d0">110.484</data>
+    </edge>
+    <edge source="Dallas" target="Bucharest">
+      <data key="d0">158.646</data>
+    </edge>
+    <edge source="Dallas" target="Budapest">
+      <data key="d0">172.046</data>
+    </edge>
+    <edge source="Dallas" target="Buenos Aires">
+      <data key="d0">161.902</data>
+    </edge>
+    <edge source="Dallas" target="Buffalo">
+      <data key="d0">38.176</data>
+    </edge>
+    <edge source="Dallas" target="Chicago">
+      <data key="d0">38.067</data>
+    </edge>
+    <edge source="Dallas" target="Chisinau">
+      <data key="d0">197.65</data>
+    </edge>
+    <edge source="Dallas" target="Copenhagen">
+      <data key="d0">127.678</data>
+    </edge>
+    <edge source="Dallas" target="Coventry">
+      <data key="d0">114.599</data>
+    </edge>
+    <edge source="Dallas" target="Dublin">
+      <data key="d0">132.712</data>
+    </edge>
+    <edge source="Dallas" target="Dusseldorf">
+      <data key="d0">124.416</data>
+    </edge>
+    <edge source="Dallas" target="Graz">
+      <data key="d0">152.579</data>
+    </edge>
+    <edge source="Dallas" target="Istanbul">
+      <data key="d0">155.313</data>
+    </edge>
+    <edge source="Dallas" target="Kiev">
+      <data key="d0">159.211</data>
+    </edge>
+    <edge source="Dallas" target="Koto">
+      <data key="d0">141.481</data>
+    </edge>
+    <edge source="Dallas" target="Lima">
+      <data key="d0">117.439</data>
+    </edge>
+    <edge source="Dallas" target="London">
+      <data key="d0">113.414</data>
+    </edge>
+    <edge source="Dallas" target="Los Angeles">
+      <data key="d0">51.404</data>
+    </edge>
+    <edge source="Dallas" target="Moscow">
+      <data key="d0">154.413</data>
+    </edge>
+    <edge source="Dallas" target="New York">
+      <data key="d0">45.016</data>
+    </edge>
+    <edge source="Dallas" target="Paris">
+      <data key="d0">116.538</data>
+    </edge>
+    <edge source="Dallas" target="Stockholm">
+      <data key="d0">136.707</data>
+    </edge>
+    <edge source="Dallas" target="Tokyo">
+      <data key="d0">146.86</data>
+    </edge>
+    <edge source="Dublin" target="Amsterdam">
+      <data key="d0">20.478</data>
+    </edge>
+    <edge source="Dublin" target="Auckland">
+      <data key="d0">375.262</data>
+    </edge>
+    <edge source="Dublin" target="Brno">
+      <data key="d0">42.911</data>
+    </edge>
+    <edge source="Dublin" target="Bruges">
+      <data key="d0">20.761</data>
+    </edge>
+    <edge source="Dublin" target="Brussels">
+      <data key="d0">17.836</data>
+    </edge>
+    <edge source="Dublin" target="Bucharest">
+      <data key="d0">55.206</data>
+    </edge>
+    <edge source="Dublin" target="Budapest">
+      <data key="d0">42.784</data>
+    </edge>
+    <edge source="Dublin" target="Buenos Aires">
+      <data key="d0">232.695</data>
+    </edge>
+    <edge source="Dublin" target="Buffalo">
+      <data key="d0">87.061</data>
+    </edge>
+    <edge source="Dublin" target="Chicago">
+      <data key="d0">98.944</data>
+    </edge>
+    <edge source="Dublin" target="Chisinau">
+      <data key="d0">67.627</data>
+    </edge>
+    <edge source="Dublin" target="Copenhagen">
+      <data key="d0">32.506</data>
+    </edge>
+    <edge source="Dublin" target="Coventry">
+      <data key="d0">15.387</data>
+    </edge>
+    <edge source="Dublin" target="Dallas">
+      <data key="d0">132.91</data>
+    </edge>
+    <edge source="Dublin" target="Dusseldorf">
+      <data key="d0">21.423</data>
+    </edge>
+    <edge source="Dublin" target="Graz">
+      <data key="d0">75.423</data>
+    </edge>
+    <edge source="Dublin" target="Istanbul">
+      <data key="d0">64.768</data>
+    </edge>
+    <edge source="Dublin" target="Kiev">
+      <data key="d0">57.915</data>
+    </edge>
+    <edge source="Dublin" target="Koto">
+      <data key="d0">309.375</data>
+    </edge>
+    <edge source="Dublin" target="Lima">
+      <data key="d0">183.443</data>
+    </edge>
+    <edge source="Dublin" target="London">
+      <data key="d0">19.282</data>
+    </edge>
+    <edge source="Dublin" target="Los Angeles">
+      <data key="d0">154.319</data>
+    </edge>
+    <edge source="Dublin" target="Moscow">
+      <data key="d0">62.939</data>
+    </edge>
+    <edge source="Dublin" target="New York">
+      <data key="d0">79.792</data>
+    </edge>
+    <edge source="Dublin" target="Paris">
+      <data key="d0">17.664</data>
+    </edge>
+    <edge source="Dublin" target="Stockholm">
+      <data key="d0">48.396</data>
+    </edge>
+    <edge source="Dublin" target="Tokyo">
+      <data key="d0">258.153</data>
+    </edge>
+    <edge source="Dusseldorf" target="Amsterdam">
+      <data key="d0">5.481</data>
+    </edge>
+    <edge source="Dusseldorf" target="Auckland">
+      <data key="d0">276.166</data>
+    </edge>
+    <edge source="Dusseldorf" target="Brno">
+      <data key="d0">24.358</data>
+    </edge>
+    <edge source="Dusseldorf" target="Bruges">
+      <data key="d0">13.263</data>
+    </edge>
+    <edge source="Dusseldorf" target="Brussels">
+      <data key="d0">7.575</data>
+    </edge>
+    <edge source="Dusseldorf" target="Bucharest">
+      <data key="d0">37.142</data>
+    </edge>
+    <edge source="Dusseldorf" target="Budapest">
+      <data key="d0">25.401</data>
+    </edge>
+    <edge source="Dusseldorf" target="Buenos Aires">
+      <data key="d0">246.126</data>
+    </edge>
+    <edge source="Dusseldorf" target="Buffalo">
+      <data key="d0">90.425</data>
+    </edge>
+    <edge source="Dusseldorf" target="Chicago">
+      <data key="d0">107.411</data>
+    </edge>
+    <edge source="Dusseldorf" target="Chisinau">
+      <data key="d0">49.718</data>
+    </edge>
+    <edge source="Dusseldorf" target="Copenhagen">
+      <data key="d0">13.213</data>
+    </edge>
+    <edge source="Dusseldorf" target="Coventry">
+      <data key="d0">16.009</data>
+    </edge>
+    <edge source="Dusseldorf" target="Dallas">
+      <data key="d0">123.941</data>
+    </edge>
+    <edge source="Dusseldorf" target="Dublin">
+      <data key="d0">21.429</data>
+    </edge>
+    <edge source="Dusseldorf" target="Graz">
+      <data key="d0">42.005</data>
+    </edge>
+    <edge source="Dusseldorf" target="Istanbul">
+      <data key="d0">46.112</data>
+    </edge>
+    <edge source="Dusseldorf" target="Kiev">
+      <data key="d0">43.598</data>
+    </edge>
+    <edge source="Dusseldorf" target="Koto">
+      <data key="d0">236.24</data>
+    </edge>
+    <edge source="Dusseldorf" target="Lima">
+      <data key="d0">176.497</data>
+    </edge>
+    <edge source="Dusseldorf" target="London">
+      <data key="d0">12.435</data>
+    </edge>
+    <edge source="Dusseldorf" target="Los Angeles">
+      <data key="d0">144.461</data>
+    </edge>
+    <edge source="Dusseldorf" target="Moscow">
+      <data key="d0">45.035</data>
+    </edge>
+    <edge source="Dusseldorf" target="New York">
+      <data key="d0">79.29</data>
+    </edge>
+    <edge source="Dusseldorf" target="Paris">
+      <data key="d0">13.496</data>
+    </edge>
+    <edge source="Dusseldorf" target="Stockholm">
+      <data key="d0">24.892</data>
+    </edge>
+    <edge source="Dusseldorf" target="Tokyo">
+      <data key="d0">267.928</data>
+    </edge>
+    <edge source="Graz" target="Amsterdam">
+      <data key="d0">42.636</data>
+    </edge>
+    <edge source="Graz" target="Auckland">
+      <data key="d0">299.071</data>
+    </edge>
+    <edge source="Graz" target="Brno">
+      <data key="d0">15.76</data>
+    </edge>
+    <edge source="Graz" target="Bruges">
+      <data key="d0">41.439</data>
+    </edge>
+    <edge source="Graz" target="Brussels">
+      <data key="d0">36.725</data>
+    </edge>
+    <edge source="Graz" target="Bucharest">
+      <data key="d0">46.159</data>
+    </edge>
+    <edge source="Graz" target="Budapest">
+      <data key="d0">21.185</data>
+    </edge>
+    <edge source="Graz" target="Buenos Aires">
+      <data key="d0">285.628</data>
+    </edge>
+    <edge source="Graz" target="Buffalo">
+      <data key="d0">124.249</data>
+    </edge>
+    <edge source="Graz" target="Chicago">
+      <data key="d0">142.874</data>
+    </edge>
+    <edge source="Graz" target="Chisinau">
+      <data key="d0">46.494</data>
+    </edge>
+    <edge source="Graz" target="Copenhagen">
+      <data key="d0">54.325</data>
+    </edge>
+    <edge source="Graz" target="Coventry">
+      <data key="d0">44.569</data>
+    </edge>
+    <edge source="Graz" target="Dallas">
+      <data key="d0">153.088</data>
+    </edge>
+    <edge source="Graz" target="Dublin">
+      <data key="d0">75.367</data>
+    </edge>
+    <edge source="Graz" target="Dusseldorf">
+      <data key="d0">42.228</data>
+    </edge>
+    <edge source="Graz" target="Istanbul">
+      <data key="d0">68.977</data>
+    </edge>
+    <edge source="Graz" target="Kiev">
+      <data key="d0">89.77</data>
+    </edge>
+    <edge source="Graz" target="Koto">
+      <data key="d0">285.528</data>
+    </edge>
+    <edge source="Graz" target="Lima">
+      <data key="d0">196.519</data>
+    </edge>
+    <edge source="Graz" target="London">
+      <data key="d0">49.622</data>
+    </edge>
+    <edge source="Graz" target="Los Angeles">
+      <data key="d0">181.659</data>
+    </edge>
+    <edge source="Graz" target="Moscow">
+      <data key="d0">77.435</data>
+    </edge>
+    <edge source="Graz" target="New York">
+      <data key="d0">138.535</data>
+    </edge>
+    <edge source="Graz" target="Paris">
+      <data key="d0">30.646</data>
+    </edge>
+    <edge source="Graz" target="Stockholm">
+      <data key="d0">58.971</data>
+    </edge>
+    <edge source="Graz" target="Tokyo">
+      <data key="d0">264.793</data>
+    </edge>
+    <edge source="Istanbul" target="Amsterdam">
+      <data key="d0">42.514</data>
+    </edge>
+    <edge source="Istanbul" target="Auckland">
+      <data key="d0">317.37</data>
+    </edge>
+    <edge source="Istanbul" target="Brno">
+      <data key="d0">61.469</data>
+    </edge>
+    <edge source="Istanbul" target="Bruges">
+      <data key="d0">57.69</data>
+    </edge>
+    <edge source="Istanbul" target="Brussels">
+      <data key="d0">50.927</data>
+    </edge>
+    <edge source="Istanbul" target="Bucharest">
+      <data key="d0">45.351</data>
+    </edge>
+    <edge source="Istanbul" target="Budapest">
+      <data key="d0">52.495</data>
+    </edge>
+    <edge source="Istanbul" target="Buenos Aires">
+      <data key="d0">276.964</data>
+    </edge>
+    <edge source="Istanbul" target="Buffalo">
+      <data key="d0">132.133</data>
+    </edge>
+    <edge source="Istanbul" target="Chicago">
+      <data key="d0">137.576</data>
+    </edge>
+    <edge source="Istanbul" target="Chisinau">
+      <data key="d0">52.503</data>
+    </edge>
+    <edge source="Istanbul" target="Copenhagen">
+      <data key="d0">61.263</data>
+    </edge>
+    <edge source="Istanbul" target="Coventry">
+      <data key="d0">54.382</data>
+    </edge>
+    <edge source="Istanbul" target="Dallas">
+      <data key="d0">155.173</data>
+    </edge>
+    <edge source="Istanbul" target="Dublin">
+      <data key="d0">64.606</data>
+    </edge>
+    <edge source="Istanbul" target="Dusseldorf">
+      <data key="d0">41.375</data>
+    </edge>
+    <edge source="Istanbul" target="Graz">
+      <data key="d0">69.224</data>
+    </edge>
+    <edge source="Istanbul" target="Kiev">
+      <data key="d0">62.77</data>
+    </edge>
+    <edge source="Istanbul" target="Koto">
+      <data key="d0">278.284</data>
+    </edge>
+    <edge source="Istanbul" target="Lima">
+      <data key="d0">211.498</data>
+    </edge>
+    <edge source="Istanbul" target="London">
+      <data key="d0">45.643</data>
+    </edge>
+    <edge source="Istanbul" target="Los Angeles">
+      <data key="d0">183.731</data>
+    </edge>
+    <edge source="Istanbul" target="Moscow">
+      <data key="d0">77.486</data>
+    </edge>
+    <edge source="Istanbul" target="New York">
+      <data key="d0">118.451</data>
+    </edge>
+    <edge source="Istanbul" target="Paris">
+      <data key="d0">63.793</data>
+    </edge>
+    <edge source="Istanbul" target="Stockholm">
+      <data key="d0">63.834</data>
+    </edge>
+    <edge source="Istanbul" target="Tokyo">
+      <data key="d0">271.514</data>
+    </edge>
+    <edge source="Kiev" target="Amsterdam">
+      <data key="d0">41.692</data>
+    </edge>
+    <edge source="Kiev" target="Auckland">
+      <data key="d0">309.329</data>
+    </edge>
+    <edge source="Kiev" target="Brno">
+      <data key="d0">48.098</data>
+    </edge>
+    <edge source="Kiev" target="Bruges">
+      <data key="d0">60.031</data>
+    </edge>
+    <edge source="Kiev" target="Brussels">
+      <data key="d0">44.616</data>
+    </edge>
+    <edge source="Kiev" target="Bucharest">
+      <data key="d0">63.855</data>
+    </edge>
+    <edge source="Kiev" target="Budapest">
+      <data key="d0">41.211</data>
+    </edge>
+    <edge source="Kiev" target="Buenos Aires">
+      <data key="d0">272.746</data>
+    </edge>
+    <edge source="Kiev" target="Buffalo">
+      <data key="d0">123.891</data>
+    </edge>
+    <edge source="Kiev" target="Chicago">
+      <data key="d0">143.507</data>
+    </edge>
+    <edge source="Kiev" target="Chisinau">
+      <data key="d0">60.308</data>
+    </edge>
+    <edge source="Kiev" target="Copenhagen">
+      <data key="d0">49.899</data>
+    </edge>
+    <edge source="Kiev" target="Coventry">
+      <data key="d0">51.645</data>
+    </edge>
+    <edge source="Kiev" target="Dallas">
+      <data key="d0">159.702</data>
+    </edge>
+    <edge source="Kiev" target="Dublin">
+      <data key="d0">57.761</data>
+    </edge>
+    <edge source="Kiev" target="Dusseldorf">
+      <data key="d0">43.486</data>
+    </edge>
+    <edge source="Kiev" target="Graz">
+      <data key="d0">89.738</data>
+    </edge>
+    <edge source="Kiev" target="Istanbul">
+      <data key="d0">62.756</data>
+    </edge>
+    <edge source="Kiev" target="Koto">
+      <data key="d0">265.945</data>
+    </edge>
+    <edge source="Kiev" target="Lima">
+      <data key="d0">214.499</data>
+    </edge>
+    <edge source="Kiev" target="London">
+      <data key="d0">48.956</data>
+    </edge>
+    <edge source="Kiev" target="Los Angeles">
+      <data key="d0">178.808</data>
+    </edge>
+    <edge source="Kiev" target="Moscow">
+      <data key="d0">44.703</data>
+    </edge>
+    <edge source="Kiev" target="New York">
+      <data key="d0">118.661</data>
+    </edge>
+    <edge source="Kiev" target="Paris">
+      <data key="d0">48.302</data>
+    </edge>
+    <edge source="Kiev" target="Stockholm">
+      <data key="d0">64.521</data>
+    </edge>
+    <edge source="Kiev" target="Tokyo">
+      <data key="d0">258.771</data>
+    </edge>
+    <edge source="Koto" target="Amsterdam">
+      <data key="d0">236.982</data>
+    </edge>
+    <edge source="Koto" target="Auckland">
+      <data key="d0">137.661</data>
+    </edge>
+    <edge source="Koto" target="Brno">
+      <data key="d0">195.629</data>
+    </edge>
+    <edge source="Koto" target="Bruges">
+      <data key="d0">269.133</data>
+    </edge>
+    <edge source="Koto" target="Brussels">
+      <data key="d0">240.301</data>
+    </edge>
+    <edge source="Koto" target="Bucharest">
+      <data key="d0">276.225</data>
+    </edge>
+    <edge source="Koto" target="Budapest">
+      <data key="d0">254.919</data>
+    </edge>
+    <edge source="Koto" target="Buenos Aires">
+      <data key="d0">373.863</data>
+    </edge>
+    <edge source="Koto" target="Buffalo">
+      <data key="d0">152.898</data>
+    </edge>
+    <edge source="Koto" target="Chicago">
+      <data key="d0">205.87</data>
+    </edge>
+    <edge source="Koto" target="Chisinau">
+      <data key="d0">290.51</data>
+    </edge>
+    <edge source="Koto" target="Copenhagen">
+      <data key="d0">247.037</data>
+    </edge>
+    <edge source="Koto" target="Coventry">
+      <data key="d0">253.304</data>
+    </edge>
+    <edge source="Koto" target="Dallas">
+      <data key="d0">136.527</data>
+    </edge>
+    <edge source="Koto" target="Dublin">
+      <data key="d0">309.453</data>
+    </edge>
+    <edge source="Koto" target="Dusseldorf">
+      <data key="d0">236.062</data>
+    </edge>
+    <edge source="Koto" target="Graz">
+      <data key="d0">285.341</data>
+    </edge>
+    <edge source="Koto" target="Istanbul">
+      <data key="d0">278.386</data>
+    </edge>
+    <edge source="Koto" target="Kiev">
+      <data key="d0">266.068</data>
+    </edge>
+    <edge source="Koto" target="Lima">
+      <data key="d0">311.551</data>
+    </edge>
+    <edge source="Koto" target="London">
+      <data key="d0">247.74</data>
+    </edge>
+    <edge source="Koto" target="Los Angeles">
+      <data key="d0">104.861</data>
+    </edge>
+    <edge source="Koto" target="Moscow">
+      <data key="d0">229.983</data>
+    </edge>
+    <edge source="Koto" target="New York">
+      <data key="d0">169.376</data>
+    </edge>
+    <edge source="Koto" target="Paris">
+      <data key="d0">254.311</data>
+    </edge>
+    <edge source="Koto" target="Stockholm">
+      <data key="d0">249.98</data>
+    </edge>
+    <edge source="Koto" target="Tokyo">
+      <data key="d0">0.898</data>
+    </edge>
+    <edge source="Lima" target="Amsterdam">
+      <data key="d0">171.804</data>
+    </edge>
+    <edge source="Lima" target="Auckland">
+      <data key="d0">290.681</data>
+    </edge>
+    <edge source="Lima" target="Brno">
+      <data key="d0">191.803</data>
+    </edge>
+    <edge source="Lima" target="Bruges">
+      <data key="d0">179.932</data>
+    </edge>
+    <edge source="Lima" target="Brussels">
+      <data key="d0">167.859</data>
+    </edge>
+    <edge source="Lima" target="Bucharest">
+      <data key="d0">224.773</data>
+    </edge>
+    <edge source="Lima" target="Budapest">
+      <data key="d0">235.297</data>
+    </edge>
+    <edge source="Lima" target="Buenos Aires">
+      <data key="d0">126.202</data>
+    </edge>
+    <edge source="Lima" target="Buffalo">
+      <data key="d0">101.627</data>
+    </edge>
+    <edge source="Lima" target="Chicago">
+      <data key="d0">99.375</data>
+    </edge>
+    <edge source="Lima" target="Chisinau">
+      <data key="d0">216.546</data>
+    </edge>
+    <edge source="Lima" target="Copenhagen">
+      <data key="d0">189.922</data>
+    </edge>
+    <edge source="Lima" target="Coventry">
+      <data key="d0">178.789</data>
+    </edge>
+    <edge source="Lima" target="Dallas">
+      <data key="d0">107.772</data>
+    </edge>
+    <edge source="Lima" target="Dublin">
+      <data key="d0">183.119</data>
+    </edge>
+    <edge source="Lima" target="Dusseldorf">
+      <data key="d0">175.748</data>
+    </edge>
+    <edge source="Lima" target="Graz">
+      <data key="d0">196.039</data>
+    </edge>
+    <edge source="Lima" target="Istanbul">
+      <data key="d0">211.157</data>
+    </edge>
+    <edge source="Lima" target="Kiev">
+      <data key="d0">213.884</data>
+    </edge>
+    <edge source="Lima" target="Koto">
+      <data key="d0">363.092</data>
+    </edge>
+    <edge source="Lima" target="London">
+      <data key="d0">165.607</data>
+    </edge>
+    <edge source="Lima" target="Los Angeles">
+      <data key="d0">132.104</data>
+    </edge>
+    <edge source="Lima" target="Moscow">
+      <data key="d0">231.817</data>
+    </edge>
+    <edge source="Lima" target="New York">
+      <data key="d0">102.512</data>
+    </edge>
+    <edge source="Lima" target="Paris">
+      <data key="d0">171.55</data>
+    </edge>
+    <edge source="Lima" target="Stockholm">
+      <data key="d0">228.07</data>
+    </edge>
+    <edge source="Lima" target="Tokyo">
+      <data key="d0">243.497</data>
+    </edge>
+    <edge source="London" target="Amsterdam">
+      <data key="d0">6.552</data>
+    </edge>
+    <edge source="London" target="Auckland">
+      <data key="d0">265.659</data>
+    </edge>
+    <edge source="London" target="Brno">
+      <data key="d0">35.791</data>
+    </edge>
+    <edge source="London" target="Bruges">
+      <data key="d0">10.956</data>
+    </edge>
+    <edge source="London" target="Brussels">
+      <data key="d0">7.375</data>
+    </edge>
+    <edge source="London" target="Bucharest">
+      <data key="d0">35.783</data>
+    </edge>
+    <edge source="London" target="Budapest">
+      <data key="d0">28.684</data>
+    </edge>
+    <edge source="London" target="Buenos Aires">
+      <data key="d0">238.584</data>
+    </edge>
+    <edge source="London" target="Buffalo">
+      <data key="d0">93.19</data>
+    </edge>
+    <edge source="London" target="Chicago">
+      <data key="d0">86.191</data>
+    </edge>
+    <edge source="London" target="Chisinau">
+      <data key="d0">46.126</data>
+    </edge>
+    <edge source="London" target="Copenhagen">
+      <data key="d0">17.009</data>
+    </edge>
+    <edge source="London" target="Coventry">
+      <data key="d0">7.384</data>
+    </edge>
+    <edge source="London" target="Dallas">
+      <data key="d0">111.146</data>
+    </edge>
+    <edge source="London" target="Dublin">
+      <data key="d0">18.961</data>
+    </edge>
+    <edge source="London" target="Dusseldorf">
+      <data key="d0">12.221</data>
+    </edge>
+    <edge source="London" target="Graz">
+      <data key="d0">49.545</data>
+    </edge>
+    <edge source="London" target="Istanbul">
+      <data key="d0">45.622</data>
+    </edge>
+    <edge source="London" target="Kiev">
+      <data key="d0">48.796</data>
+    </edge>
+    <edge source="London" target="Koto">
+      <data key="d0">248.87</data>
+    </edge>
+    <edge source="London" target="Lima">
+      <data key="d0">165.939</data>
+    </edge>
+    <edge source="London" target="Los Angeles">
+      <data key="d0">135.927</data>
+    </edge>
+    <edge source="London" target="Moscow">
+      <data key="d0">46.066</data>
+    </edge>
+    <edge source="London" target="New York">
+      <data key="d0">71.455</data>
+    </edge>
+    <edge source="London" target="Paris">
+      <data key="d0">8.599</data>
+    </edge>
+    <edge source="London" target="Stockholm">
+      <data key="d0">29.606</data>
+    </edge>
+    <edge source="London" target="Tokyo">
+      <data key="d0">219.572</data>
+    </edge>
+    <edge source="Los Angeles" target="Amsterdam">
+      <data key="d0">139.204</data>
+    </edge>
+    <edge source="Los Angeles" target="Auckland">
+      <data key="d0">159.271</data>
+    </edge>
+    <edge source="Los Angeles" target="Brno">
+      <data key="d0">168.138</data>
+    </edge>
+    <edge source="Los Angeles" target="Bruges">
+      <data key="d0">151.356</data>
+    </edge>
+    <edge source="Los Angeles" target="Brussels">
+      <data key="d0">136.294</data>
+    </edge>
+    <edge source="Los Angeles" target="Bucharest">
+      <data key="d0">184.681</data>
+    </edge>
+    <edge source="Los Angeles" target="Budapest">
+      <data key="d0">172.302</data>
+    </edge>
+    <edge source="Los Angeles" target="Buenos Aires">
+      <data key="d0">169.088</data>
+    </edge>
+    <edge source="Los Angeles" target="Buffalo">
+      <data key="d0">69.058</data>
+    </edge>
+    <edge source="Los Angeles" target="Chicago">
+      <data key="d0">58.435</data>
+    </edge>
+    <edge source="Los Angeles" target="Chisinau">
+      <data key="d0">190.447</data>
+    </edge>
+    <edge source="Los Angeles" target="Copenhagen">
+      <data key="d0">164.929</data>
+    </edge>
+    <edge source="Los Angeles" target="Coventry">
+      <data key="d0">149.458</data>
+    </edge>
+    <edge source="Los Angeles" target="Dallas">
+      <data key="d0">32.991</data>
+    </edge>
+    <edge source="Los Angeles" target="Dublin">
+      <data key="d0">154.124</data>
+    </edge>
+    <edge source="Los Angeles" target="Dusseldorf">
+      <data key="d0">144.309</data>
+    </edge>
+    <edge source="Los Angeles" target="Graz">
+      <data key="d0">181.629</data>
+    </edge>
+    <edge source="Los Angeles" target="Istanbul">
+      <data key="d0">185.489</data>
+    </edge>
+    <edge source="Los Angeles" target="Kiev">
+      <data key="d0">178.897</data>
+    </edge>
+    <edge source="Los Angeles" target="Koto">
+      <data key="d0">104.755</data>
+    </edge>
+    <edge source="Los Angeles" target="Lima">
+      <data key="d0">132.594</data>
+    </edge>
+    <edge source="Los Angeles" target="London">
+      <data key="d0">136.1</data>
+    </edge>
+    <edge source="Los Angeles" target="Moscow">
+      <data key="d0">180.978</data>
+    </edge>
+    <edge source="Los Angeles" target="New York">
+      <data key="d0">68.335</data>
+    </edge>
+    <edge source="Los Angeles" target="Paris">
+      <data key="d0">146.616</data>
+    </edge>
+    <edge source="Los Angeles" target="Stockholm">
+      <data key="d0">165.026</data>
+    </edge>
+    <edge source="Los Angeles" target="Tokyo">
+      <data key="d0">114.876</data>
+    </edge>
+    <edge source="Moscow" target="Amsterdam">
+      <data key="d0">44.437</data>
+    </edge>
+    <edge source="Moscow" target="Auckland">
+      <data key="d0">319.007</data>
+    </edge>
+    <edge source="Moscow" target="Brno">
+      <data key="d0">51.88</data>
+    </edge>
+    <edge source="Moscow" target="Bruges">
+      <data key="d0">51.777</data>
+    </edge>
+    <edge source="Moscow" target="Brussels">
+      <data key="d0">46.487</data>
+    </edge>
+    <edge source="Moscow" target="Bucharest">
+      <data key="d0">61.692</data>
+    </edge>
+    <edge source="Moscow" target="Budapest">
+      <data key="d0">57.861</data>
+    </edge>
+    <edge source="Moscow" target="Buenos Aires">
+      <data key="d0">277.209</data>
+    </edge>
+    <edge source="Moscow" target="Buffalo">
+      <data key="d0">129.606</data>
+    </edge>
+    <edge source="Moscow" target="Chicago">
+      <data key="d0">142.88</data>
+    </edge>
+    <edge source="Moscow" target="Chisinau">
+      <data key="d0">55.459</data>
+    </edge>
+    <edge source="Moscow" target="Copenhagen">
+      <data key="d0">28.096</data>
+    </edge>
+    <edge source="Moscow" target="Coventry">
+      <data key="d0">51.133</data>
+    </edge>
+    <edge source="Moscow" target="Dallas">
+      <data key="d0">151.526</data>
+    </edge>
+    <edge source="Moscow" target="Dublin">
+      <data key="d0">62.974</data>
+    </edge>
+    <edge source="Moscow" target="Dusseldorf">
+      <data key="d0">44.862</data>
+    </edge>
+    <edge source="Moscow" target="Graz">
+      <data key="d0">77.668</data>
+    </edge>
+    <edge source="Moscow" target="Istanbul">
+      <data key="d0">78.417</data>
+    </edge>
+    <edge source="Moscow" target="Kiev">
+      <data key="d0">44.716</data>
+    </edge>
+    <edge source="Moscow" target="Koto">
+      <data key="d0">229.833</data>
+    </edge>
+    <edge source="Moscow" target="Lima">
+      <data key="d0">232.228</data>
+    </edge>
+    <edge source="Moscow" target="London">
+      <data key="d0">46.727</data>
+    </edge>
+    <edge source="Moscow" target="Los Angeles">
+      <data key="d0">181.022</data>
+    </edge>
+    <edge source="Moscow" target="New York">
+      <data key="d0">121.761</data>
+    </edge>
+    <edge source="Moscow" target="Paris">
+      <data key="d0">54.017</data>
+    </edge>
+    <edge source="Moscow" target="Stockholm">
+      <data key="d0">19.617</data>
+    </edge>
+    <edge source="Moscow" target="Tokyo">
+      <data key="d0">210.958</data>
+    </edge>
+    <edge source="New York" target="Amsterdam">
+      <data key="d0">74.912</data>
+    </edge>
+    <edge source="New York" target="Auckland">
+      <data key="d0">218.47</data>
+    </edge>
+    <edge source="New York" target="Brno">
+      <data key="d0">105.798</data>
+    </edge>
+    <edge source="New York" target="Bruges">
+      <data key="d0">78.021</data>
+    </edge>
+    <edge source="New York" target="Brussels">
+      <data key="d0">74.735</data>
+    </edge>
+    <edge source="New York" target="Bucharest">
+      <data key="d0">120.776</data>
+    </edge>
+    <edge source="New York" target="Budapest">
+      <data key="d0">106.576</data>
+    </edge>
+    <edge source="New York" target="Buenos Aires">
+      <data key="d0">164.714</data>
+    </edge>
+    <edge source="New York" target="Buffalo">
+      <data key="d0">10.015</data>
+    </edge>
+    <edge source="New York" target="Chicago">
+      <data key="d0">22.633</data>
+    </edge>
+    <edge source="New York" target="Chisinau">
+      <data key="d0">127.071</data>
+    </edge>
+    <edge source="New York" target="Copenhagen">
+      <data key="d0">89.665</data>
+    </edge>
+    <edge source="New York" target="Coventry">
+      <data key="d0">76.758</data>
+    </edge>
+    <edge source="New York" target="Dallas">
+      <data key="d0">44.581</data>
+    </edge>
+    <edge source="New York" target="Dublin">
+      <data key="d0">79.852</data>
+    </edge>
+    <edge source="New York" target="Dusseldorf">
+      <data key="d0">79.127</data>
+    </edge>
+    <edge source="New York" target="Graz">
+      <data key="d0">138.765</data>
+    </edge>
+    <edge source="New York" target="Istanbul">
+      <data key="d0">120.157</data>
+    </edge>
+    <edge source="New York" target="Kiev">
+      <data key="d0">118.671</data>
+    </edge>
+    <edge source="New York" target="Koto">
+      <data key="d0">169.244</data>
+    </edge>
+    <edge source="New York" target="Lima">
+      <data key="d0">102.684</data>
+    </edge>
+    <edge source="New York" target="London">
+      <data key="d0">71.427</data>
+    </edge>
+    <edge source="New York" target="Los Angeles">
+      <data key="d0">68.302</data>
+    </edge>
+    <edge source="New York" target="Moscow">
+      <data key="d0">121.683</data>
+    </edge>
+    <edge source="New York" target="Paris">
+      <data key="d0">75.434</data>
+    </edge>
+    <edge source="New York" target="Stockholm">
+      <data key="d0">98.679</data>
+    </edge>
+    <edge source="New York" target="Tokyo">
+      <data key="d0">175.993</data>
+    </edge>
+    <edge source="Paris" target="Amsterdam">
+      <data key="d0">10.306</data>
+    </edge>
+    <edge source="Paris" target="Auckland">
+      <data key="d0">281.518</data>
+    </edge>
+    <edge source="Paris" target="Brno">
+      <data key="d0">32.545</data>
+    </edge>
+    <edge source="Paris" target="Bruges">
+      <data key="d0">18.679</data>
+    </edge>
+    <edge source="Paris" target="Brussels">
+      <data key="d0">12.647</data>
+    </edge>
+    <edge source="Paris" target="Bucharest">
+      <data key="d0">36.856</data>
+    </edge>
+    <edge source="Paris" target="Budapest">
+      <data key="d0">28.025</data>
+    </edge>
+    <edge source="Paris" target="Buenos Aires">
+      <data key="d0">238.994</data>
+    </edge>
+    <edge source="Paris" target="Buffalo">
+      <data key="d0">80.464</data>
+    </edge>
+    <edge source="Paris" target="Chicago">
+      <data key="d0">93.984</data>
+    </edge>
+    <edge source="Paris" target="Chisinau">
+      <data key="d0">47.593</data>
+    </edge>
+    <edge source="Paris" target="Copenhagen">
+      <data key="d0">23.737</data>
+    </edge>
+    <edge source="Paris" target="Coventry">
+      <data key="d0">14.545</data>
+    </edge>
+    <edge source="Paris" target="Dallas">
+      <data key="d0">116.038</data>
+    </edge>
+    <edge source="Paris" target="Dublin">
+      <data key="d0">17.656</data>
+    </edge>
+    <edge source="Paris" target="Dusseldorf">
+      <data key="d0">13.389</data>
+    </edge>
+    <edge source="Paris" target="Graz">
+      <data key="d0">30.637</data>
+    </edge>
+    <edge source="Paris" target="Istanbul">
+      <data key="d0">47.99</data>
+    </edge>
+    <edge source="Paris" target="Kiev">
+      <data key="d0">48.38</data>
+    </edge>
+    <edge source="Paris" target="Koto">
+      <data key="d0">254.167</data>
+    </edge>
+    <edge source="Paris" target="Lima">
+      <data key="d0">172.242</data>
+    </edge>
+    <edge source="Paris" target="London">
+      <data key="d0">8.64</data>
+    </edge>
+    <edge source="Paris" target="Los Angeles">
+      <data key="d0">146.678</data>
+    </edge>
+    <edge source="Paris" target="Moscow">
+      <data key="d0">53.847</data>
+    </edge>
+    <edge source="Paris" target="New York">
+      <data key="d0">75.496</data>
+    </edge>
+    <edge source="Paris" target="Stockholm">
+      <data key="d0">30.988</data>
+    </edge>
+    <edge source="Paris" target="Tokyo">
+      <data key="d0">236.196</data>
+    </edge>
+    <edge source="Stockholm" target="Amsterdam">
+      <data key="d0">24.155</data>
+    </edge>
+    <edge source="Stockholm" target="Auckland">
+      <data key="d0">291.044</data>
+    </edge>
+    <edge source="Stockholm" target="Brno">
+      <data key="d0">38.007</data>
+    </edge>
+    <edge source="Stockholm" target="Bruges">
+      <data key="d0">36.613</data>
+    </edge>
+    <edge source="Stockholm" target="Brussels">
+      <data key="d0">27.927</data>
+    </edge>
+    <edge source="Stockholm" target="Bucharest">
+      <data key="d0">53.318</data>
+    </edge>
+    <edge source="Stockholm" target="Budapest">
+      <data key="d0">40.608</data>
+    </edge>
+    <edge source="Stockholm" target="Buenos Aires">
+      <data key="d0">280.636</data>
+    </edge>
+    <edge source="Stockholm" target="Buffalo">
+      <data key="d0">101.182</data>
+    </edge>
+    <edge source="Stockholm" target="Chicago">
+      <data key="d0">111.277</data>
+    </edge>
+    <edge source="Stockholm" target="Chisinau">
+      <data key="d0">71.355</data>
+    </edge>
+    <edge source="Stockholm" target="Copenhagen">
+      <data key="d0">10.297</data>
+    </edge>
+    <edge source="Stockholm" target="Coventry">
+      <data key="d0">37.108</data>
+    </edge>
+    <edge source="Stockholm" target="Dallas">
+      <data key="d0">135.709</data>
+    </edge>
+    <edge source="Stockholm" target="Dublin">
+      <data key="d0">48.556</data>
+    </edge>
+    <edge source="Stockholm" target="Dusseldorf">
+      <data key="d0">24.832</data>
+    </edge>
+    <edge source="Stockholm" target="Graz">
+      <data key="d0">59.091</data>
+    </edge>
+    <edge source="Stockholm" target="Istanbul">
+      <data key="d0">64.099</data>
+    </edge>
+    <edge source="Stockholm" target="Kiev">
+      <data key="d0">64.433</data>
+    </edge>
+    <edge source="Stockholm" target="Koto">
+      <data key="d0">249.971</data>
+    </edge>
+    <edge source="Stockholm" target="Lima">
+      <data key="d0">228.23</data>
+    </edge>
+    <edge source="Stockholm" target="London">
+      <data key="d0">29.668</data>
+    </edge>
+    <edge source="Stockholm" target="Los Angeles">
+      <data key="d0">165.436</data>
+    </edge>
+    <edge source="Stockholm" target="Moscow">
+      <data key="d0">19.498</data>
+    </edge>
+    <edge source="Stockholm" target="New York">
+      <data key="d0">98.552</data>
+    </edge>
+    <edge source="Stockholm" target="Paris">
+      <data key="d0">31.427</data>
+    </edge>
+    <edge source="Stockholm" target="Tokyo">
+      <data key="d0">248.782</data>
+    </edge>
+    <edge source="Tokyo" target="Amsterdam">
+      <data key="d0">237.374</data>
+    </edge>
+    <edge source="Tokyo" target="Auckland">
+      <data key="d0">198.681</data>
+    </edge>
+    <edge source="Tokyo" target="Brno">
+      <data key="d0">231.498</data>
+    </edge>
+    <edge source="Tokyo" target="Bruges">
+      <data key="d0">239.008</data>
+    </edge>
+    <edge source="Tokyo" target="Brussels">
+      <data key="d0">241.316</data>
+    </edge>
+    <edge source="Tokyo" target="Bucharest">
+      <data key="d0">276.389</data>
+    </edge>
+    <edge source="Tokyo" target="Budapest">
+      <data key="d0">262.005</data>
+    </edge>
+    <edge source="Tokyo" target="Buenos Aires">
+      <data key="d0">309.129</data>
+    </edge>
+    <edge source="Tokyo" target="Buffalo">
+      <data key="d0">183.789</data>
+    </edge>
+    <edge source="Tokyo" target="Chicago">
+      <data key="d0">169.687</data>
+    </edge>
+    <edge source="Tokyo" target="Chisinau">
+      <data key="d0">297.227</data>
+    </edge>
+    <edge source="Tokyo" target="Copenhagen">
+      <data key="d0">233.955</data>
+    </edge>
+    <edge source="Tokyo" target="Coventry">
+      <data key="d0">238.025</data>
+    </edge>
+    <edge source="Tokyo" target="Dallas">
+      <data key="d0">147.754</data>
+    </edge>
+    <edge source="Tokyo" target="Dublin">
+      <data key="d0">258.143</data>
+    </edge>
+    <edge source="Tokyo" target="Dusseldorf">
+      <data key="d0">267.722</data>
+    </edge>
+    <edge source="Tokyo" target="Graz">
+      <data key="d0">264.704</data>
+    </edge>
+    <edge source="Tokyo" target="Istanbul">
+      <data key="d0">273.23</data>
+    </edge>
+    <edge source="Tokyo" target="Kiev">
+      <data key="d0">258.782</data>
+    </edge>
+    <edge source="Tokyo" target="Koto">
+      <data key="d0">0.86</data>
+    </edge>
+    <edge source="Tokyo" target="Lima">
+      <data key="d0">244.101</data>
+    </edge>
+    <edge source="Tokyo" target="London">
+      <data key="d0">219.565</data>
+    </edge>
+    <edge source="Tokyo" target="Los Angeles">
+      <data key="d0">114.947</data>
+    </edge>
+    <edge source="Tokyo" target="Moscow">
+      <data key="d0">210.99</data>
+    </edge>
+    <edge source="Tokyo" target="New York">
+      <data key="d0">175.989</data>
+    </edge>
+    <edge source="Tokyo" target="Paris">
+      <data key="d0">236.077</data>
+    </edge>
+    <edge source="Tokyo" target="Stockholm">
+      <data key="d0">248.596</data>
+    </edge>
+  </graph>
+</graphml>
