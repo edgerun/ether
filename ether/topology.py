@@ -3,8 +3,8 @@ from typing import Dict, Tuple
 
 import networkx as nx
 
-from ether.cell import Cell
 from ether.core import Node, Link, Connection, Route, NetworkNode
+from ether.inet.graph import load_latest
 
 logger = logging.getLogger(__name__)
 
@@ -43,6 +43,16 @@ class Topology(nx.DiGraph):
     def get_links(self):
         return [n for n in self.nodes if isinstance(n, Link)]
 
+    def load_inet_graph(self, source):
+        """
+        Loads a static internet latency graph into the current topology. For example:
+
+        topo.load_inet_graph('cloudping')
+
+        :param source: the source. find available sources in `ether.inet.fetch.sources`.
+        """
+        load_latest(self, source)
+
     def _resolve_route(self, source, destination) -> Route:
         path = self.path(source, destination)
         hops = [hop for hop in path if isinstance(hop, Link)]
@@ -53,13 +63,12 @@ class Topology(nx.DiGraph):
 
         return Route(source, destination, hops=hops, rtt=rtt)
 
-    def add(self, cell: Cell):
+    def add(self, cell):
         """
         Materializes a cell into the topology.
 
         :param cell: the cell to create
         :return: the topology for chaining
         """
-        if isinstance(cell, Cell):
-            cell.materialize(self)
+        cell.materialize(self)
         return self
