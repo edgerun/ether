@@ -22,7 +22,7 @@ def load_from_file(graph: nx.DiGraph, file_path, node_prefix='internet_'):
     inet_graph: nx.Graph = load_graph(file_path)
 
     for src, dst, data in inet_graph.edges.data():
-        graph.add_edge(node_prefix + src, node_prefix + dst, latency=data['weight'])
+        graph.add_edge(node_prefix + src, node_prefix + dst, **data)
 
 
 def fetch_to_graph(graph: nx.DiGraph, module, *args, **kwargs):

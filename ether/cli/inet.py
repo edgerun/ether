@@ -5,7 +5,7 @@ from datetime import datetime
 import networkx as nx
 
 from ether.inet.fetch import sources
-from ether.inet.graph import add_to_graph, save_graph
+from ether.inet.graph import add_to_graph, save_graph, graph_directory
 
 
 def fetch_and_save(dirname, name, source):
@@ -28,7 +28,7 @@ def main():
         futures = list()
 
         for name, source in sources.items():
-            ftr = pool.submit(fetch_and_save, name, source)
+            ftr = pool.submit(fetch_and_save, graph_directory, name, source)
             futures.append(ftr)
 
         for ftr in futures:
