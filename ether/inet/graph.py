@@ -1,16 +1,32 @@
+import os
 from typing import List
 
 import networkx as nx
 
 from ether.inet.fetch import Measurement
 
+graph_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..', 'inet'))
+
+
+def load_latest(graph: nx.DiGraph, source, *args, **kwargs):
+    return load_tagged(graph, source, 'latest', *args, **kwargs)
+
+
+def load_tagged(graph: nx.DiGraph, source, tag, *args, **kwargs):
+    path = os.path.join(graph_directory, f'{source}_{tag}.graphml')
+    print('loading from', path)
+    return load_from_file(graph, path, *args, **kwargs)
+
+
+def load_from_file(graph: nx.DiGraph, file_path, node_prefix='internet_'):
+    inet_graph: nx.Graph = load_graph(file_path)
+
+    for src, dst, data in inet_graph.edges.data():
+        graph.add_edge(node_prefix + src, node_prefix + dst, latency=data['weight'])
+
 
 def fetch_to_graph(graph: nx.DiGraph, module, *args, **kwargs):
     add_to_graph(graph, module.fetch(), *args, **kwargs)
-
-
-def load_to_graph(graph: nx.DiGraph, file_path, node_prefix=''):
-    pass
 
 
 def add_to_graph(graph: nx.DiGraph, measurements: List[Measurement], node_prefix=''):
@@ -24,9 +40,9 @@ def add_to_graph(graph: nx.DiGraph, measurements: List[Measurement], node_prefix
         graph.add_edge(src, dst, latency=m.avg)
 
 
-def save_network_graph(g: nx.Graph, path: str) -> None:
+def save_graph(g: nx.Graph, path: str) -> None:
     nx.write_graphml(g, path=path)
 
 
-def read_network_graph(path: str) -> nx.Graph:
+def load_graph(path: str) -> nx.Graph:
     return nx.read_graphml(path)
