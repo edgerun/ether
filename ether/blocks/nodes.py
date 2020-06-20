@@ -14,8 +14,8 @@ def create_vm_node(name=None) -> Node:
     return create_node(name=name,
                        cpus=4, arch='x86', mem='8167784Ki',
                        labels={
-                           'ether.taufaas.io/type': 'vm',
-                           'ether.taufaas.io/model': 'vm'
+                           'ether.edgerun.io/type': 'vm',
+                           'ether.edgerun.io/model': 'vm'
                        })
 
 
@@ -25,8 +25,8 @@ def create_server_node(name=None) -> Node:
     return create_node(name=name,
                        cpus=88, arch='x86', mem='188G',
                        labels={
-                           'ether.taufaas.io/type': 'server',
-                           'ether.taufaas.io/model': 'server'
+                           'ether.edgerun.io/type': 'server',
+                           'ether.edgerun.io/model': 'server'
                        })
 
 
@@ -36,8 +36,8 @@ def create_rpi3_node(name=None) -> Node:
     return create_node(name=name,
                        cpus=4, arch='arm32', mem='999036Ki',
                        labels={
-                           'ether.taufaas.io/type': 'sbc',
-                           'ether.taufaas.io/model': 'rpi3b+'
+                           'ether.edgerun.io/type': 'sbc',
+                           'ether.edgerun.io/model': 'rpi3b+'
                        })
 
 
@@ -47,8 +47,8 @@ def create_nuc_node(name=None) -> Node:
     return create_node(name=name,
                        cpus=4, arch='x86', mem='16Gi',
                        labels={
-                           'ether.taufaas.io/type': 'sffc',
-                           'ether.taufaas.io/model': 'nuci5'
+                           'ether.edgerun.io/type': 'sffc',
+                           'ether.edgerun.io/model': 'nuci5'
                        })
 
 
@@ -58,10 +58,10 @@ def create_tx2_node(name=None) -> Node:
     return create_node(name=name,
                        cpus=4, arch='aarch64', mem='8047252Ki',
                        labels={
-                           'ether.taufaas.io/type': 'embai',
-                           'ether.taufaas.io/model': 'nvidia_jetson_tx2',
-                           'ether.taufaas.io/capabilities/cuda': '10',
-                           'ether.taufaas.io/capabilities/gpu': 'pascal',
+                           'ether.edgerun.io/type': 'embai',
+                           'ether.edgerun.io/model': 'nvidia_jetson_tx2',
+                           'ether.edgerun.io/capabilities/cuda': '10',
+                           'ether.edgerun.io/capabilities/gpu': 'pascal',
                        })
 
 
