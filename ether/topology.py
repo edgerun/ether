@@ -65,9 +65,9 @@ class Topology(nx.DiGraph):
 
     def add(self, cell):
         """
-        Materializes a cell into the topology.
+        Materializes a cell or scenario into the topology.
 
-        :param cell: the cell to create
+        :param cell: the cell or scenario to create
         :return: the topology for chaining
         """
         cell.materialize(self)

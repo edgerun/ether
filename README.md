@@ -45,6 +45,13 @@ topology.add(city)
 topology.add(cloudlet)
 ```
 
+We have pre-parameterized versions of these scenarios that can be readily used:
+
+```python
+topology = Topology()
+UrbanSensingTopology().materialize(topology)
+```
+
 ### Example usage
 
 The following example shows how we used generated topology to evaluate the effect on uplink usage of different resource
