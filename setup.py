@@ -12,7 +12,7 @@ with open("requirements.txt", "r") as fh:
     install_requires = [line for line in fh.read().split(os.linesep) if line]
 
 setuptools.setup(
-    name="ether",
+    name="edgerun-ether",
     version="0.0.1.dev1",
     author="Thomas Rausch",
     author_email="t.rausch@dsg.tuwien.ac.at",
