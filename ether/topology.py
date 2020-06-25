@@ -1,3 +1,4 @@
+import abc
 import logging
 from typing import Dict, Tuple
 
@@ -7,6 +8,15 @@ from ether.core import Node, Link, Connection, Route, NetworkNode
 from ether.inet.graph import load_latest
 
 logger = logging.getLogger(__name__)
+
+
+class Template(abc.ABC):
+    """
+    Structures that can be materialized into a topology need to implement this method. It connects the template to
+    the topology.
+    """
+    def materialize(self, topology: 'Topology'):
+        ...
 
 
 class Topology(nx.DiGraph):
