@@ -10,9 +10,25 @@ default_cloudlet_size = (5, 2)
 default_cell_density = ParameterizedDistribution.lognorm((0.82, 2.02))
 
 
-class UrbanSensingTopology:
+class UrbanSensingScenario:
     def __init__(self, num_cells=default_num_cells, cell_density=default_cell_density,
                  cloudlet_size=default_cloudlet_size, internet='internet') -> None:
+        """
+        The UrbanSensingScenario builds on ideas from the Array of Things project, but extends it with proximate compute
+        resources and adds a cloudlet to the city.
+
+        The city is divided into cells, e.g., neighborhoods, and each cell has multiple urban sensing nodes and
+        proximate compute resources. The devices in a cell are connected via a shared link. The city also hosts a
+        cloudlet composed of server computers.
+
+        The high-level parameters are: the number of cells, the cell density (number of nodes per cell), and the
+        cloudlet size.
+
+        :param num_cells: the number of cells to create, e.g., the neighborhoods in a city
+        :param cell_density: the distribution describing the number of nodes in each neighborhood
+        :param cloudlet_size: a tuple describing the number of servers in each rack, and the number of racks
+        :param internet: the internet backbone that's being connected to (see `inet` package)
+        """
         super().__init__()
         self.num_cells = num_cells
         self.cell_density = cell_density
