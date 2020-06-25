@@ -13,7 +13,7 @@ with open("requirements.txt", "r") as fh:
 
 setuptools.setup(
     name="edgerun-ether",
-    version="0.1.0",
+    version="0.2.0",
     author="Thomas Rausch",
     author_email="t.rausch@dsg.tuwien.ac.at",
     description="Ether - Synthesize plausible edge infrastructure topologies",
