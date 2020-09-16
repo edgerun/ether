@@ -1,4 +1,5 @@
 import os
+import glob
 
 import setuptools
 
@@ -21,6 +22,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/edgerun/ether",
     packages=setuptools.find_packages(),
+    data_files=[('ether/inet/graphs', glob.glob('ether/inet/graphs/*.graphml'))],
     setup_requires=['wheel'],
     test_suite="tests",
     tests_require=tests_require,
