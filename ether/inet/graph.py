@@ -5,7 +5,7 @@ import networkx as nx
 
 from ether.inet.fetch import Measurement
 
-graph_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..', 'inet'))
+graph_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), 'graphs'))
 
 
 def load_latest(graph: nx.DiGraph, source, *args, **kwargs):
