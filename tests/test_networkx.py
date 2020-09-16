@@ -3,8 +3,8 @@ from unittest import TestCase
 import matplotlib.pyplot as plt
 import networkx as nx
 
-from ether.core import Connection, Link
 from ether.blocks.nodes import create_nuc_node, create_rpi3_node
+from ether.core import Connection, Link
 from ether.topology import Topology
 
 

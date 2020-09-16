@@ -3,6 +3,7 @@ import unittest
 import ether.inet.fetch.gcloudping as gcloudping
 
 
+@unittest.skip("gcloudping api is often down")
 class TestGcloudping(unittest.TestCase):
 
     def test_fetch(self):
