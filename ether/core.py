@@ -101,7 +101,7 @@ class Node:
 class Route:
     source: Node
     destination: Node
-    path: list
+    path: List
     hops: List['Link']
     rtt: float = 0  # round-trip latency in milliseconds
 
