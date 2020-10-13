@@ -1,5 +1,6 @@
+import abc
 import logging
-from typing import List, Dict, NamedTuple, Union, AnyStr
+from typing import List, Dict, NamedTuple, Union, AnyStr, Optional
 
 import numpy as np
 import simpy
@@ -61,6 +62,11 @@ class Capacity:
         return 'Capacity(CPU: {0} Memory: {1})'.format(self.cpu_millis, self.memory)
 
 
+class Coordinate(abc.ABC):
+    def distance_to(self, other: 'Coordinate') -> float:
+        pass
+
+
 class Node:
     """
     A node is a machine in the network that can run compute tasks, manage data, and exchanges data with other nodes.
@@ -69,6 +75,7 @@ class Node:
     capacity: Capacity
     arch: str
     labels: Dict[str, str]
+    coordinate: Optional[Coordinate]
 
     def __init__(self, name: str, capacity: Capacity = None, arch='x86', labels: Dict[str, str] = None) -> None:
         super().__init__()
@@ -76,9 +83,18 @@ class Node:
         self.capacity = capacity or Capacity()
         self.arch = arch
         self.labels = labels or dict()
+        self.coordinate = None
 
     def __repr__(self):
         return self.name
+
+    def distance_to(self, other: 'Node') -> float:
+        if self.coordinate is None:
+            raise AssertionError('node has no coordinate set')
+        if other.coordinate is None:
+            raise AssertionError('other node has no coordinate set')
+
+        return self.coordinate.distance_to(other.coordinate)
 
 
 class Route:
