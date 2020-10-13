@@ -1,7 +1,9 @@
 import logging
 from typing import List, Dict, NamedTuple, Union, AnyStr
 
+import numpy as np
 import simpy
+from srds import ParameterizedDistribution
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +28,24 @@ class Connection(NamedTuple):
     source: NetworkNode
     target: NetworkNode
     latency: float = 0
+    latency_dist: ParameterizedDistribution = None
     # TODO: better network QoS modeling
+
+    def get_latency(self) -> float:
+        if self.latency_dist:
+            return self.latency_dist.sample()
+        return self.latency
+
+    def get_mode_latency(self) -> float:
+        if self.latency_dist:
+            dist = self.latency_dist
+            return np.exp(np.log(dist.scale) - dist.args[0] ** 2) + dist.loc
+        return self.latency
+
+    def get_mean_latency(self) -> float:
+        if self.latency_dist:
+            return self.latency_dist.mean()
+        return self.latency
 
 
 class Capacity:
@@ -65,18 +84,23 @@ class Node:
 class Route:
     source: Node
     destination: Node
+    path: list
     hops: List['Link']
     rtt: float = 0  # round-trip latency in milliseconds
 
-    def __init__(self, source: Node, destination: Node, hops: List['Link'], rtt=0) -> None:
+    def __init__(self, source: Node, destination: Node, path: list, rtt: float = 0) -> None:
         super().__init__()
         self.source = source
         self.destination = destination
-        self.hops = hops
+        self.path = path
+        self.hops = [hop for hop in path if isinstance(hop, Link)]
         self.rtt = rtt
 
     def __str__(self) -> str:
-        return f'Route[{self.source} ->{self.hops}-> {self.destination}]'
+        return f'Route[{self.source} ->{self.hops}-> {self.destination} (rtt={self.rtt})]'
+
+    def __copy__(self):
+        return Route(self.source, self.destination, self.path, self.rtt)
 
 
 class Flow:

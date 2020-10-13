@@ -5,6 +5,7 @@ from typing import Callable, List, Union
 
 from srds import RandomSampler, ConstantSampler, IntegerTruncationSampler
 
+from ether import distributions
 from ether.core import Node, Link, NetworkNode
 from ether.topology import Topology, Connection
 
@@ -71,10 +72,10 @@ class Host(Cell):
         self.link_bw = link_bw
         self.link = Link(bandwidth=self.link_bw, tags={'name': 'link_%s' % node.name, 'type': 'node'})
 
-    def materialize(self, topology: Topology, parent=None):
+    def materialize(self, topology: Topology, parent=None, latency_dist=distributions.lan):
         node = self.nodes[0]
 
-        topology.add_connection(Connection(node, self.link))
+        topology.add_connection(Connection(node, self.link, latency_dist=latency_dist))
         if self.backhaul:
             topology.add_connection(Connection(self.link, self.backhaul))
 
@@ -172,4 +173,3 @@ class GeoCell(Cell):
                     else:
                         c = c()
                 self._materialize(topology, c)
-
