@@ -1,7 +1,10 @@
+import abc
 import logging
-from typing import List, Dict, NamedTuple, Union, AnyStr
+from typing import List, Dict, NamedTuple, Union, AnyStr, Optional
 
+import numpy as np
 import simpy
+from srds import ParameterizedDistribution
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +29,25 @@ class Connection(NamedTuple):
     source: NetworkNode
     target: NetworkNode
     latency: float = 0
+    latency_dist: ParameterizedDistribution = None
     # TODO: better network QoS modeling
+
+    def get_latency(self) -> float:
+        if self.latency_dist:
+            return self.latency_dist.sample()
+        return self.latency
+
+    def get_mode_latency(self) -> float:
+        if self.latency_dist:
+            dist = self.latency_dist
+            # we assume that latency_dist is a log norm distribution
+            return np.exp(np.log(dist.scale) - dist.args[0] ** 2) + dist.loc
+        return self.latency
+
+    def get_mean_latency(self) -> float:
+        if self.latency_dist:
+            return self.latency_dist.mean()
+        return self.latency
 
 
 class Capacity:
@@ -42,6 +63,11 @@ class Capacity:
         return 'Capacity(CPU: {0} Memory: {1})'.format(self.cpu_millis, self.memory)
 
 
+class Coordinate(abc.ABC):
+    def distance_to(self, other: 'Coordinate') -> float:
+        pass
+
+
 class Node:
     """
     A node is a machine in the network that can run compute tasks, manage data, and exchanges data with other nodes.
@@ -50,6 +76,7 @@ class Node:
     capacity: Capacity
     arch: str
     labels: Dict[str, str]
+    coordinate: Optional[Coordinate]
 
     def __init__(self, name: str, capacity: Capacity = None, arch='x86', labels: Dict[str, str] = None) -> None:
         super().__init__()
@@ -57,26 +84,40 @@ class Node:
         self.capacity = capacity or Capacity()
         self.arch = arch
         self.labels = labels or dict()
+        self.coordinate = None
 
     def __repr__(self):
         return self.name
+
+    def distance_to(self, other: 'Node') -> float:
+        if self.coordinate is None:
+            raise AssertionError('node has no coordinate set')
+        if other.coordinate is None:
+            raise AssertionError('other node has no coordinate set')
+
+        return self.coordinate.distance_to(other.coordinate)
 
 
 class Route:
     source: Node
     destination: Node
+    path: List
     hops: List['Link']
     rtt: float = 0  # round-trip latency in milliseconds
 
-    def __init__(self, source: Node, destination: Node, hops: List['Link'], rtt=0) -> None:
+    def __init__(self, source: Node, destination: Node, path: list, rtt: float = 0) -> None:
         super().__init__()
         self.source = source
         self.destination = destination
-        self.hops = hops
+        self.path = path
+        self.hops = [hop for hop in path if isinstance(hop, Link)]
         self.rtt = rtt
 
     def __str__(self) -> str:
-        return f'Route[{self.source} ->{self.hops}-> {self.destination}]'
+        return f'Route[{self.source} ->{self.hops}-> {self.destination} (rtt={self.rtt})]'
+
+    def __copy__(self):
+        return Route(self.source, self.destination, self.path, self.rtt)
 
 
 class Flow:

@@ -1,5 +1,6 @@
 import abc
 import logging
+from copy import copy
 from typing import Dict, Tuple
 
 import networkx as nx
@@ -39,13 +40,26 @@ class Topology(nx.DiGraph):
     def path(self, source, destination):
         return nx.shortest_path(self, source, destination)
 
-    def route(self, source, destination) -> Route:
+    def route(self, source, destination, use_mode: bool = False) -> Route:
+        """
+        Returns the route from source to destination.
+        :param source: the starting point of the route
+        :param destination: the destination point of the route
+        :param use_mode: whether to use the mode of the latency distributions along the path or a sample
+        :return:
+        """
         k = (source, destination)
 
         if k not in self._route_cache:
             self._route_cache[k] = self._resolve_route(source, destination)
 
-        return self._route_cache[k]
+        if not use_mode:
+            route = copy(self._route_cache[k])
+            self._update_rtt(route)
+        else:
+            route = self._route_cache[k]
+
+        return route
 
     def get_nodes(self):
         return [n for n in self.nodes if isinstance(n, Node)]
@@ -65,13 +79,23 @@ class Topology(nx.DiGraph):
 
     def _resolve_route(self, source, destination) -> Route:
         path = self.path(source, destination)
-        hops = [hop for hop in path if isinstance(hop, Link)]
+        route = Route(source, destination, path=path)
+        self._update_rtt(route, use_mode=True)
+        return route
 
-        rtt = 0
-        # TODO: get Connection object from edges, de-duplicate undirected edges, and extract latency for RTT
-        #  edges = self.edges.data(data='connection', nbunch=path)
-
-        return Route(source, destination, hops=hops, rtt=rtt)
+    def _update_rtt(self, route: Route, use_mode: bool = False):
+        latency: float = 0
+        for i in range(len(route.path)-1):
+            edge_data = self.get_edge_data(route.path[i], route.path[i + 1])
+            if 'connection' in edge_data and isinstance(edge_data['connection'], Connection):
+                # the edge has a connection object attached
+                # use either get_latency() or get_mode_latency() respectively to calculate latency
+                connection: Connection = edge_data['connection']
+                latency += connection.get_mode_latency() if use_mode else connection.get_latency()
+            elif 'latency' in edge_data:
+                # the edge has a constant latency attached (i.e., in case of inet datasets)
+                latency += edge_data['latency']
+        route.rtt = latency * 2
 
     def add(self, cell):
         """
