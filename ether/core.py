@@ -40,6 +40,7 @@ class Connection(NamedTuple):
     def get_mode_latency(self) -> float:
         if self.latency_dist:
             dist = self.latency_dist
+            # we assume that latency_dist is a log norm distribution
             return np.exp(np.log(dist.scale) - dist.args[0] ** 2) + dist.loc
         return self.latency
 

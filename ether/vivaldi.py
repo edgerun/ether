@@ -5,6 +5,16 @@ import numpy as np
 
 from ether.core import Node, Coordinate
 
+"""
+Implementation of the vivaldi algorithm [1] to calculate network coordinates. Parts of the implementation (especially
+apply_force) were ported from Hashicorp's Go implementation 'Serf' [2].
+
+[1] F. Dabek, R. Cox, F. Kaashoek, and R. Morris, ‘Vivaldi: A Decentralized Network Coordinate System’,
+    in Proceedings of the 2004 Conference on Applications, Technologies, Architectures, and Protocols for
+    Computer Communications, New York, NY, USA, 2004, pp. 15–26, doi: 10.1145/1015467.1015471.
+[2] https://github.com/hashicorp/serf/blob/master/coordinate/coordinate.go
+"""
+
 c_e = 0.9
 "a tuning parameter that influences the weight of the current error in each cycle"
 c_c = 0.25
