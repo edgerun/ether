@@ -46,7 +46,7 @@ class VivaldiCoordinate(Coordinate):
         return f'Coordinate({self.position}, height={self.height}, error={self.error})'
 
     def apply_force(self, force: float, other: 'VivaldiCoordinate'):
-        unit, norm = _unit_vector_at(self.position, other.position)
+        unit, norm = self._unit_vector_at(self.position, other.position)
         self.position += unit * force
         if norm > 0:
             self.height += (self.height + other.height) * force / norm
@@ -55,19 +55,19 @@ class VivaldiCoordinate(Coordinate):
     def distance_to(self, other: 'VivaldiCoordinate'):
         return np.linalg.norm(self.position - other.position) + self.height + other.height
 
-
-def _unit_vector_at(v1: np.ndarray, v2: np.ndarray) -> Tuple[np.ndarray, float]:
-    """
-    returns a unit vector pointing at v1 from v2
-    """
-    result = v1 - v2
-    norm = np.linalg.norm(result)
-    if result.any():
-        return result/norm, norm
-    else:
-        result = [random.gauss(0, 1) for _ in result]
+    @staticmethod
+    def _unit_vector_at(v1: np.ndarray, v2: np.ndarray) -> Tuple[np.ndarray, float]:
+        """
+        returns a unit vector pointing at v1 from v2
+        """
+        result = v1 - v2
         norm = np.linalg.norm(result)
-        return result/norm, 0.0
+        if result.any():
+            return result/norm, norm
+        else:
+            result = [random.gauss(0, 1) for _ in result]
+            norm = np.linalg.norm(result)
+            return result/norm, 0.0
 
 
 def execute(node: Node, other: Node, rtt: float):
