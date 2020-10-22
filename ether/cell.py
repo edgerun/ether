@@ -3,7 +3,7 @@ import itertools
 from collections import defaultdict, Iterable
 from typing import Callable, List, Union
 
-from srds import RandomSampler, ConstantSampler, IntegerTruncationSampler
+from srds import RandomSampler, ConstantSampler, IntegerTruncationSampler, ParameterizedDistribution
 
 from ether.qos import latency
 from ether.core import Node, Link, NetworkNode
@@ -16,12 +16,14 @@ class UpDownLink:
     bw_down: int
     bw_up: int
     backhaul: NetworkNode
+    latency_dist: ParameterizedDistribution
 
-    def __init__(self, bw_down, bw_up=None, backhaul='internet') -> None:
+    def __init__(self, bw_down, bw_up=None, backhaul='internet', latency_dist=None) -> None:
         super().__init__()
         self.bw_down = bw_down
         self.bw_up = bw_up if bw_up is not None else bw_down
         self.backhaul = backhaul
+        self.latency_dist = latency_dist
 
 
 class Cell:
@@ -86,6 +88,16 @@ class Host(Cell):
         return self.__str__()
 
 
+class Client(Host):
+    def __init__(self, name: str, **kwargs) -> None:
+        super().__init__(Node(name), **kwargs)
+
+
+class Broker(Host):
+    def __init__(self, name: str, **kwargs) -> None:
+        super().__init__(Node(name), **kwargs)
+
+
 class LANCell(Cell):
 
     def __init__(self, nodes, backhaul=None) -> None:
@@ -107,14 +119,16 @@ class LANCell(Cell):
                 uplink = Link(self.backhaul.bw_up, tags={'type': 'uplink', 'name': 'up_%s' % self.name})
                 downlink = Link(self.backhaul.bw_down, tags={'type': 'downlink', 'name': 'down_%s' % self.name})
 
-                topology.add_connection(Connection(self.switch, uplink), directed=True)
+                topology.add_connection(Connection(self.switch, uplink, latency_dist=self.backhaul.latency_dist),
+                                        directed=True)
                 topology.add_connection(Connection(downlink, self.switch), directed=True)
 
-                topology.add_connection(Connection(self.backhaul.backhaul, downlink), directed=True)
-                topology.add_connection(Connection(uplink, self.backhaul.backhaul), directed=True)
+                topology.add_connection(Connection(self.backhaul.backhaul, downlink,
+                                                   latency_dist=self.backhaul.latency_dist), directed=True)
+                topology.add_connection(Connection(uplink, self.backhaul.backhaul, directed=True))
 
             else:
-                topology.add_connection(Connection(self.switch, self.backhaul))
+                topology.add_connection(Connection(self.switch, self.backhaul, latency_dist=latency.lan))
 
 
 class SharedLinkCell(Cell):
@@ -139,10 +153,11 @@ class SharedLinkCell(Cell):
                 uplink = Link(self.backhaul.bw_up, tags={'type': 'uplink', 'name': 'up_%s' % self.name})
                 downlink = Link(self.backhaul.bw_down, tags={'type': 'downlink', 'name': 'down_%s' % self.name})
 
-                topology.add_connection(Connection(self.link, uplink), True)
+                topology.add_connection(Connection(self.link, uplink, latency_dist=self.backhaul.latency_dist), True)
                 topology.add_connection(Connection(downlink, self.link), True)
 
-                topology.add_connection(Connection(self.backhaul.backhaul, downlink), directed=True)
+                topology.add_connection(Connection(self.backhaul.backhaul, downlink,
+                                                   latency_dist=self.backhaul.latency_dist), directed=True)
                 topology.add_connection(Connection(uplink, self.backhaul.backhaul), directed=True)
 
             else:
