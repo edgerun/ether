@@ -3,6 +3,7 @@ from collections import defaultdict
 
 from ether.blocks.nodes import create_server_node
 from ether.cell import LANCell, UpDownLink
+from ether.qos import latency
 
 counters = defaultdict(lambda: itertools.count(0, 1))
 
@@ -10,19 +11,19 @@ counters = defaultdict(lambda: itertools.count(0, 1))
 class MobileConnection(UpDownLink):
 
     def __init__(self, backhaul='internet') -> None:
-        super().__init__(125, 25, backhaul)
+        super().__init__(125, 25, backhaul, latency.mobile_isp)
 
 
 class BusinessIsp(UpDownLink):
 
     def __init__(self, backhaul='internet') -> None:
-        super().__init__(500, 50, backhaul)
+        super().__init__(500, 50, backhaul, latency.business_isp)
 
 
 class FiberToExchange(UpDownLink):
 
     def __init__(self, backhaul='internet') -> None:
-        super().__init__(1000, 1000, backhaul)
+        super().__init__(1000, 1000, backhaul, latency.lan)
 
 
 class IoTComputeBox(LANCell):
