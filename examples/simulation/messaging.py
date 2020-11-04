@@ -10,6 +10,10 @@ from examples.vivaldi.urban_sensing import create_topology
 from examples.vivaldi.util import execute_vivaldi
 
 
+random.seed(0)
+np.random.seed(0)
+
+
 def client(env: simpy.Environment, protocol: Protocol, node: Node, initial_broker: Node):
     selected_broker = initial_broker
 
@@ -37,11 +41,10 @@ def client(env: simpy.Environment, protocol: Protocol, node: Node, initial_broke
             raise AssertionError(f'unexpected message received: {message}')
         yield from ping_brokers(message.brokers[:n])
 
-    yield from ping_random()
     while True:
+        yield from ping_random()
         yield from ping_closest()
         yield env.timeout(60_000)
-        yield from ping_random()
 
 
 def broker(env: simpy.Environment, protocol: Protocol, node: Node, brokers: List[Node]):
@@ -79,9 +82,6 @@ def main():
     print(' ' * 7, '\t'.join(map(lambda s: f'{s:>12}', headers)))
     results = []
     for i in range(1, 16):
-        for c in random.choices(clients, k=10):
-            topology.remove_node(c)
-
         env.run(until=i * 60 * 1000)  # i minutes
         result = experiment.calculate_errors()
         results.append([i, *result])
