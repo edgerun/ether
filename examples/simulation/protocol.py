@@ -1,6 +1,6 @@
-import math
+import logging
 from collections import defaultdict
-from typing import List, Dict, TypeVar, Callable, Any, Generator, Type
+from typing import List, Dict, TypeVar, Any, Type
 
 import simpy
 
@@ -21,11 +21,11 @@ class Message:
 MessageT = TypeVar('MessageT', bound=Message)
 
 
-class PingMessage(Message):
+class Ping(Message):
     pass
 
 
-class PongMessage(Message):
+class Pong(Message):
     pass
 
 
@@ -107,6 +107,7 @@ class Protocol(object):
     topology: Topology
     history: List[Message]
     enable_ack: bool
+    logger: logging.Logger
 
     def __init__(self, env: simpy.Environment, topology: Topology, enable_ack=True):
         self.env = env
@@ -114,6 +115,7 @@ class Protocol(object):
         self.topology = topology
         self.history = list()
         self.enable_ack = enable_ack
+        self.logger = logging.getLogger('protocol')
 
     def send(self, source: Node, destination: Node, message: MessageT):
         message.source = source
@@ -121,12 +123,22 @@ class Protocol(object):
         message.timestamp = self.env.now
         message.latency = self.topology.latency(source, destination)
         self.history.append(message)
-        return simpy.AllOf(self.env, [
-            self.env.timeout(int(math.ceil(message.latency))),
-            self.stores[message.destination].put(message)
-        ])
+        self.log(message)
+        return self.stores[message.destination].put(message)
+        # return self.env.all_of([
+        #     self.env.timeout(int(math.ceil(message.latency))),
+        #     self.stores[message.destination].put(message)
+        # ])
 
     def receive(self, node: Node, *message_types: Type[MessageT]):
         if len(message_types) > 0:
             return self.stores[node].get(lambda m: type(m) in message_types)
         return self.stores[node].get()
+
+    def log(self, message, *args):
+        if self.logger.level > logging.DEBUG:
+            return
+        time = self.env.now
+        minutes = int(time / 1000 / 60)
+        seconds = int(time / 1000 % 60)
+        self.logger.debug(f'{minutes:02d}:{seconds:02d} {message}', *args)

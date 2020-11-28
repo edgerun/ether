@@ -1,43 +1,31 @@
-import logging
 import random
 from abc import abstractmethod, ABC
+from copy import copy
 from itertools import product
-from typing import Union, Set, Iterable
+from typing import Union, Set, Iterable, Generator, Callable
 
 from ether import vivaldi
 from ether.cell import Broker, Client
 from ether.vivaldi import VivaldiCoordinate
 from examples.simulation.protocol import *
 
-file_log = logging.getLogger()
-file_log.handlers.append(logging.FileHandler('simulation.log', mode='w'))
-file_log.level = logging.DEBUG
-
-
-def log(env: simpy.Environment, *messages):
-    minutes = int(env.now / 1000 / 60)
-    seconds = int(env.now / 1000 % 60)
-    print(f'{minutes:02d}:{seconds:02d} {" ".join(messages)}')
-
-
-def logf(time: int, message, *args):
-    minutes = int(time / 1000 / 60)
-    seconds = int(time / 1000 % 60)
-    file_log.debug(f'{minutes:02d}:{seconds:02d} {message}', *args)
-
 
 class NodeProcess(ABC):
     env: simpy.Environment
     protocol: Protocol
     node: Node
-    handlers: Dict[Type[MessageT], Callable[[MessageT], Union[Generator, None]]]
+    handlers: Dict[Type[MessageT], Callable[[MessageT], Union[Generator, simpy.Event, None]]]
     running: bool
     execute_vivaldi: bool
 
     def __init__(self, env: simpy.Environment, protocol: Protocol, execute_vivaldi=False):
         self.env = env
         self.protocol = protocol
-        self.handlers = dict()
+        self.handlers = {
+            Ping: self.handle_ping,
+            Pong: self.handle_pong,
+            Shutdown: self.handle_shutdown
+        }
         self.running = False
         self.execute_vivaldi = execute_vivaldi
 
@@ -45,24 +33,27 @@ class NodeProcess(ABC):
         self.running = True
         if self.execute_vivaldi and self.node.coordinate is None:
             self.node.coordinate = VivaldiCoordinate()
-        while True:
-            receive_types = [Shutdown, PingMessage, PongMessage, *self.handlers.keys()]
-            message: Message = yield self.protocol.receive(self.node, *receive_types)
-            logf(self.env.now, '%s %s', self.node.name, message.__class__.__name__)
-            if isinstance(message, Shutdown):
-                return
+        accepted_types = self.handlers.keys()
+        while self.running:
+            message: Message = yield self.receive(*accepted_types)
             if self.execute_vivaldi and isinstance(message.source.coordinate, VivaldiCoordinate):
                 vivaldi.execute(self.node, message.source, message.latency * 2)
-            if isinstance(message, PingMessage):
-                yield self.send(message.source, PongMessage())
-            elif isinstance(message, PongMessage):
-                continue
-            else:
-                result = self.handlers[type(message)](message)
-                if isinstance(result, Generator):
-                    yield from result
+            result = self.handlers[type(message)](message)
+            if isinstance(result, Generator):
+                yield from result
+            elif isinstance(result, simpy.Event):
+                yield result
 
-    def send(self, destination: Node, message: Message) -> Generator[simpy.Event, None, None]:
+    def handle_shutdown(self, _: Shutdown):
+        self.running = False
+
+    def handle_ping(self, message: Ping):
+        return self.send(message.source, Pong())
+
+    def handle_pong(self, _: Pong):
+        return
+
+    def send(self, destination: Node, message: Message):
         return self.protocol.send(self.node, destination, message)
 
     def receive(self, *message_types: Type[MessageT]):
@@ -73,12 +64,11 @@ class NodeProcess(ABC):
             yield from self.ping_nodes(get_nodes())
             yield self.env.timeout(interval)
 
-    def ping_nodes(self, nodes: Iterable[Node], pings_per_node=5) -> Generator[simpy.Event, None, None]:
-        for (b, _) in product(nodes, range(pings_per_node)):
-            if b == self.node:
+    def ping_nodes(self, nodes: Iterable[Node], pings_per_node=5) -> simpy.Event:
+        for (n, _) in product(nodes, range(pings_per_node)):
+            if n == self.node:
                 continue
-            yield self.send(b, PingMessage())
-            yield self.receive(PongMessage)
+            yield self.send(n, Ping())
 
     @property
     @abstractmethod
@@ -87,7 +77,7 @@ class NodeProcess(ABC):
 
     def shutdown(self):
         self.running = False
-        return self.protocol.send(self.node, self.node, Shutdown())
+        return self.send(self.node, Shutdown())
 
 
 class ClientProcess(NodeProcess):
@@ -206,31 +196,19 @@ class BrokerProcess(NodeProcess):
         while self.running:
             msg = yield self.receive(Pub, PubAck)
             if isinstance(msg, Pub):
-                logf(self.env.now, f'{self.node.name} Pub from {msg.source.name}')
-                yield self.handle_publish(msg)
+                # logf(self.env.now, f'{self.node.name} Pub from {msg.source.name}')
+                yield from self.handle_publish(msg)
 
     def handle_publish(self, message: Pub):
-        events = []
+        message = copy(message)
         if self.protocol.enable_ack:
-            events.append(self.send(message.source, PubAck()))
+            yield self.send(message.source, PubAck())
 
-        for dest in self.subscribers[message.topic]:
-            if dest != message.source:
-                events.append(self.send(dest, message))
-                if self.protocol.enable_ack:
-                    events.append(self.receive(PubAck))
+        destinations = [*[dest for dest in self.subscribers[message.topic] if dest != message.source],
+                        *[broker.node for broker in self.brokers if broker.node != message.source and broker != self]]
 
-        for broker in self.brokers:
-            if broker.node == message.source or broker == self:
-                # prevent message loops
-                continue
-            if len(broker.subscribers[message.topic]) > 0:
-                # forward message if other broker has subscribers
-                events.append(self.send(broker.node, message))
-                if self.protocol.enable_ack:
-                    events.append(self.receive(PubAck))
-
-        return simpy.AllOf(self.env, events)
+        for dest in destinations:
+            yield self.send(dest, message)
 
     def total_subscribers(self):
         return len(set().union(*self.subscribers.values()))
@@ -292,9 +270,9 @@ class CoordinatorProcess:
                     delta = theta * sum(map(lambda b: b.total_subscribers(), possible_brokers))
                     if new_broker.total_subscribers() + delta >= current_broker.total_subscribers():
                         continue
-                self.protocol.send(self.node, client.node, Connect(new_broker.node))
+                yield self.protocol.send(client.selected_broker, client.node, Connect(new_broker.node))
                 if self.protocol.enable_ack:
-                    yield self.protocol.receive(self.node, ConnectAck)
+                    yield self.protocol.receive(client.selected_broker, ConnectAck)
             yield self.env.timeout(15_000)
 
     def get_broker(self, node: Node) -> BrokerProcess:

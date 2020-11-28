@@ -5,6 +5,8 @@ import numpy as np
 
 from ether import vivaldi
 from ether.vivaldi import VivaldiCoordinate
+# noinspection PyUnresolvedReferences
+from examples.simulation.processes import ClientProcess, BrokerProcess
 from examples.simulation.protocol import *
 from examples.vivaldi.client_experiment import ClientExperiment
 from examples.vivaldi.urban_sensing import create_topology
@@ -20,19 +22,26 @@ def client(env: simpy.Environment, protocol: Protocol, node: Node, initial_broke
 
     def ping_brokers(brokers: List[Node]):
         for (b, _) in product(brokers, range(5)):
-            protocol.send(node, b, PingMessage())
+            yield from protocol.send(node, b, Ping())
             reply = yield protocol.receive(node)
-            if isinstance(reply, PongMessage):
-                vivaldi.execute(node, reply.source, reply.latency * 2)
+            if isinstance(reply, Pong):
+                latency = env.now - reply.timestamp
+                vivaldi.execute(node, reply.source, latency * 2)
 
     def ping_random(n=5):
-        yield protocol.send(node, selected_broker, FindRandomBrokersRequest())
+        yield from protocol.send(node, selected_broker, FindRandomBrokersRequest())
         message = yield protocol.receive(node)
+
+        if not isinstance(message, FindRandomBrokersResponse):
+            raise AssertionError(f'unexpected message received: {message}')
         yield from ping_brokers(message.brokers[:n])
 
     def ping_closest(n=5):
-        yield protocol.send(node, selected_broker, FindClosestBrokersRequest())
+        yield from protocol.send(node, selected_broker, FindClosestBrokersRequest())
         message = yield protocol.receive(node)
+
+        if not isinstance(message, FindClosestBrokersResponse):
+            raise AssertionError(f'unexpected message received: {message}')
         yield from ping_brokers(message.brokers[:n])
 
     while True:
@@ -45,28 +54,36 @@ def broker(protocol: Protocol, node: Node, brokers: List[Node]):
     while True:
         message = yield protocol.receive(node)
         assert isinstance(node.coordinate, VivaldiCoordinate)
-        if isinstance(message, PingMessage):
-            response = PongMessage()
+        if isinstance(message, Ping):
+            response = Pong()
         elif isinstance(message, FindRandomBrokersRequest):
             response = FindRandomBrokersResponse(random.choices(brokers, k=5))
         elif isinstance(message, FindClosestBrokersRequest):
             response = FindClosestBrokersResponse(sorted(brokers, key=lambda b: message.source.distance_to(b))[:5])
         else:
             continue
-        yield protocol.send(node, message.source, response)
+        yield from protocol.send(node, message.source, response)
 
 
 def main():
     topology = create_topology()
-    clients = [n for n in topology.get_nodes() if 'client' in n.name]
-    brokers = [n for n in topology.get_nodes() if 'broker' in n.name]
+    clients: List[Node] = [n for n in topology.get_nodes() if 'client' in n.name]
+    brokers: List[Node] = [n for n in topology.get_nodes() if 'broker' in n.name]
     execute_vivaldi(topology, node_filter=lambda n: 'broker' in n.name, min_executions=300)
+
     env = simpy.Environment()
     proto = Protocol(env, topology)
     for c in clients:
         env.process(client(env, proto, c, brokers[0]))
     for b in brokers:
         env.process(broker(proto, b, brokers))
+    # client_processes = [ClientProcess(env, proto, n, brokers[0]) for n in clients]
+    # for c in client_processes:
+    #     env.process(c.process_messages(execute_vivaldi=True))
+    #     env.process(c.run_ping_loop())
+    # broker_processes = [BrokerProcess(env, proto, n, brokers) for n in brokers]
+    # for b in broker_processes:
+    #     env.process(b.process_messages())
 
     experiment = ClientExperiment(topology, clients, brokers)
 
