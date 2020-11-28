@@ -22,14 +22,13 @@ def client(env: simpy.Environment, protocol: Protocol, node: Node, initial_broke
 
     def ping_brokers(brokers: List[Node]):
         for (b, _) in product(brokers, range(5)):
-            yield from protocol.send(node, b, Ping())
+            yield protocol.send(node, b, Ping())
             reply = yield protocol.receive(node)
             if isinstance(reply, Pong):
-                latency = env.now - reply.timestamp
-                vivaldi.execute(node, reply.source, latency * 2)
+                vivaldi.execute(node, reply.source, reply.latency * 2)
 
     def ping_random(n=5):
-        yield from protocol.send(node, selected_broker, FindRandomBrokersRequest())
+        yield protocol.send(node, selected_broker, FindRandomBrokersRequest())
         message = yield protocol.receive(node)
 
         if not isinstance(message, FindRandomBrokersResponse):
@@ -37,7 +36,7 @@ def client(env: simpy.Environment, protocol: Protocol, node: Node, initial_broke
         yield from ping_brokers(message.brokers[:n])
 
     def ping_closest(n=5):
-        yield from protocol.send(node, selected_broker, FindClosestBrokersRequest())
+        yield protocol.send(node, selected_broker, FindClosestBrokersRequest())
         message = yield protocol.receive(node)
 
         if not isinstance(message, FindClosestBrokersResponse):
@@ -62,7 +61,7 @@ def broker(protocol: Protocol, node: Node, brokers: List[Node]):
             response = FindClosestBrokersResponse(sorted(brokers, key=lambda b: message.source.distance_to(b))[:5])
         else:
             continue
-        yield from protocol.send(node, message.source, response)
+        yield protocol.send(node, message.source, response)
 
 
 def main():
