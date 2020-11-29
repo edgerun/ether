@@ -4,13 +4,12 @@ import random
 import sys
 from collections import defaultdict
 from concurrent.futures.process import ProcessPoolExecutor
-from datetime import datetime
 from itertools import count
 from os import chdir
-from typing import List, Dict, Iterator
+from typing import List, Dict, Iterator, TextIO
 
+import networkx as nx
 import numpy
-import pandas as pd
 import simpy
 
 from ether.cell import Broker, Client
@@ -25,6 +24,7 @@ class EmmaScenario:
     client_counters: Dict[str, Iterator[int]]
     topology: Topology
     env: simpy.Environment
+    csv_file: TextIO
     protocol: Protocol
     broker_procs: List[BrokerProcess]
     client_procs: List[ClientProcess]
@@ -48,12 +48,13 @@ class EmmaScenario:
         :param publishers_per_client: number of publishers per client
         :param publish_interval: publish interval in milliseconds
         """
-        self.name = f"{name}.{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
+        self.name = name
         self.broker_counters = defaultdict(lambda: count(1))
         self.client_counters = defaultdict(lambda: count(1))
         self.env = simpy.Environment()
         self.topology = Topology()
-        self.protocol = Protocol(self.env, self.topology, enable_ack)
+        self.csv_file = open(f'{name}.csv', 'w')
+        self.protocol = Protocol(self.env, self.topology, enable_ack, csv_file=self.csv_file)
         self.broker_procs = []
         self.client_procs = []
         self.use_vivaldi = use_vivaldi
@@ -68,7 +69,6 @@ class EmmaScenario:
         if verbose:
             console_handler = logging.StreamHandler()
             logging.getLogger().addHandler(console_handler)
-            console_handler.level = logging.INFO
 
     def spawn_broker(self, region: str) -> BrokerProcess:
         broker = Broker(f'{region}_broker_{next(self.broker_counters[region])}', backhaul=region)
@@ -86,9 +86,9 @@ class EmmaScenario:
         client.materialize(self.topology)
         cp = ClientProcess(self.env, self.protocol, client, self.broker_procs[0].node, self.use_vivaldi)
         self.env.process(cp.subscribe(topic))
+        self.env.process(cp.run())
         for _ in range(publishers):
             self.env.process(cp.run_publisher(topic, self.publish_interval))
-        self.env.process(cp.run())
         if self.use_vivaldi:
             self.env.process(cp.run_ping_loop())
         elif self.ping_all_brokers:
@@ -104,7 +104,7 @@ class EmmaScenario:
     def spawn_coordinator(self):
         coordinator_process = CoordinatorProcess(self.env, self.topology, self.protocol, self.client_procs,
                                                  self.broker_procs, self.use_vivaldi)
-        # self.topology.add_connection(Connection(coordinator_process.node, 'internet_eu-central-1'))
+        # self.topology.add_connection(Connection(coordinator_process.node, 'eu-central'))
         self.env.process(coordinator_process.run())
 
     def sleep(self):
@@ -114,34 +114,34 @@ class EmmaScenario:
         self.logger.info(f'===== STARTING SCENARIO {self.name.upper()} =====')
         self.log('[0] spawn coordinator and initial broker')
         self.spawn_coordinator()
-        self.spawn_broker('internet_eu-central-1')
+        self.spawn_broker('eu-central')
         yield self.sleep()
 
         self.log('[1] topic global: one publisher and subscriber in `us-east` and `eu-west`, '
                  'one subscriber in `eu-central`')
-        self.spawn_client('internet_eu-west-1', 'global')
-        central_client = self.spawn_client('internet_eu-central-1', 'global', publishers=0)
-        self.spawn_client('internet_us-east-1', 'global')
+        self.spawn_client('eu-west', 'global')
+        central_client = self.spawn_client('eu-central', 'global', publishers=0)
+        self.spawn_client('us-east', 'global')
         yield self.sleep()
 
         self.log('[2] client group appears in us-east')
-        self.spawn_client_group('internet_us-east-1')
+        self.spawn_client_group('us-east')
         yield self.sleep()
 
         self.log('[3] broker spawns in eu-west')
-        self.spawn_broker('internet_eu-west-1')
+        self.spawn_broker('eu-west')
         yield self.sleep()
 
         self.log('[4] client group appears in eu-west')
-        self.spawn_client_group('internet_eu-west-1')
+        self.spawn_client_group('eu-west')
         yield self.sleep()
 
         self.log('[5] broker spawns in us-east')
-        us_east_broker = self.spawn_broker('internet_us-east-1')
+        us_east_broker = self.spawn_broker('us-east')
         yield self.sleep()
 
         self.log('[6] broker spawns in eu-west')
-        self.spawn_broker('internet_eu-west-1')
+        self.spawn_broker('eu-west')
         yield self.sleep()
 
         self.log('[7] subscriber to topic `global` in eu-central disappears')
@@ -156,8 +156,17 @@ class EmmaScenario:
         numpy.random.seed(0)
 
         self.topology.load_inet_graph('cloudping')
-        regions = ['internet_eu-west-1', 'internet_eu-central-1', 'internet_us-east-1']
-        self.topology.remove_nodes_from([n for n in self.topology.nodes if n not in regions])
+        # maps region names of cloudping dataset to custom region names
+        region_map = {
+            'internet_eu-west-1': 'eu-west',
+            'internet_eu-central-1': 'eu-central',
+            'internet_us-east-1': 'us-east',
+        }
+        # remove all or regions from the graph
+        self.topology.remove_nodes_from([n for n in self.topology.nodes if n not in region_map.keys()])
+        # relabel the region nodes according to the map above
+        nx.relabel_nodes(self.topology, region_map, copy=False)
+
         self.env.process(self.scenario_process())
 
         minutes = self.action_interval * 10
@@ -182,21 +191,7 @@ class EmmaScenario:
                     if len(counts) > 0:
                         self.log(p.node.name)
 
-    def export(self, filename: str):
-        df = pd.DataFrame([{
-            'timestamp': m.timestamp,
-            'msg_type': type(m).__name__,
-            'source': m.source.name,
-            'destination': m.destination.name,
-            'latency': m.latency,
-            'topic': m.topic if hasattr(m, 'topic') else None,
-            'broker': m.broker if hasattr(m, 'broker') else None
-        } for m in self.protocol.history])
-        df.to_csv(filename)
-
-    def run_and_export(self):
-        self.run()
-        self.export(f'{self.name}.csv')
+        self.csv_file.close()
 
     def log(self, message):
         minutes = int(self.env.now / 1000 / 60)
@@ -205,7 +200,7 @@ class EmmaScenario:
 
 
 def run_scenario(**kwargs):
-    EmmaScenario(**kwargs).run_and_export()
+    EmmaScenario(**kwargs).run()
 
 
 def main():
@@ -215,21 +210,20 @@ def main():
     parser.add_argument('-o', '--output', type=str, help='path to CSV output')
     parser.add_argument('--publishers-per-client', type=int, default=7)
     parser.add_argument('--publish-interval', type=int, default=100, help='publish interval in ms')
+    parser.add_argument('--clients-per-group', type=int, default=10)
+    parser.add_argument('--enable-ack', action='store_true')
     args = parser.parse_args(sys.argv[1:])
     if args.output:
         chdir(args.output)
     common_kwargs = {
         'publishers_per_client': args.publishers_per_client,
         'publish_interval': args.publish_interval,
-        'verbose': args.verbose
+        'clients_per_group': args.clients_per_group,
+        'verbose': args.verbose,
+        'enable_ack': args.enable_ack,
     }
 
     scenario_configs = [
-        {
-            **common_kwargs,
-            'name': 'emma_ack',
-            'enable_ack': True,
-        },
         {
             **common_kwargs,
             'name': 'emma',

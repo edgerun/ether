@@ -136,8 +136,8 @@ class ClientProcess(NodeProcess):
             yield self.receive(SubAck)
 
     def run_publisher(self, topic: str, interval: int):
-        while True:
-            yield self.send(self.selected_broker, Pub(topic, 'data'))
+        while self.running:
+            yield self.send(self.selected_broker, Pub(topic))
             if self.protocol.enable_ack:
                 yield self.receive(PubAck)
             yield self.env.timeout(interval)
@@ -188,7 +188,8 @@ class BrokerProcess(NodeProcess):
             return self.send(message.source, SubAck())
 
     def handle_unsubscribe(self, message: Unsub):
-        self.subscribers[message.topic].remove(message.source)
+        if message.source in self.subscribers[message.topic]:
+            self.subscribers[message.topic].remove(message.source)
         if self.protocol.enable_ack:
             return self.send(message.source, UnsubAck())
 
@@ -196,19 +197,22 @@ class BrokerProcess(NodeProcess):
         while self.running:
             msg = yield self.receive(Pub, PubAck)
             if isinstance(msg, Pub):
-                # logf(self.env.now, f'{self.node.name} Pub from {msg.source.name}')
                 yield from self.handle_publish(msg)
 
     def handle_publish(self, message: Pub):
         message = copy(message)
         if self.protocol.enable_ack:
             yield self.send(message.source, PubAck())
+        message.hops.append(self.node)
 
-        destinations = [*[dest for dest in self.subscribers[message.topic] if dest != message.source],
-                        *[broker.node for broker in self.brokers if broker.node != message.source and broker != self]]
+        destinations = [dest for dest in self.subscribers[message.topic] if dest != message.source]
+        destinations += [broker.node for broker in self.brokers if broker.node not in message.hops
+                         and len(broker.subscribers[message.topic]) > 0]
 
         for dest in destinations:
             yield self.send(dest, message)
+            if self.protocol.enable_ack:
+                yield self.receive(PubAck)
 
     def total_subscribers(self):
         return len(set().union(*self.subscribers.values()))
