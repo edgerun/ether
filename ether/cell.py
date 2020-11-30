@@ -125,7 +125,7 @@ class LANCell(Cell):
 
                 topology.add_connection(Connection(self.backhaul.backhaul, downlink,
                                                    latency_dist=self.backhaul.latency_dist), directed=True)
-                topology.add_connection(Connection(uplink, self.backhaul.backhaul, directed=True))
+                topology.add_connection(Connection(uplink, self.backhaul.backhaul), directed=True)
 
             else:
                 topology.add_connection(Connection(self.switch, self.backhaul, latency_dist=latency.lan))
