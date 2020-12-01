@@ -26,3 +26,12 @@ def parse_size_string(size_string: str) -> int:
         return int(number) * __size_conversions.get(unit, 1)
     else:
         return int(m.group(1))
+
+
+def to_size_string(num_bytes, unit='M', precision=1) -> str:
+    factor = __size_conversions[unit]
+    value = num_bytes / factor
+
+    fmt = f'%0.{precision}f{unit}'
+
+    return fmt % value
