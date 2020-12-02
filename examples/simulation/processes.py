@@ -211,6 +211,8 @@ class BrokerProcess(NodeProcess):
 
         for dest in destinations:
             yield self.send(dest, message)
+            # TODO simulate different loads
+            yield self.env.timeout(0.1)
             if self.protocol.enable_ack:
                 yield self.receive(PubAck)
 
