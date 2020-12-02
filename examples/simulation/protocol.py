@@ -153,7 +153,11 @@ class Protocol(object):
             self.history.append(message)
         if self.csv_file:
             self.csv_writer.writerow({field: accessor(message) for field, accessor in csv_fields.items()})
-        return self.stores[message.destination].put(message)
+        return self.env.process(self.do_send(message))
+
+    def do_send(self, message: Message):
+        yield self.env.timeout(message.latency)
+        yield self.stores[message.destination].put(message)
 
     def receive(self, node: Node, *message_types: Type[MessageT]):
         if len(message_types) > 0:
