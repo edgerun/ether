@@ -13,6 +13,7 @@ import numpy
 import simpy
 
 from ether.cell import Broker, Client
+from ether.core import Connection
 from ether.topology import Topology
 from examples.simulation.processes import BrokerProcess, ClientProcess, CoordinatorProcess
 from examples.simulation.protocol import Protocol
@@ -65,7 +66,7 @@ class EmmaScenario:
         self.ping_all_brokers = ping_all_brokers
         self.logger = logging.getLogger('scenario')
 
-        logging.basicConfig(force=True, filename=f'{self.name}.log', level=logging.DEBUG)
+        logging.basicConfig(force=True, filename=f'{self.name}.log', filemode='w', level=logging.DEBUG)
         if verbose:
             console_handler = logging.StreamHandler()
             logging.getLogger().addHandler(console_handler)
@@ -91,8 +92,6 @@ class EmmaScenario:
             self.env.process(cp.run_publisher(topic, self.publish_interval))
         if self.use_vivaldi:
             self.env.process(cp.run_ping_loop())
-        elif self.ping_all_brokers:
-            self.env.process(cp.ping_all(lambda: [bp.node for bp in self.broker_procs if bp.running]))
         self.client_procs.append(cp)
         return cp
 
@@ -104,8 +103,10 @@ class EmmaScenario:
     def spawn_coordinator(self):
         coordinator_process = CoordinatorProcess(self.env, self.topology, self.protocol, self.client_procs,
                                                  self.broker_procs, self.use_vivaldi)
-        # self.topology.add_connection(Connection(coordinator_process.node, 'eu-central'))
-        self.env.process(coordinator_process.run())
+        self.topology.add_connection(Connection(coordinator_process.node, 'eu-central'))
+        self.env.process(coordinator_process.run_reconnect_process())
+        if not self.use_vivaldi:
+            self.env.process(coordinator_process.run_monitoring_process())
 
     def sleep(self):
         return self.env.timeout(self.action_interval * 60_000)
@@ -189,7 +190,7 @@ class EmmaScenario:
                     counts = {t.__name__: len([m for m in p_msgs if isinstance(m, t)])
                               for t in {type(m) for m in p_msgs}}
                     if len(counts) > 0:
-                        self.log(p.node.name)
+                        self.log(f'{p.node.name}: {counts}')
 
         self.csv_file.close()
 
@@ -226,18 +227,13 @@ def main():
     scenario_configs = [
         {
             **common_kwargs,
-            'name': 'emma',
+            'name': 'baseline',
         },
         {
             **common_kwargs,
-            'name': 'emma_vivaldi',
+            'name': 'vivaldi',
             'use_vivaldi': True,
         },
-        {
-            **common_kwargs,
-            'name': 'emma_no_ping',
-            'ping_all_brokers': False,
-        }
     ]
 
     if args.verbose:

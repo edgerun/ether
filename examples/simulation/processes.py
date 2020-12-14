@@ -23,7 +23,6 @@ class NodeProcess(ABC):
         self.protocol = protocol
         self.handlers = {
             Ping: self.handle_ping,
-            Pong: self.handle_pong,
             Shutdown: self.handle_shutdown
         }
         self.running = False
@@ -48,7 +47,7 @@ class NodeProcess(ABC):
         self.running = False
 
     def handle_ping(self, message: Ping):
-        return self.send(message.source, Pong())
+        return self.send(message.source, Pong(message.latency))
 
     def handle_pong(self, _: Pong):
         return
@@ -64,11 +63,17 @@ class NodeProcess(ABC):
             yield from self.ping_nodes(get_nodes())
             yield self.env.timeout(interval)
 
-    def ping_nodes(self, nodes: Iterable[Node], pings_per_node=5) -> simpy.Event:
-        for (n, _) in product(nodes, range(pings_per_node)):
+    def ping_nodes(self, nodes: Iterable[Node], pings_per_node=5, interval=0):
+        avgs = {n: 0 for n in nodes}
+        for (n, i) in product(nodes, range(pings_per_node)):
             if n == self.node:
                 continue
             yield self.send(n, Ping())
+            pong = yield self.receive(Pong)
+            avgs[n] = (avgs[n] + pong.rtt) / (i + 1)
+            if interval > 0:
+                yield self.env.timeout(interval)
+        return avgs
 
     @property
     @abstractmethod
@@ -91,10 +96,13 @@ class ClientProcess(NodeProcess):
         self.client = client
         self.selected_broker = initial_broker
         self.subscriptions = set()
-        self.handlers[Connect] = self.handle_reconnect_request
-        self.handlers[Pub] = self.handle_publish
+        self.handlers.update({
+            ReconnectRequest: self.handle_reconnect_request,
+            Pub: self.handle_publish,
+            QoSRequest: lambda r: self.env.process(self.handle_qos_request(r))
+        })
 
-    def handle_reconnect_request(self, request: Connect):
+    def handle_reconnect_request(self, request: ReconnectRequest):
         events = []
         for topic in self.subscriptions:
             events.append(self.send(request.broker, Sub(topic)))
@@ -105,8 +113,12 @@ class ClientProcess(NodeProcess):
                 events.append(self.receive(UnsubAck))
         self.selected_broker = request.broker
         if self.protocol.enable_ack:
-            events.append(self.send(request.source, ConnectAck()))
+            events.append(self.send(request.source, ReconnectAck()))
         return simpy.AllOf(self.env, events)
+
+    def handle_qos_request(self, request: QoSRequest):
+        avgs = yield from self.ping_nodes([request.target], 10, 250)
+        yield self.send(request.source, QoSResponse(avgs[request.target]))
 
     def handle_publish(self, message: Pub):
         if self.protocol.enable_ack:
@@ -137,7 +149,7 @@ class ClientProcess(NodeProcess):
 
     def run_publisher(self, topic: str, interval: int):
         while self.running:
-            yield self.send(self.selected_broker, Pub(topic))
+            yield self.send(self.selected_broker, Pub(topic, self.env.now))
             if self.protocol.enable_ack:
                 yield self.receive(PubAck)
             yield self.env.timeout(interval)
@@ -170,10 +182,12 @@ class BrokerProcess(NodeProcess):
         self.broker = broker
         self.brokers = brokers
         self.subscribers = defaultdict(lambda: set())
-        self.handlers[FindRandomBrokersRequest] = self.handle_random_brokers
-        self.handlers[FindClosestBrokersRequest] = self.handle_closest_brokers
-        self.handlers[Sub] = self.handle_subscribe
-        self.handlers[Unsub] = self.handle_unsubscribe
+        self.handlers.update({
+            FindRandomBrokersRequest: self.handle_random_brokers,
+            FindClosestBrokersRequest: self.handle_closest_brokers,
+            Sub: self.handle_subscribe,
+            Unsub: self.handle_unsubscribe,
+        })
 
     def handle_random_brokers(self, message: FindRandomBrokersRequest):
         yield self.send(message.source, FindRandomBrokersResponse([b.node for b in random.choices(self.brokers, k=5)]))
@@ -210,6 +224,7 @@ class BrokerProcess(NodeProcess):
                          and len(broker.subscribers[message.topic]) > 0]
 
         for dest in destinations:
+            message = copy(message)
             yield self.send(dest, message)
             # TODO simulate different loads
             yield self.env.timeout(0.1)
@@ -228,9 +243,9 @@ class BrokerProcess(NodeProcess):
         # reconnect active clients to random available broker
         node: Node
         for node in set().union(*self.subscribers.values()):
-            events.append(self.send(node, Connect(random.choice(self._running_brokers()).node)))
+            events.append(self.send(node, ReconnectRequest(random.choice(self._running_brokers()).node)))
             if self.protocol.enable_ack:
-                events.append(self.receive(ConnectAck))
+                events.append(self.receive(ReconnectAck))
 
         events.append(super().shutdown())
         return simpy.AllOf(self.env, events)
@@ -261,7 +276,7 @@ class CoordinatorProcess:
         self.use_coordinates = use_coordinates
         self.node = Node('coordinator')
 
-    def run(self):
+    def run_reconnect_process(self):
         while True:
             for client in self.client_procs:
                 current_broker = self.get_broker(client.selected_broker)
@@ -276,10 +291,21 @@ class CoordinatorProcess:
                     delta = theta * sum(map(lambda b: b.total_subscribers(), possible_brokers))
                     if new_broker.total_subscribers() + delta >= current_broker.total_subscribers():
                         continue
-                yield self.protocol.send(client.selected_broker, client.node, Connect(new_broker.node))
+                yield self.protocol.send(self.node, client.node, ReconnectRequest(new_broker.node))
                 if self.protocol.enable_ack:
-                    yield self.protocol.receive(client.selected_broker, ConnectAck)
+                    yield self.protocol.receive(self.node, ReconnectAck)
             yield self.env.timeout(15_000)
+
+    def run_monitoring_process(self):
+        while True:
+            for cp in self.client_procs:
+                self.env.process(self.do_monitoring(cp))
+            yield self.env.timeout(15_000)
+
+    def do_monitoring(self, cp: ClientProcess):
+        for bp in [bp for bp in self.broker_procs if bp.running]:
+            yield self.protocol.send(self.node, cp.node, QoSRequest(bp.node))
+            yield self.protocol.receive(self.node, QoSResponse)
 
     def get_broker(self, node: Node) -> BrokerProcess:
         return next(b for b in self.broker_procs if b.node == node)

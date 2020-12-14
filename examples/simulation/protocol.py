@@ -14,8 +14,10 @@ from ether.topology import Topology
 class Message:
     source: Node
     destination: Node
-    timestamp: int
+    timestamp: float
     latency: float
+    size: int
+    management = False
 
     def __repr__(self):
         return f'{type(self).__name__}({self.__dict__})'
@@ -25,44 +27,82 @@ MessageT = TypeVar('MessageT', bound=Message)
 
 
 class Ping(Message):
-    pass
+    size = 5
+    management = True
 
 
 class Pong(Message):
-    pass
+    ping_latency: float
+    rtt: float
+    size = 5
+    management = True
+
+    def __init__(self, ping_latency: float):
+        self.ping_latency = ping_latency
 
 
 class FindClosestBrokersRequest(Message):
-    pass
+    size = 5
+    management = True
 
 
 class FindClosestBrokersResponse(Message):
     brokers: List[Node]
+    management = True
 
     def __init__(self, brokers: List[Node]):
         self.brokers = brokers
+        # 1 byte type/length, 4 bytes IP + 1 byte port for each broker
+        self.size = 1 + len(brokers) * 5
 
 
 class FindRandomBrokersRequest(Message):
-    pass
+    size = 5
+    management = True
 
 
 class FindRandomBrokersResponse(Message):
     brokers: List[Node]
+    management = True
 
     def __init__(self, brokers: List[Node]):
         self.brokers = brokers
+        # 1 byte type/length, 4 bytes IP + 1 byte port for each broker
+        self.size = 1 + len(brokers) * 5
 
 
-class Connect(Message):
+class ReconnectRequest(Message):
     broker: Node
+    size = 47
+    management = True
 
     def __init__(self, broker: Node):
         self.broker = broker
 
 
-class ConnectAck(Message):
-    pass
+class ReconnectAck(Message):
+    size = 47
+    management = True
+
+
+class QoSRequest(Message):
+    target: Node
+    # type/length (1) + packetId (4) + target IP (4) + target port (4)
+    size = 13
+    management = True
+
+    def __init__(self, target: Node):
+        self.target = target
+
+
+class QoSResponse(Message):
+    avg_rtt: float
+    # type/length + packetId + avg_rtt
+    size = 9
+    management = True
+
+    def __init__(self, avg_rtt):
+        self.avg_rtt = avg_rtt
 
 
 class Sub(Message):
@@ -70,10 +110,13 @@ class Sub(Message):
 
     def __init__(self, topic: str):
         self.topic = topic
+        # type/length + packetId + topic
+        self.size = 1 + 4 + len(topic)
 
 
 class SubAck(Message):
-    pass
+    # type/length + packetId
+    size = 5
 
 
 class Unsub(Message):
@@ -81,10 +124,13 @@ class Unsub(Message):
 
     def __init__(self, topic: str):
         self.topic = topic
+        # type/length + packetId + topic
+        self.size = 1 + 4 + len(topic)
 
 
 class UnsubAck(Message):
-    pass
+    # type/length + packetId
+    size = 5
 
 
 pub_counter = itertools.count()
@@ -92,32 +138,42 @@ pub_counter = itertools.count()
 
 class Pub(Message):
     hops: List[Node]
+    first_sent: float
+    e2e_latency: float = 0.0
     topic: str
     data: Any
 
-    def __init__(self, topic: str):
+    def __init__(self, topic: str, first_sent: float):
         self.hops = []
+        self.first_sent = first_sent
         self.topic = topic
         self.data = str(next(pub_counter))
+        # type/length + Pub header + topic + packetId + payload
+        self.size = 1 + 1 + len(topic) + 4 + 4
 
 
 class PubAck(Message):
-    pass
+    # type/length + packetId
+    size = 5
 
 
 class Shutdown(Message):
-    pass
+    # type/length + packetId
+    size = 5
 
 
 csv_fields = {
-    'timestamp': lambda m: str(m.timestamp),
+    'timestamp': lambda m: m.timestamp,
     'msg_type': lambda m: type(m).__name__,
     'source': lambda m: m.source.name,
     'destination': lambda m: m.destination.name,
-    'latency': lambda m: str(round(m.latency, 3)),
+    'latency': lambda m: m.latency,
+    'size': lambda m: m.size,
+    'management': lambda m: m.management,
     'topic': lambda m: m.topic if hasattr(m, 'topic') else '',
     'broker': lambda m: m.broker.name if hasattr(m, 'broker') else '',
     'data': lambda m: m.data if hasattr(m, 'data') else '',
+    'e2e_latency': lambda m: m.e2e_latency if hasattr(m, 'e2e_latency') else '',
 }
 
 
@@ -149,6 +205,10 @@ class Protocol(object):
         message.destination = destination
         message.timestamp = self.env.now
         message.latency = self.topology.latency(source, destination)
+        if isinstance(message, Pub):
+            message.e2e_latency += message.latency
+        if isinstance(message, Pong):
+            message.rtt = message.ping_latency + message.latency
         if self.save_history:
             self.history.append(message)
         if self.csv_file:
