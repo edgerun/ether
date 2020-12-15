@@ -73,11 +73,13 @@ class FindRandomBrokersResponse(Message):
 
 class ReconnectRequest(Message):
     broker: Node
+    optimal_broker: Node
     size = 47
     management = True
 
-    def __init__(self, broker: Node):
+    def __init__(self, broker: Node, optimal_broker: Node):
         self.broker = broker
+        self.optimal_broker = optimal_broker
 
 
 class ReconnectAck(Message):
@@ -172,6 +174,7 @@ csv_fields = {
     'management': lambda m: m.management,
     'topic': lambda m: m.topic if hasattr(m, 'topic') else '',
     'broker': lambda m: m.broker.name if hasattr(m, 'broker') else '',
+    'optimal_broker': lambda m: m.optimal_broker.name if hasattr(m, 'optimal_broker') else '',
     'data': lambda m: m.data if hasattr(m, 'data') else '',
     'e2e_latency': lambda m: m.e2e_latency if hasattr(m, 'e2e_latency') else '',
 }

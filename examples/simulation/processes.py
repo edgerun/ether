@@ -238,17 +238,17 @@ class BrokerProcess(NodeProcess):
     def node(self) -> Node:
         return self.broker.node
 
-    def shutdown(self):
-        events = []
-        # reconnect active clients to random available broker
-        node: Node
-        for node in set().union(*self.subscribers.values()):
-            events.append(self.send(node, ReconnectRequest(random.choice(self._running_brokers()).node)))
-            if self.protocol.enable_ack:
-                events.append(self.receive(ReconnectAck))
-
-        events.append(super().shutdown())
-        return simpy.AllOf(self.env, events)
+    # def shutdown(self):
+    #     events = []
+    #     # reconnect active clients to random available broker
+    #     node: Node
+    #     for node in set().union(*self.subscribers.values()):
+    #         events.append(self.send(node, ReconnectRequest(random.choice(self._running_brokers()).node)))
+    #         if self.protocol.enable_ack:
+    #             events.append(self.receive(ReconnectAck))
+    #
+    #     events.append(super().shutdown())
+    #     return simpy.AllOf(self.env, events)
 
     def _running_brokers(self) -> List['BrokerProcess']:
         return list(filter(lambda bp: bp.running, self.brokers))
@@ -280,10 +280,15 @@ class CoordinatorProcess:
         while True:
             for client in self.client_procs:
                 current_broker = self.get_broker(client.selected_broker)
-                possible_brokers = self.brokers_in_lowest_latency_group(client.node)
-                if len(possible_brokers) == 0:
+                optimal_brokers = self.brokers_in_lowest_latency_group(client.node, False)
+                if len(optimal_brokers) == 0:
                     break
+                if self.use_coordinates:
+                    possible_brokers = self.brokers_in_lowest_latency_group(client.node, True)
+                else:
+                    possible_brokers = optimal_brokers
                 new_broker = sorted(possible_brokers, key=lambda b: b.total_subscribers())[0]
+                optimal_broker = sorted(optimal_brokers, key=lambda b: b.total_subscribers())[0]
                 if new_broker == current_broker:
                     continue
                 if current_broker in possible_brokers:
@@ -291,7 +296,7 @@ class CoordinatorProcess:
                     delta = theta * sum(map(lambda b: b.total_subscribers(), possible_brokers))
                     if new_broker.total_subscribers() + delta >= current_broker.total_subscribers():
                         continue
-                yield self.protocol.send(self.node, client.node, ReconnectRequest(new_broker.node))
+                yield self.protocol.send(self.node, client.node, ReconnectRequest(new_broker.node, optimal_broker.node))
                 if self.protocol.enable_ack:
                     yield self.protocol.receive(self.node, ReconnectAck)
             yield self.env.timeout(15_000)
@@ -310,8 +315,8 @@ class CoordinatorProcess:
     def get_broker(self, node: Node) -> BrokerProcess:
         return next(b for b in self.broker_procs if b.node == node)
 
-    def brokers_in_lowest_latency_group(self, node: Node) -> List[BrokerProcess]:
-        running_brokers = sorted([(self.topology.latency(node, bp.node, self.use_coordinates), bp)
+    def brokers_in_lowest_latency_group(self, node: Node, use_coordinates: bool) -> List[BrokerProcess]:
+        running_brokers = sorted([(self.topology.latency(node, bp.node, use_coordinates), bp)
                                   for bp in self.broker_procs if bp.running], key=lambda t: t[0])
         group_boundaries = [0, 2, 5, 10, 20, 50, 100, 200, 500, 1000, float('Inf')]
         for (low, high) in zip(group_boundaries, group_boundaries[1:]):
