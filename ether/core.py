@@ -97,6 +97,9 @@ class Node:
 
         return self.coordinate.distance_to(other.coordinate)
 
+    def __hash__(self):
+        return hash(self.name)
+
 
 class Route:
     source: Node

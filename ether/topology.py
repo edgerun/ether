@@ -40,6 +40,11 @@ class Topology(nx.DiGraph):
     def path(self, source, destination):
         return nx.shortest_path(self, source, destination)
 
+    def latency(self, source: Node, destination: Node, use_coordinates=False) -> float:
+        if use_coordinates:
+            return source.distance_to(destination)
+        return self.route(source, destination).rtt / 2
+
     def route(self, source, destination, use_mode: bool = False) -> Route:
         """
         Returns the route from source to destination.

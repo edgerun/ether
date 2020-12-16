@@ -55,39 +55,42 @@ class ClientExperiment:
                         neighbors = neighbors(client)
                     self.client_vivaldi(client, neighbors)
 
-            vivaldi_runs = self.clients[0].coordinate.vivaldi_runs
-
-            # distances to closest neighbor of each client as estimated by vivaldi
-            pred_dists = []
-            # distances to closest neighbor calculated from ground truth
-            true_dists = []
-            # number of clients where vivaldi-estimated neighbor equals true neighbor
-            correct_neighbors = 0
-            # number of clients where the vivaldi-estimated neighbor is in same region as the client itself
-            correct_regions = 0
-            for c in self.clients:
-                # find closest broker using vivaldi and append distance
-                vivaldi_neighbor = self.find_vivaldi_closest_brokers(c)[0]
-                pred_dists.append(c.distance_to(vivaldi_neighbor))
-                # find closest broker using topology graph and append mode distance
-                true_neighbor = self.find_true_neighbor_broker(c)
-                true_dists.append(self.topology.route(c, true_neighbor, use_mode=True).rtt)
-                if true_neighbor == vivaldi_neighbor:
-                    correct_neighbors += 1
-                if self.region_of(true_neighbor) == self.region_of(vivaldi_neighbor):
-                    correct_regions += 1
-
-            # calculate root mean squared error of estimated neighbor distances.
-            # note: we compare the distance between the neighbor as seen by vivaldi
-            # and the distance to the actual neighbor
-            rmse = mean_squared_error(true_dists, pred_dists, squared=False)
-            results.append([n, rmse, correct_neighbors / len(self.clients) * 100,
-                            correct_regions / len(self.clients) * 100, vivaldi_runs])
+            result = self.calculate_errors()
+            results.append([n, *result])
 
         return np.array(results)
 
+    def calculate_errors(self):
+        vivaldi_runs = np.mean([c.coordinate.vivaldi_runs for c in self.clients])
+        # distances to closest neighbor of each client as estimated by vivaldi
+        pred_dists = []
+        # distances to closest neighbor calculated from ground truth
+        true_dists = []
+        # number of clients where vivaldi-estimated neighbor equals true neighbor
+        correct_neighbors = 0
+        # number of clients where the vivaldi-estimated neighbor is in same region as the client itself
+        correct_regions = 0
+        for c in self.clients:
+            # find closest broker using vivaldi and append distance
+            vivaldi_neighbor = self.find_vivaldi_closest_brokers(c)[0]
+            pred_dists.append(c.distance_to(vivaldi_neighbor))
+            # find closest broker using topology graph and append mode distance
+            true_neighbor = self.find_true_neighbor_broker(c)
+            true_dists.append(self.topology.route(c, true_neighbor, use_mode=True).rtt)
+            if true_neighbor == vivaldi_neighbor:
+                correct_neighbors += 1
+            if self.region_of(true_neighbor) == self.region_of(vivaldi_neighbor):
+                correct_regions += 1
+        # calculate root mean squared error of estimated neighbor distances.
+        # note: we compare the distance between the neighbor as seen by vivaldi
+        # and the distance to the actual neighbor
+        rmse = mean_squared_error(true_dists, pred_dists, squared=False)
+        result = [rmse, correct_neighbors / len(self.clients) * 100,
+                  correct_regions / len(self.clients) * 100, vivaldi_runs]
+        return result
+
     @staticmethod
-    def plot_results(results: np.ndarray, title: str):
+    def plot_results(results: np.ndarray, title: str, x_index=4, x_label='executions per client'):
         """
         Renders the following two plots side-by-side in one figure:
           * the root mean squared error over time (i.e., vivaldi executions)
@@ -95,6 +98,8 @@ class ClientExperiment:
 
         :param results: ndarray of results as returned by self.run
         :param title: the title of the figure
+        :param x_index: index of results array for x values
+        :param x_label: label for x axis
         """
         # 0: n
         # 1: rmse
@@ -108,18 +113,18 @@ class ClientExperiment:
         fig.suptitle(title)
 
         color = 'tab:blue'
-        ax1.set_xlabel('executions per client')
+        ax1.set_xlabel(x_label)
         ax1.set_ylabel('RMSE')
         ax1.tick_params(axis='y', labelcolor=color)
         ax1.set_ylabel('rmse', color=color)
-        ax1.scatter(results[:, 4], results[:, 1], color=color)
+        ax1.scatter(results[:, x_index], results[:, 1], color=color)
         ax1.set_ylim(ymin=0)
         _ = ax1.legend()
 
-        ax2.set_xlabel('executions per client')
+        ax2.set_xlabel(x_label)
         ax2.set_ylabel('percent correctly predicted')
-        ax2.plot(results[:, 4], results[:, 3], color='tab:blue', label='region')
-        ax2.plot(results[:, 4], results[:, 2], color='tab:red', label='neighbor')
+        ax2.plot(results[:, x_index], results[:, 3], color='tab:blue', label='region')
+        ax2.plot(results[:, x_index], results[:, 2], color='tab:red', label='neighbor')
         ax2.set_ylim(ymin=0, ymax=110)
         _ = ax2.legend(loc='lower right')
 
