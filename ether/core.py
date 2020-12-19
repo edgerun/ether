@@ -157,7 +157,7 @@ class Flow:
 
         timer = env.now
         connection_time = ((route.rtt * 1.5) / 1000)  # rough estimate of TCP connection establish time
-        while connection_time > 0:
+        if connection_time > 0:
             yield env.timeout(connection_time)
 
         add_and_rebalance(self)
