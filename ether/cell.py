@@ -140,7 +140,7 @@ class SharedLinkCell(Cell):
     def _create_identity(self):
         self.nr = next(counters['shared'])
         self.name = 'shared_%d' % self.nr
-        self.link = Link(bandwidth=self.shared_bandwidth, tags={'name': 'link_%s', 'type': 'shared'})
+        self.link = Link(bandwidth=self.shared_bandwidth, tags={'name': self.name, 'type': 'shared'})
 
     def materialize(self, topology: Topology, parent=None):
         self._create_identity()
