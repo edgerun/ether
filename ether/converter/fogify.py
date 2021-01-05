@@ -2,78 +2,64 @@ from collections import defaultdict
 from typing import Dict, NamedTuple, List
 
 from ether.topology import Topology
-# TODO: import fogify model and classes instead
 from ether.util import to_size_string
+from FogifySDK import FogifySDK
+from ether.core import Node
 
+class Placement(object):
+    """
+    A small class for placement policy definition.
+    The services (services names) should be described in the initial docker-compose file.
+    """
 
-class FogifyModel(NamedTuple):
-    nodes: List[Dict]
-    networks: List[Dict]
-    topology: List[Dict]
+    def __init__(self):
+        self.topology = dict()
 
+    def deploy_service_to_node(self, service_name: str, node: Node):
+        self.topology[node.name] = service_name
 
-def serialize(fogify: FogifyModel, yaml_file):
-    # TODO
-    pass
+    def get_nodes(self) -> list:
+        return [node_name for node_name in self.topology]
 
+def topology_to_fogify(topology: Topology, fogify: FogifySDK, placement: Placement) -> FogifySDK:
 
-def topology_to_fogify(topology: Topology) -> FogifyModel:
-    nodes = list()
-    networks = defaultdict(dict)
-    fogify_topology = list()
+    #  Node translation from ether to Fogify model
+    for n in topology.get_nodes():
+        if n.name in placement.get_nodes():
+            num_of_cores = int(n.capacity.cpu_millis / 1000)
+
+            fogify.add_node(n.name,
+                            cpu_cores=num_of_cores,
+                            cpu_freq= 1000,  # TODO update the frequency
+                            memory=to_size_string(n.capacity.memory, 'G'))
+                            # the limit of memory is 7 due to the PC's limitation power
+            # TODO: ether has more capabilities hidden in labels (GPU, TPU, etc.)
+    fogify.add_network("ether_net", bidirectional={})  # Maybe we need to describe the general network characteristics
 
     for n in topology.get_nodes():
-        nodes.append({
-            'name': n.name,
-            'capabilities': {
-                'processors': {
-                    'cores': int(n.capacity.cpu_millis / 1000),
-                    'clock': 0,  # TODO
-                },
-                'memory': to_size_string(n.capacity.memory, 'G'),
-                # TODO: ether has more capabilities hidden in labels (GPU, TPU, etc.)
-            }
-        })
+        for j in topology.get_nodes():
+            if type(n) == Node and type(j) == Node and n != j \
+                    and n.name in placement.get_nodes() and j.name in placement.get_nodes():  # introduce link connection between compute nodes
+                bandwidth = min([k.bandwidth for k in topology.route(n, j).hops])
+                latency = round(float(topology.route(n, j).rtt/2), 2)
+                fogify.add_link(
+                    "ether_net",
+                    from_node=n.name,
+                    to_node=j.name,
+                    bidirectional=False,
+                    properties={
+                        'latency': {
+                            'delay': f'{latency}ms',
+                        },
+                        'bandwidth': f'{bandwidth}Mbps'
+                    }
+                )
+    for node_name in placement.topology:
+        fogify.add_deployment_node(
+            node_name,
+            placement.topology[node_name],  # How can we introduce services in ether?
+            node_name,
+            networks=["ether_net"]
+        )
 
-    # TODO: need to clarify fogify internet network
-    # this is kinda roundabout, as we're reconstructing the original higher-level 'Cloudlet', 'LANCell', etc structure
-    for link in topology.get_links():
-        if link.tags.get('type') == 'downlink':
-            name = link.tags['name'][5:]  # cut off 'down_' prefix of uplink
-            networks[name]['name'] = name
-            networks[name]['uplink'] = {
-                'bandwidth': f'{link.bandwidth}Mbps',
-                'latency': {
-                    'delay': 0,
-                },
-                'drop': '0.1%',  # TODO: QoS modelling is still quite rudimentary in ether
-            }
-
-            for edge in topology.in_edges([link]):
-                connection = topology.get_edge_data(edge[0], edge[1])['connection']
-                networks[name]['downlink']['latency']['delay'] = float(connection.get_mode_latency())
-                break  # should only be one edge
-
-        elif link.tags.get('type') == 'uplink':
-            name = link.tags['name'][3:]  # cut off 'up_' prefix of uplink
-            networks[name]['name'] = name
-            networks[name]['downlink'] = {
-                'bandwidth': f'{link.bandwidth}Mbps',
-                'latency': {
-                    'delay': 0,
-                },
-                'drop': '0.1%',  # TODO: QoS modelling is still quite rudimentary in ether
-            }
-
-            for edge in topology.out_edges([link]):
-                connection = topology.get_edge_data(edge[0], edge[1])['connection']
-                networks[name]['downlink']['latency']['delay'] = float(connection.get_mode_latency())
-                break  # should only be one edge
-
-        # TODO: internet
-
-    # TODO: collapse uplink/downlink to 'bidirectional' (fogify concept) if uplink == downlink with all QoS values
-
-    model = FogifyModel(nodes, list(networks.values()), fogify_topology)
-    print(model)
-    return model
+    return fogify

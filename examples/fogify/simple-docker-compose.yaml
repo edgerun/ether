@@ -1,0 +1,5 @@
+services:
+  test:
+    image: busybox:latest
+    command: top
+version: '3.7'
