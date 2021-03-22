@@ -3,6 +3,8 @@ ether: Edge Topology Synthesizer
 
 [![PyPI Version](https://badge.fury.io/py/edgerun-ether.svg)](https://badge.fury.io/py/edgerun-ether)
 
+<img src="https://github.com/edgerun/ether/raw/master/logo/logo.png" height="100">
+
 *Ether* is a Python tool to generate plausible edge infrastructure configurations.
 It arose from the need to evaluate edge computing systems in different infrastructure scenarios where no appropriate
 testbeds are available.
