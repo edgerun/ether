@@ -59,7 +59,7 @@ UrbanSensingTopology().materialize(topology)
 The following example shows how we used generated topology to evaluate the effect on uplink usage of different resource
 allocation strategies in an edge computing platform.
 The node-link diagram of the topology is augmented with a
-[topographic attribute map](https://hydra.cgv.tugraz.at/preiner/papers/psksm20-tam.pdf) ([rpreiner/tam](https://github.com/rpreiner/tam)]) that the data exchange in
+[topographic attribute map](https://hydra.cgv.tugraz.at/preiner/papers/psksm20-tam.pdf) ([rpreiner/tam](https://github.com/rpreiner/tam)) that the data exchange in
 log bytes.
 The left part of the figure shows the baseline resource allocation strategy, the right part shows our improved strategy
 that takes data-locality into account.
