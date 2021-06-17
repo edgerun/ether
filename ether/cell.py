@@ -166,7 +166,14 @@ class SharedLinkCell(Cell):
 
 class GeoCell(Cell):
 
-    def __init__(self, size, density, nodes) -> None:
+    def __init__(self, density, nodes, size: int = 1) -> None:
+        """
+        Initializes the GeoCell :param density: int or Randomsampler. Used to divide the nodes in the cells :param
+        nodes: nodes the GeoCell will contain :param size: Number of times GeoCell will iterate over the nodes when
+        materializing. ATTENTION: If you want to supply your own nodes that aren't themselves generators,
+        this must be 1, since otherwise materialize will be called n times on your nodes, depending on what size you
+        choose
+        """
         super().__init__(nodes, size)
         if isinstance(density, int):
             self.density = ConstantSampler(density)
@@ -176,7 +183,7 @@ class GeoCell(Cell):
             raise ValueError('unknown density type %s' % type(density))
 
     def materialize(self, topology: Topology, parent=None):
-        for i in range(self.size):
+        for _ in range(self.size):
             n = self.density.sample()
 
             for c in self.nodes:
