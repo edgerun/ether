@@ -2,7 +2,7 @@ ether: Edge Topology Synthesizer
 ================================
 
 [![PyPI Version](https://badge.fury.io/py/edgerun-ether.svg)](https://badge.fury.io/py/edgerun-ether)
-[![Python 3.6](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
 
 <img src="https://github.com/edgerun/ether/raw/master/logo/logo.png" height="100">
 
