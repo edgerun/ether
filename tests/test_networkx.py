@@ -48,7 +48,7 @@ class TestNetworkx(TestCase):
         r = topology.route(n1, n4)
         print('route', r)
 
-        pos = nx.spring_layout(topology)  # positions for all nodes
+        pos = nx.kamada_kawai_layout(topology)  # positions for all nodes
 
         nx.draw_networkx_nodes(topology, pos)
         nx.draw_networkx_edges(topology, pos, width=1.0, alpha=0.5)

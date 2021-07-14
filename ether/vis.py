@@ -4,7 +4,7 @@ from ether.core import Node, Link
 
 
 def draw_basic(topology):
-    pos = nx.spring_layout(topology)  # positions for all nodes
+    pos = nx.kamada_kawai_layout(topology)  # positions for all nodes
 
     # nodes
 
