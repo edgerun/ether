@@ -1,6 +1,6 @@
 matplotlib==3.4.2
 networkx==2.4
-numpy==1.21.0
+numpy==1.22.0
 pandas==1.2.5
 scipy==1.7.0
 simpy==3.0.11
