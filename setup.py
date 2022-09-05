@@ -14,7 +14,7 @@ with open("requirements.txt", "r") as fh:
 
 setuptools.setup(
     name="edgerun-ether",
-    version="0.4.0.dev3",
+    version="0.4.0.dev4",
     author="Thomas Rausch",
     author_email="t.rausch@dsg.tuwien.ac.at",
     description="Ether - Synthesize plausible edge infrastructure topologies",
