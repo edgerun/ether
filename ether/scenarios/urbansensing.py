@@ -51,7 +51,7 @@ class UrbanSensingScenario:
             backhaul=MobileConnection(self.internet)
         )
 
-        city = GeoCell(self.num_cells, nodes=[neighborhood], density=self.cell_density)
+        city = GeoCell(size=self.num_cells, nodes=[neighborhood], density=self.cell_density)
 
         return city
 

@@ -32,7 +32,7 @@ def main():
         shared_bandwidth=500,
         backhaul=MobileConnection('internet_chix'))
     city = GeoCell(
-        5, nodes=[neighborhood], density=lognorm((0.82, 2.02)))
+        size=5, nodes=[neighborhood], density=lognorm((0.82, 2.02)))
     cloudlet = Cloudlet(
         5, 2, backhaul=FiberToExchange('internet_chix'))
 

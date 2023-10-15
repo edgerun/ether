@@ -47,7 +47,7 @@ def create_topology() -> Topology:
             nodes=[[aot_node] * size, [edge_broker_factory_with_region(region)]],
             backhaul=MobileConnection(region)
         )
-        city = GeoCell(5, nodes=[neighborhood], density=lognorm((0.82, 2.02)))
+        city = GeoCell(size=5, nodes=[neighborhood], density=lognorm((0.82, 2.02)))
         topology.add(city)
 
         broker = Broker(f'cloud-broker_{region}', backhaul=region)
